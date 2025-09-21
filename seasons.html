@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Seasons — Capsule Outfits</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    .seasons-grid .card img{
+      width:100%;
+      height:auto;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      display:block;
+    }
+
+    .mood-wrap{ position: relative; isolation: isolate; }
+    .seasons-grid{ position: relative; z-index: 1; }
+
+    .mood{
+      position: absolute; inset: -60px 0 -60px 0;
+      z-index: 0; pointer-events: none;
+      opacity: 0; transition: opacity .45s ease;
+      background: radial-gradient(1200px 500px at 50% 0%,
+                  rgba(0,0,0,.04), rgba(0,0,0,0));
+    }
+    .mood.base{
+      opacity: .35;
+      background:
+        radial-gradient(1100px 420px at 50% 0%, rgba(122,13,79,.08), rgba(122,13,79,0) 70%),
+        linear-gradient(#fff, #fafafa);
+    }
+    .mood.spring{
+      background:
+        radial-gradient(1000px 420px at 20% 10%, rgba(194,255,214,.25), rgba(194,255,214,0) 60%),
+        radial-gradient(900px 380px  at 80% 0%,  rgba(255,183,213,.28), rgba(255,183,213,0) 65%),
+        linear-gradient(#ffffff, #fbfbfb);
+    }
+    .mood.summer{
+      background:
+        radial-gradient(1100px 460px at 50% 0%, rgba(155,207,255,.30), rgba(155,207,255,0) 65%),
+        radial-gradient(900px 380px  at 90% 10%, rgba(255,251,185,.22), rgba(255,251,185,0) 65%),
+        linear-gradient(#ffffff, #fbfeff);
+    }
+    .mood.autumn{
+      background:
+        radial-gradient(1100px 460px at 10% 0%, rgba(255,186,120,.30), rgba(255,186,120,0) 65%),
+        radial-gradient(900px 380px  at 85% 10%, rgba(180,84,0,.22),    rgba(180,84,0,0) 65%),
+        linear-gradient(#fffaf6, #fff7ef);
+    }
+    .mood.winter{
+      background:
+        radial-gradient(1100px 460px at 50% 0%, rgba(190,205,224,.32), rgba(190,205,224,0) 65%),
+        radial-gradient(900px 380px  at 10% 10%,  rgba(230,238,245,.28), rgba(230,238,245,0) 60%),
+        linear-gradient(#ffffff, #f7f9fc);
+    }
+    .season-card:hover ~ .mood.base,
+    .season-card:focus-within ~ .mood.base{ opacity: 0; }
+    .season-card.spring:hover ~ .mood.spring,
+    .season-card.spring:focus-within ~ .mood.spring{ opacity: 1; }
+    .season-card.summer:hover ~ .mood.summer,
+    .season-card.summer:focus-within ~ .mood.summer{ opacity: 1; }
+    .season-card.autumn:hover ~ .mood.autumn,
+    .season-card.autumn:focus-within ~ .mood.autumn{ opacity: 1; }
+    .season-card.winter:hover ~ .mood.winter,
+    .season-card.winter:focus-within ~ .mood.winter{ opacity: 1; }
+  </style>
+</head>
+<body>
+
+  <header class="site-nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html"><span class="brand-dot">FL</span> Fashion Lookbook</a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="weekly.html">Weekly Looks</a>
+        <a class="pill active" href="seasons.html">Seasons</a>
+        <a href="styles.html">Styles</a>
+        <a href="closet.html">Closet</a>
+        <a href="wishlist.html">Wishlist</a>
+        <a href="inspiration.html">Inspiration</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container center">
+        <h1 class="hero-title">Seasonal Fashion</h1>
+        <p class="hero-sub">Explore capsule outfits for every season and find your vibe.</p>
+      </div>
+    </section>
+
+    <section class="container">
+      <h2 class="section-title center">Our Seasonal Picks</h2>
+
+      <section class="container">
+        <form class="style-filters" aria-label="Filter looks by style">
+          <input type="radio" name="style" id="style-all" checked>
+          <label for="style-all">All</label>
+
+          <input type="radio" name="style" id="style-casual">
+          <label for="style-casual">Casual</label>
+
+          <input type="radio" name="style" id="style-elegant">
+          <label for="style-elegant">Elegant</label>
+
+          <input type="radio" name="style" id="style-sporty">
+          <label for="style-sporty">Sporty</label>
+
+          <input type="radio" name="style" id="style-party">
+          <label for="style-party">Party</label>
+        </form>
+      </section>
+
+      <section class="container">
+        <div class="mood-wrap">
+
+          <div class="seasons-grid">
+            <article class="card elegant season-card spring">
+              <img src="styles/spring.JPG" alt="Spring look — elegant">
+              <div class="card-body">
+                <h3 class="card-title">Spring</h3>
+                <p class="card-text">Pastel trench, knit, jeans, sneakers.</p>
+              </div>
+            </article>
+
+            <article class="card sporty season-card summer">
+              <img src="styles/summer.JPG" alt="Summer look — sporty">
+              <div class="card-body">
+                <h3 class="card-title">Summer</h3>
+                <p class="card-text">Linen top, skirt/shorts, sandals, shades.</p>
+              </div>
+            </article>
+
+            <article class="card casual season-card autumn">
+              <img src="styles/autumn.JPG" alt="Autumn look — casual">
+              <div class="card-body">
+                <h3 class="card-title">Autumn</h3>
+                <p class="card-text">Wool coat, plaid, scarf, boots.</p>
+              </div>
+            </article>
+
+            <article class="card party season-card winter">
+              <img src="styles/winter.JPG" alt="Winter look — party">
+              <div class="card-body">
+                <h3 class="card-title">Winter</h3>
+                <p class="card-text">Puffer, cashmere, trousers, leather boots.</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="mood base"></div>
+          <div class="mood spring"></div>
+          <div class="mood summer"></div>
+          <div class="mood autumn"></div>
+          <div class="mood winter"></div>
+
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <div class="center" style="margin-top:12px">
+    <a class="btn" href="#">View full capsule</a>
+  </div>
+
+  <section class="container" style="padding:28px 20px 40px">
+    <p class="quote">“Buy less, choose well, make it last.” — Vivienne Westwood</p>
+  </section>
+
+  <footer class="footer center">
+    <small>© 2025 Fashion Lookbook</small>
+  </footer>
+
+</body>
+</html>
