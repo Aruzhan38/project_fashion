@@ -1,4 +1,87 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-    
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weekly Looks — Fashion Lookbook</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
+<body>
+  <header class="header-section" id="top-banner">
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="weekly.html" class="active">Weekly Looks</a>
+      <a href="seasons.html">Seasons</a>
+      <a href="styles.html">Styles</a>
+      <a href="closet.html">Closet</a>
+      <a href="wishlist.html">Wishlist</a>
+      <a href="inspiration.html">Inspiration</a>
+      <a href="about.html">About & Contact</a>
+    </nav>
+    <div class="hero">
+      <img src="images/avatar.jpg" alt="Your avatar" class="avatar"/>
+      <div>
+        <h1>My Weekly Looks</h1>
+        <p class="highlighted-text">7 days — 7 vibes. Minimal, sporty, elegant, street — everything for you. (๑˃ᴗ˂)ﻭ</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="week-grid section-box" id="week-gallery">
+      <h2>Looks of the Week</h2>
+      <figure class="card">
+        <img src="images/day1.jpg" alt="Monday look">
+        <figcaption><strong>Mon</strong> • Casual campus fit</figcaption>
+      </figure>
+      <figure class="card">
+        <img src="images/day2.jpg" alt="Tuesday look">
+        <figcaption><strong>Tue</strong> • Soft pink + denim</figcaption>
+      </figure>
+      <figure class="card">
+        <img src="images/day3.jpg" alt="Wednesday look">
+        <figcaption><strong>Wed</strong> • Sporty monochrome</figcaption>
+      </figure>
+      <figure class="card">
+        <img src="images/day4.jpg" alt="Thursday look">
+        <figcaption><strong>Thu</strong> • Academic chic</figcaption>
+      </figure>
+      <figure class="card">
+        <img src="images/day5.jpg" alt="Friday look">
+        <figcaption><strong>Fri</strong> • Street oversized</figcaption>
+      </figure>
+      <figure class="card">
+        <img src="images/day6.png" alt="Saturday look">
+        <figcaption><strong>Sat</strong> • Elegant dinner</figcaption>
+      </figure>
+      <figure class="card">
+        <img src="images/day7.png" alt="Sunday look">
+        <figcaption><strong>Sun</strong> • Cozy knit</figcaption>
+      </figure>
+    </section>
+
+    <section class="section-box">
+      <h2>Vote your favorite</h2>
+      <form class="form" action="#" method="post">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" placeholder="Your name"/>
+        
+        <label for="favday">Pick a day</label>
+        <select id="favday" name="favday">
+          <option value="Mon">Monday</option><option>Tuesday</option><option>Wednesday</option>
+          <option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option>
+        </select>
+
+        <label for="comment">Why this look?</label>
+        <textarea id="comment" name="comment" rows="4" placeholder="Short note"></textarea>
+
+        <button type="submit" class="btn">Submit</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 Fashion Lookbook</p>
+  </footer>
+</body>
+</html>

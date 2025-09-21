@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inspiration — Fashion Lookbook</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header class="header-section" id="top-banner">
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="weekly.html">Weekly Looks</a>
+      <a href="seasons.html">Seasons</a>
+      <a href="styles.html">Styles</a>
+      <a href="closet.html">Closet</a>
+      <a href="wishlist.html">Wishlist</a>
+      <a href="inspiration.html" class="active">Inspiration</a>
+      <a href="about.html">About & Contact</a>
+    </nav>
+    <div class="hero">
+      <div>
+        <h1>Inspiration Board</h1>
+        <p class="highlighted-text">References, pins, palettes, brands — everything that drives creativity =^x^=</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section-box">
+      <h2>Brands & Links ʕ•ᴥ•ʔ</h2>
+      <ul class="link-list">
+        <li><a href="https://www.prada.com" target="_blank" rel="noreferrer">Prada</a></li>
+        <li><a href="https://www.muji.com" target="_blank" rel="noreferrer">Muji</a></li>
+        <li><a href="https://www.uniqlo.com" target="_blank" rel="noreferrer">Uniqlo</a></li>
+        <li><a href="https://www.viviennewestwood.com/" target="_blank" rel="noreferrer">Vivenne Westwood</a></li>
+      </ul>
+    </section>
+
+    <section class="moodboard section-box" id="moodboard">
+      <h2>Moodboard (=^･ω･^=)</h2>
+      <div class="masonry">
+        <img src="images/ref1.jpg" alt="reference 1">
+        <img src="images/ref2.jpg" alt="reference 2">
+        <img src="images/ref3.jpg" alt="reference 3">
+        <img src="images/ref4.jpg" alt="reference 4">
+        <img src="images/ref5.jpg" alt="reference 5">
+        <img src="images/ref6.jpg" alt="reference 6">
+      </div>
+    </section>
+
+    <section class="palette section-box">
+      <h2>Color Palette (=^‥^=)</h2>
+      <div class="swatches">
+        <div class="swatch" style="--c:#fce0f1"></div>
+        <div class="swatch" style="--c:#f7b2dc"></div>
+        <div class="swatch" style="--c:#7a0d4f"></div>
+        <div class="swatch" style="--c:#563247"></div>
+        <div class="swatch" style="--c:#4d0832"></div>
+      </div>
+    </section>
+
+    <section class="section-box">
+      <h2>Share a Reference</h2>
+      <form class="form" action="#" method="post">
+        <label for="refurl">Pinterest/URL</label>
+        <input id="refurl" name="refurl" type="url" placeholder="https://..."/>
+        <label for="note">Note</label>
+        <textarea id="note" name="note" rows="4" placeholder="Why is this inspiring?"></textarea>
+        <button type="submit" class="btn">Add to board</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 Fashion Lookbook</p>
+  </footer>
+</body>
+</html>
