@@ -13,12 +13,11 @@
     }
     html,body{background:#fff;color:var(--text)}
 
-    /* Hero */
     .hero{padding:72px 20px 36px; text-align:center}
     .hero-title{font-family:"Playfair Display",serif; font-size:42px; margin:0 0 8px}
     .hero-sub{color:#555; margin:0}
 
-    /* Parallel rows */
+    
     .row{overflow:hidden; white-space:nowrap; padding:24px 0; position:relative; border-top:1px solid var(--line)}
     .row:first-of-type{border-top:0}
     .track{display:inline-flex; gap:20px; animation-duration:28s; animation-timing-function:linear; animation-iteration-count:infinite}
@@ -28,14 +27,14 @@
     .item{flex:0 0 auto; width:210px; height:270px; border-radius:16px; overflow:hidden; background:#fff; border:1px solid var(--line); box-shadow:var(--shadow); cursor:pointer;}
     .item img{width:100%; height:100%; object-fit:cover; display:block}
 
-    /* Pause only while cursor is within this row (hovering an item also hovers the row) */
+    
     .row:hover .track{animation-play-state:paused}
     .item:hover{transform:scale(1.02); transition:transform .25s ease}
 
     @keyframes scrollRight{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
     @keyframes scrollLeft{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-    /* Quotes (palette-aware) */
+
     .quotes{padding:56px 20px 72px; background:var(--bg)}
     .quotes h2{font-family:"Playfair Display",serif; text-align:center; margin:0 0 24px}
     .quote-grid{max-width:1100px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px}
@@ -47,12 +46,12 @@
     .q.gray{background:#6b7280; color:#fff}
     .q.light{background:#fafafa; color:#111; border:1px solid var(--line)}
 
-    /* Small helper */
+    
     .center{ text-align:center }
   </style>
 </head>
 <body>
-  <!-- Site nav consistent with other pages -->
+ 
   <header class="site-nav">
     <div class="nav-inner">
       <a class="brand" href="index.html"><span class="brand-dot">FL</span> Fashion Lookbook</a>
@@ -76,7 +75,7 @@
     </div>
   </section>
 
-  <!-- TOPS (upper row → moves right) -->
+ 
   <section class="row top-row" aria-label="Tops">
     <div class="track">
       <div class="item"><img src="images_ainur/white shirt.jpeg" alt="White Shirt"></div>
@@ -93,7 +92,7 @@
     </div>
   </section>
 
-  <!-- BOTTOMS (lower row ← moves left) -->
+  
   <section class="row bottom-row" aria-label="Bottoms">
     <div class="track">
       <div class="item"><img src="images_ainur/6.jpg" alt="Blue Jeans"></div>
@@ -108,7 +107,7 @@
     </div>
   </section>
 
-  <!-- Palette-based Quotes -->
+  
   <section class="quotes">
     <h2>Fashion Quotes</h2>
     <div class="quote-grid">
