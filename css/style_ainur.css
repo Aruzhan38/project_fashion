@@ -1,0 +1,119 @@
+:root{
+      --accent:#7a0d4f; --text:#0f0f10; --muted:#6b7280; --bg:#fafafa; --line:#eee;
+      --card:#fff; --radius:18px; --shadow:0 10px 24px rgba(17,17,17,.08);
+    }
+    html,body{background:#fff;color:var(--text)}
+
+    /* Hero */
+    .hero{padding:72px 20px 36px; text-align:center}
+    .hero-title{font-family:"Playfair Display",serif; font-size:42px; margin:0 0 8px}
+    .hero-sub{color:#555; margin:0}
+
+    /* Parallel rows */
+    .row{overflow:hidden; white-space:nowrap; padding:24px 0; position:relative; border-top:1px solid var(--line)}
+    .row:first-of-type{border-top:0}
+    .track{display:inline-flex; gap:20px; animation-duration:28s; animation-timing-function:linear; animation-iteration-count:infinite}
+    .item{flex:0 0 auto; width:210px; height:270px; border-radius:16px; overflow:hidden; background:#fff; border:1px solid var(--line); box-shadow:var(--shadow); cursor:pointer;}
+    .item img{width:100%; height:100%; object-fit:cover; display:block}
+
+    /* Quotes (palette-aware) */
+    .quotes{padding:56px 20px 72px; background:var(--bg)}
+    .quotes h2{font-family:"Playfair Display",serif; text-align:center; margin:0 0 24px}
+    .quote-grid{max-width:1100px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px}
+    .q{border-radius:18px; padding:20px; box-shadow:var(--shadow)}
+    .q p{margin:0; line-height:1.55}
+    .q small{display:block; margin-top:10px; opacity:.85}
+    .q.burg{background:#7a0d4f; color:#fff}
+    .q.dark{background:#0f0f10; color:#fff}
+    .q.gray{background:#6b7280; color:#fff}
+    .q.light{background:#fafafa; color:#111; border:1px solid var(--line)}
+
+    /* Small helper */
+    .center{ text-align:center }
+
+    .closet {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .closet h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+    }
+
+   
+    /* hover эффект – тек аяқ киімдерге */
+    .shoes .item img:hover {
+      transform: scale(1.2);
+      cursor: zoom-in;
+    }
+
+     /* About бетіне шағын қосымша стильдер */
+    .hero.about { padding: 72px 0 36px; }
+    .about-intro { max-width: 900px; margin: 0 auto; font-size: 1.05rem; line-height: 1.75; }
+    .stats { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 16px; margin-top: 22px; }
+    .stat { background:#fff; border:1px solid #eee; border-radius:18px; padding:16px; text-align:center; }
+    .stat b { font-size:1.8rem; display:block; margin-bottom:6px; }
+    .section { padding: 40px 20px; }
+    .card-grid { display:grid; gap:20px; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); }
+    .card { background:#fff; border:1px solid #eee; border-radius:18px; box-shadow: var(--shadow, 0 10px 24px rgba(17,17,17,.06)); overflow:hidden; }
+    .card-body { padding:16px; }
+    .pill-list { display:flex; flex-wrap:wrap; gap:10px; margin-top:8px; }
+    .pill { border:1px solid #eee; border-radius:999px; padding:6px 12px; font-size:.9rem; background:#fff; }
+    .team { display:grid; gap:20px; grid-template-columns: repeat(auto-fit,minmax(230px,1fr)); }
+    .avatar { width:72px; height:72px; border-radius:50%; background:#f1f1f1; display:inline-block; }
+    .member { display:flex; align-items:center; gap:14px; background:#fff; border:1px solid #eee; border-radius:18px; padding:14px; }
+    .faq details { background:#fff; border:1px solid #eee; border-radius:14px; padding:12px 14px; }
+    .faq details + details { margin-top:10px; }
+    .cta { text-align:center; padding: 28px 20px 40px; }
+
+    .collections {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.collections h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* үш карточка бір қатарда */
+  gap: 20px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+  overflow: hidden;
+  transition: transform .3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+
+.card-text {
+  padding: 15px;
+}
+
+.card-text h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.card-text p {
+  color: #555;
+  font-size: 14px;
+}
