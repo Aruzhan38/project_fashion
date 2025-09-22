@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Closet — Capsule Wardrobe</title>
+  <link rel="stylesheet" href="styles/main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --accent:#7a0d4f; --text:#0f0f10; --muted:#6b7280; --bg:#fafafa; --line:#eee;
+      --card:#fff; --radius:18px; --shadow:0 10px 24px rgba(17,17,17,.08);
+    }
+    html,body{background:#fff;color:var(--text)}
+
+    /* Hero */
+    .hero{padding:72px 20px 36px; text-align:center}
+    .hero-title{font-family:"Playfair Display",serif; font-size:42px; margin:0 0 8px}
+    .hero-sub{color:#555; margin:0}
+
+    /* Parallel rows */
+    .row{overflow:hidden; white-space:nowrap; padding:24px 0; position:relative; border-top:1px solid var(--line)}
+    .row:first-of-type{border-top:0}
+    .track{display:inline-flex; gap:20px; animation-duration:28s; animation-timing-function:linear; animation-iteration-count:infinite}
+    .top-row .track{animation-name:scrollRight}
+    .bottom-row .track{animation-name:scrollLeft}
+
+    .item{flex:0 0 auto; width:210px; height:270px; border-radius:16px; overflow:hidden; background:#fff; border:1px solid var(--line); box-shadow:var(--shadow); cursor:pointer;}
+    .item img{width:100%; height:100%; object-fit:cover; display:block}
+
+    /* Pause only while cursor is within this row (hovering an item also hovers the row) */
+    .row:hover .track{animation-play-state:paused}
+    .item:hover{transform:scale(1.02); transition:transform .25s ease}
+
+    @keyframes scrollRight{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
+    @keyframes scrollLeft{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+    /* Quotes (palette-aware) */
+    .quotes{padding:56px 20px 72px; background:var(--bg)}
+    .quotes h2{font-family:"Playfair Display",serif; text-align:center; margin:0 0 24px}
+    .quote-grid{max-width:1100px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px}
+    .q{border-radius:18px; padding:20px; box-shadow:var(--shadow)}
+    .q p{margin:0; line-height:1.55}
+    .q small{display:block; margin-top:10px; opacity:.85}
+    .q.burg{background:#7a0d4f; color:#fff}
+    .q.dark{background:#0f0f10; color:#fff}
+    .q.gray{background:#6b7280; color:#fff}
+    .q.light{background:#fafafa; color:#111; border:1px solid var(--line)}
+
+    /* Small helper */
+    .center{ text-align:center }
+  </style>
+</head>
+<body>
+  <!-- Site nav consistent with other pages -->
+  <header class="site-nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html"><span class="brand-dot">FL</span> Fashion Lookbook</a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="weekly.html">Weekly Looks</a>
+        <a href="seasons.html">Seasons</a>
+        <a href="styles.html">Styles</a>
+        <a class="pill active" href="closet.html">Closet</a>
+        <a href="wishlist.html">Wishlist</a>
+        <a href="inspiration.html">Inspiration</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container center">
+      <h1 class="hero-title">Capsule Closet</h1>
+      <p class="hero-sub">“A capsule closet where tops glide right and bottoms drift left — timeless fashion in motion.”</p>
+    </div>
+  </section>
+
+  <!-- TOPS (upper row → moves right) -->
+  <section class="row top-row" aria-label="Tops">
+    <div class="track">
+      <div class="item"><img src="images_ainur/white shirt.jpeg" alt="White Shirt"></div>
+      <div class="item"><img src="images_ainur/beige knit.jpeg" alt="Beige Knit"></div>
+      <div class="item"><img src="images_ainur/1.jpeg" alt="Black Blazer"></div>
+      <div class="item"><img src="images_ainur/2.jpg" alt="White Shirt"></div>
+      <div class="item"><img src="images_ainur/3.jpg"  alt="Beige Knit"></div>
+      <div class="item"><img src="images_ainur/4.jpg"  alt="Beige Knit"></div>
+      <div class="item"><img src="images_ainur/5.jpg"  alt="Beige Knit"></div>
+      <div class="item"><img src="images_ainur/13.jpg"  alt="Beige Knit"></div>
+      <div class="item"><img src="images_ainur/14.jpg"  alt="Beige Knit"></div>
+      <div class="item"><img src="images_ainur/15.jpg"  alt="Beige Knit"></div>
+      <div class="item"><img src="images_ainur/16.jpg"  alt="Beige Knit"></div>
+    </div>
+  </section>
+
+  <!-- BOTTOMS (lower row ← moves left) -->
+  <section class="row bottom-row" aria-label="Bottoms">
+    <div class="track">
+      <div class="item"><img src="images_ainur/6.jpg" alt="Blue Jeans"></div>
+      <div class="item"><img src="images_ainur/black trousers.jpeg" alt="Black Trousers"></div>
+      <div class="item"><img src="images_ainur/7.jpg" alt="Pleated Skirt"></div>
+      <div class="item"><img src="images_ainur/8.jpg" alt="Pleated Skirt"></div>
+      <div class="item"><img src="images_ainur/9.jpg" alt="Pleated Skirt"></div>
+      <div class="item"><img src="images_ainur/10.jpg" alt="Pleated Skirt"></div>
+      <div class="item"><img src="images_ainur/11.jpg" alt="Pleated Skirt"></div>
+      <div class="item"><img src="images_ainur/17.jpg" alt="Pleated Skirt"></div>
+      <div class="item"><img src="images_ainur/18.jpg" alt="Pleated Skirt"></div>
+    </div>
+  </section>
+
+  <!-- Palette-based Quotes -->
+  <section class="quotes">
+    <h2>Fashion Quotes</h2>
+    <div class="quote-grid">
+      <figure class="q burg">
+        <p>“Style is a way to say who you are without having to speak.”</p>
+        <small>— Rachel Zoe</small>
+      </figure>
+      <figure class="q dark">
+        <p>“Fashion is the armor to survive the reality of everyday life.”</p>
+        <small>— Bill Cunningham</small>
+      </figure>
+      <figure class="q gray">
+        <p>“Elegance is not about being noticed, it’s about being remembered.”</p>
+        <small>— Giorgio Armani</small>
+      </figure>
+      <figure class="q light">
+        <p>“Buy less, choose well, make it last.”</p>
+        <small>— Vivienne Westwood</small>
+      </figure>
+    </div>
+  </section>
+
+  <footer class="footer center">
+    <small>© 2025 Fashion Lookbook</small>
+  </footer>
+</body>
+</html>
