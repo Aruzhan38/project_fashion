@@ -5,7 +5,7 @@
   --tertiary-color: #5a083f; 
   --accent-color: #f0cacb; 
   --text-color: var(--secondary-color);
-  --bg-color: #ffffff; 
+  --bg-color: #fdf0f8;
   --highlight-bg: var(--accent-color);
   --border-radius: 8px;
   --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
