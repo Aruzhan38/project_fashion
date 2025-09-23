@@ -134,12 +134,7 @@ html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,syst
 
 .linkcard{display:block; color:inherit}
 
-.ribbon{
-  position:absolute; top:12px; left:12px;
-  background:var(--accent); color:#fff; font-weight:700;
-  font-size:12px; padding:6px 10px; border-radius:999px;
-  box-shadow:0 6px 14px rgba(122,30,73,.25);
-}
+
 
 .tag{
   position:absolute; top:12px; right:12px;
