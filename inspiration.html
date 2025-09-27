@@ -1,79 +1,113 @@
-<!DOCTYPE html>
+
+
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Inspiration — Fashion Lookbook</title>
-  <link rel="stylesheet" href="style.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header class="header-section" id="top-banner">
-    <nav class="nav">
-      <a href="index.html">Home</a>
-      <a href="weekly.html">Weekly Looks</a>
-      <a href="seasons.html">Seasons</a>
-      <a href="styles.html">Styles</a>
-      <a href="closet.html">Closet</a>
-      <a href="wishlist.html">Wishlist</a>
-      <a href="inspiration.html" class="active">Inspiration</a>
-      <a href="about.html">About & Contact</a>
-    </nav>
-    <div class="hero">
-      <div>
-        <h1>Inspiration Board</h1>
-        <p class="highlighted-text">References, pins, palettes, brands — everything that drives creativity =^x^=</p>
-      </div>
+  <header class="site-nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html"><span class="brand-dot">FL</span> Fashion Lookbook</a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="weekly.html">Weekly Looks</a>
+        <a href="seasons.html">Seasons</a>
+        <a href="styles.html">Styles</a>
+        <a href="closet.html">Closet</a>
+        <a href="wishlist.html">Wishlist</a>
+        <a class="pill active" href="inspiration.html">Inspiration</a>
+        <a href="about.html">About</a>
+      </nav>
     </div>
   </header>
 
-  <main class="container">
-    <section class="section-box">
-      <h2>Brands & Links ʕ•ᴥ•ʔ</h2>
-      <ul class="link-list">
-        <li><a href="https://www.prada.com" target="_blank" rel="noreferrer">Prada</a></li>
-        <li><a href="https://www.muji.com" target="_blank" rel="noreferrer">Muji</a></li>
-        <li><a href="https://www.uniqlo.com" target="_blank" rel="noreferrer">Uniqlo</a></li>
-        <li><a href="https://www.viviennewestwood.com/" target="_blank" rel="noreferrer">Vivenne Westwood</a></li>
-      </ul>
-    </section>
-
-    <section class="moodboard section-box" id="moodboard">
-      <h2>Moodboard (=^･ω･^=)</h2>
-      <div class="masonry">
-        <img src="images/ref1.jpg" alt="reference 1">
-        <img src="images/ref2.jpg" alt="reference 2">
-        <img src="images/ref3.jpg" alt="reference 3">
-        <img src="images/ref4.jpg" alt="reference 4">
-        <img src="images/ref5.jpg" alt="reference 5">
-        <img src="images/ref6.jpg" alt="reference 6">
+  <main>
+    <section class="hero">
+      <div class="container center">
+        <h1 class="hero-title">Inspiration Board</h1>
+        <p class="hero-sub">References, pins, palettes, brands — everything that fuels your vibe.</p>
       </div>
     </section>
 
-    <section class="palette section-box">
-      <h2>Color Palette (=^‥^=)</h2>
+    <section class="container">
+      <div class="section-box">
+        <h2 class="section-title">Brands & Links</h2>
+        <ul class="link-list">
+          <li><a href="https://www.prada.com" target="_blank" rel="noreferrer">Prada</a></li>
+          <li><a href="https://www.muji.com" target="_blank" rel="noreferrer">Muji</a></li>
+          <li><a href="https://www.uniqlo.com" target="_blank" rel="noreferrer">Uniqlo</a></li>
+          <li><a href="https://www.viviennewestwood.com" target="_blank" rel="noreferrer">Vivienne Westwood</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="section-box moodboard">
+        <h2 class="section-title">Moodboard</h2>
+        <div class="masonry">
+          <img src="images/ref1.jpg" alt="reference 1">
+          <img src="images/ref2.jpg" alt="reference 2">
+          <img src="images/ref3.jpg" alt="reference 3">
+          <img src="images/ref4.jpg" alt="reference 4">
+          <img src="images/ref5.jpg" alt="reference 5">
+          <img src="images/ref6.jpg" alt="reference 6">
+          <img src="images/ref7.jpg" alt="reference 7">
+          <img src="images/ref8.jpg" alt="reference 8">
+        </div>
+      </div>
+    </section>
+
+  
+
+    <section class="container">
+  <div class="section-box palette no-js"
+       style="--c1:#fce0f1; --c2:#f7b2dc; --c3:#7a0d4f; --c4:#563247; --c5:#4d0832;">
+    <h2 class="section-title">Color Palette</h2>
+
+    <form class="swatch-picker">
+      <input type="radio" name="pick" id="c1" checked>
+      <input type="radio" name="pick" id="c2">
+      <input type="radio" name="pick" id="c3">
+      <input type="radio" name="pick" id="c4">
+      <input type="radio" name="pick" id="c5">
+
       <div class="swatches">
-        <div class="swatch" style="--c:#fce0f1"></div>
-        <div class="swatch" style="--c:#f7b2dc"></div>
-        <div class="swatch" style="--c:#7a0d4f"></div>
-        <div class="swatch" style="--c:#563247"></div>
-        <div class="swatch" style="--c:#4d0832"></div>
+        <label for="c1" class="swatch s1" aria-label="#fce0f1"></label>
+        <label for="c2" class="swatch s2" aria-label="#f7b2dc"></label>
+        <label for="c3" class="swatch s3" aria-label="#7a0d4f"></label>
+        <label for="c4" class="swatch s4" aria-label="#563247"></label>
+        <label for="c5" class="swatch s5" aria-label="#4d0832"></label>
       </div>
-    </section>
 
-    <section class="section-box">
-      <h2>Share a Reference</h2>
-      <form class="form" action="#" method="post">
-        <label for="refurl">Pinterest/URL</label>
-        <input id="refurl" name="refurl" type="url" placeholder="https://..."/>
-        <label for="note">Note</label>
-        <textarea id="note" name="note" rows="4" placeholder="Why is this inspiring?"></textarea>
-        <button type="submit" class="btn">Add to board</button>
-      </form>
+      <div class="preview">
+        <div class="chip">HEX: <span class="hex"></span></div>
+        <div class="sample"></div>
+      </div>
+
+      <div class="gradient-demo"></div>
+    </form>
+  </div>
+</section>
+
+    <section class="container">
+      <div class="section-box">
+        <h2 class="section-title">Share a Reference</h2>
+        <form class="form" action="#" method="post">
+          <input type="url" name="ref" placeholder="Pinterest / URL">
+          <textarea rows="4" placeholder="Why is this inspiring?"></textarea>
+          <button class="btn" type="submit">Add to board</button>
+        </form>
+      </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <p>&copy; 2025 Fashion Lookbook</p>
+  <footer class="footer center">
+    <small>© 2025 Fashion Lookbook</small>
   </footer>
 </body>
 </html>

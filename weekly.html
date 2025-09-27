@@ -1,87 +1,91 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Weekly Looks — Fashion Lookbook</title>
-  <link rel="stylesheet" href="style.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header class="header-section" id="top-banner">
-    <nav class="nav">
-      <a href="index.html">Home</a>
-      <a href="weekly.html" class="active">Weekly Looks</a>
-      <a href="seasons.html">Seasons</a>
-      <a href="styles.html">Styles</a>
-      <a href="closet.html">Closet</a>
-      <a href="wishlist.html">Wishlist</a>
-      <a href="inspiration.html">Inspiration</a>
-      <a href="about.html">About & Contact</a>
-    </nav>
-    <div class="hero">
-      <img src="images/avatar.jpg" alt="Your avatar" class="avatar"/>
-      <div>
-        <h1>My Weekly Looks</h1>
-        <p class="highlighted-text">7 days — 7 vibes. Minimal, sporty, elegant, street — everything for you. (๑˃ᴗ˂)ﻭ</p>
-      </div>
+  <header class="site-nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html"><span class="brand-dot">FL</span> Fashion Lookbook</a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a class="pill active" href="weekly.html">Weekly Looks</a>
+        <a href="seasons.html">Seasons</a>
+        <a href="styles.html">Styles</a>
+        <a href="closet.html">Closet</a>
+        <a href="wishlist.html">Wishlist</a>
+        <a href="inspiration.html">Inspiration</a>
+        <a href="about.html">About</a>
+      </nav>
     </div>
   </header>
 
-  <main class="container">
-    <section class="week-grid section-box" id="week-gallery">
-      <h2>Looks of the Week</h2>
-      <figure class="card">
-        <img src="images/day1.jpg" alt="Monday look">
-        <figcaption><strong>Mon</strong> • Casual campus fit</figcaption>
-      </figure>
-      <figure class="card">
-        <img src="images/day2.jpg" alt="Tuesday look">
-        <figcaption><strong>Tue</strong> • Soft pink + denim</figcaption>
-      </figure>
-      <figure class="card">
-        <img src="images/day3.jpg" alt="Wednesday look">
-        <figcaption><strong>Wed</strong> • Sporty monochrome</figcaption>
-      </figure>
-      <figure class="card">
-        <img src="images/day4.jpg" alt="Thursday look">
-        <figcaption><strong>Thu</strong> • Academic chic</figcaption>
-      </figure>
-      <figure class="card">
-        <img src="images/day5.jpg" alt="Friday look">
-        <figcaption><strong>Fri</strong> • Street oversized</figcaption>
-      </figure>
-      <figure class="card">
-        <img src="images/day6.png" alt="Saturday look">
-        <figcaption><strong>Sat</strong> • Elegant dinner</figcaption>
-      </figure>
-      <figure class="card">
-        <img src="images/day7.png" alt="Sunday look">
-        <figcaption><strong>Sun</strong> • Cozy knit</figcaption>
-      </figure>
+  <main>
+    <section class="hero">
+      <div class="container center">
+        <h1 class="hero-title">My Weekly Looks</h1>
+        <p class="hero-sub">7 days — 7 vibes. Minimal, sporty, elegant, street — everything for you.</p>
+      </div>
     </section>
 
-    <section class="section-box">
-      <h2>Vote your favorite</h2>
-      <form class="form" action="#" method="post">
-        <label for="name">Name</label>
-        <input id="name" name="name" type="text" placeholder="Your name"/>
-        
-        <label for="favday">Pick a day</label>
-        <select id="favday" name="favday">
-          <option value="Mon">Monday</option><option>Tuesday</option><option>Wednesday</option>
-          <option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option>
-        </select>
+    <section class="container">
+      <h2 class="section-title center">Looks of the Week</h2>
+      <div class="week-grid">
+        <figure class="card">
+          <img src="images/day1.jpg" alt="Monday look">
+          <figcaption>Mon • Casual campus fit</figcaption>
+        </figure>
+        <figure class="card">
+          <img src="images/day2.jpg" alt="Tuesday look">
+          <figcaption>Tue • Soft pink + denim</figcaption>
+        </figure>
+        <figure class="card">
+          <img src="images/day3.jpg" alt="Wednesday look">
+          <figcaption>Wed • Sporty monochrome</figcaption>
+        </figure>
+        <figure class="card">
+          <img src="images/day4.jpg" alt="Thursday look">
+          <figcaption>Thu • Academic chic</figcaption>
+        </figure>
+        <figure class="card">
+          <img src="images/day5.jpg" alt="Friday look">
+          <figcaption>Fri • Street oversized</figcaption>
+        </figure>
+        <figure class="card">
+          <img src="images/day6.png" alt="Saturday look">
+          <figcaption>Sat • Elegant dinner</figcaption>
+        </figure>
+        <figure class="card">
+          <img src="images/day7.png" alt="Sunday look">
+          <figcaption>Sun • Cozy knit</figcaption>
+        </figure>
+      </div>
+    </section>
 
-        <label for="comment">Why this look?</label>
-        <textarea id="comment" name="comment" rows="4" placeholder="Short note"></textarea>
-
-        <button type="submit" class="btn">Submit</button>
-      </form>
+    <section class="container">
+      <div class="section-box">
+        <h2 class="section-title">Vote your favorite</h2>
+        <form class="form" action="#" method="post">
+          <input type="text" name="name" placeholder="Your name">
+          <select name="favday">
+            <option>Monday</option><option>Tuesday</option><option>Wednesday</option>
+            <option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option>
+          </select>
+          <textarea rows="4" name="comment" placeholder="Why this look?"></textarea>
+          <button class="btn" type="submit">Submit</button>
+        </form>
+      </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <p>&copy; 2025 Fashion Lookbook</p>
+  <footer class="footer center">
+    <small>© 2025 Fashion Lookbook</small>
   </footer>
 </body>
 </html>
+
+
