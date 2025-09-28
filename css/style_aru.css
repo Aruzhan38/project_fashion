@@ -2,7 +2,7 @@
   --bg: #ffffff;
   --text: #141316;       
   --muted: #6b7280;     
-  --accent: hsl(345, 100%, 25%);    
+  --accent:#7a0d4f;  
   --radius: 12px;
   --shadow: 0 8px 24px rgba(0, 0, 0, .08);
 }

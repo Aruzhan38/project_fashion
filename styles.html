@@ -4,37 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fashion Lookbook — Styles</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Playfair+Dislay:wght@400;500;600&display=swap" rel="stylesheet"> 
- <link rel="stylesheet" href="css/style_aru.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"> 
+  <link rel="stylesheet" href="css/style_aru_styles.css">
 </head>
 
-<body style="--hero-bg: url('../images_aru/wall3.jpg')">
+<body>
   
-  <header class="nav">
-    <a class="brand" href="index.html" aria-label="Home">
-      <span class="brand-mark">FL</span>
-      <span class="brand-name">Fashion Lookbook</span>
-    </a>
-
-    <nav class="menu" aria-label="Primary">
-      <a href="index.html">Home</a>
-      <a href="weekly.html">Weekly Looks</a>
-      <a href="seasons.html">Seasons</a>
-      <a class="active" href="styles.html">Styles</a>
-      <a href="closet.html">Closet</a>
-      <a href="wishlist.html">Wishlist</a>
-      <a href="inspiration.html">Inspiration</a>
-      <a href="about.html">About</a>
-    </nav>
+  <header class="site-nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html"><span class="brand-dot">FL</span> Fashion Lookbook</a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="weekly.html">Weekly Looks</a>
+        <a href="seasons.html">Seasons</a>
+        <a class="pill active" href="styles.html">Styles</a>
+        <a href="closet.html">Closet</a>
+        <a href="wishlist.html">Wishlist</a>
+        <a href="inspiration.html">Inspiration</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
   </header>
 
 
-  <section class="hero">
-    <div class="container">
-      <h1>Fashion Styles</h1>
-      <p>Explore different fashion styles and find your vibe.</p>
-    </div>
-  </section>
+   <section class="hero">
+      <div class="container center">
+        <h1 class="hero-title">Fashion Styles</h1>
+        <p class="hero-sub">Explore different fashion styles and find your vibe.</p>
+      </div>
+    </section>
 
   <section class="marquee">
     <div class="marquee-track">
@@ -52,7 +50,7 @@
   
   <section class="gallery">
     <div class="container">
-      <h2>Our Style Picks</h2>
+      <h2 class="section-title center">Our Seasonal Picks</h2>
       <div class="grid">
         <div class="grid-item">
           <img src="images_aru/casual.jpg" alt="Casual style">
@@ -122,10 +120,9 @@
   </section>
 
 
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 Fashion Lookbook.</p>
-    </div>
+ <footer class="footer center">
+    <small>© 2025 Fashion Lookbook</small>
   </footer>
+
 </body>
 </html>
