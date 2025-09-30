@@ -204,9 +204,11 @@ a {
 .btn {
   background: linear-gradient(135deg, #7a0d4f, #a83279);
   box-shadow: 0 8px 18px rgba(122,30,73,.25);
+  transition color: #eee;
 }
 .btn:hover {
-  transform: translateY(-3px) scale(1.05);
+  transform: translateY(-3px) scale(1.05)
+;
 }
 
 .brand{
