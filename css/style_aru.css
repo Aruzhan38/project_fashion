@@ -312,53 +312,6 @@ h1, h2, h3 {
   .previews { padding: 60px 16px; }
 }
 
-
-.gallery {
-  padding: 60px 0;
-  text-align: center;
-  background-color: #fafafa;
-}
-.gallery h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 40px;
-  margin-bottom: 25px;
-  color: #111;
-  letter-spacing: 1px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.grid-item {
-  overflow: hidden;
-  border-radius: var(--radius, 14px);
-  box-shadow: var(--shadow, 0 6px 18px rgba(0,0,0,0.12));
-  background: #fff;
-}
-.grid-item img {
-  width: 100%;
-  display: block;
-  transition: transform .3s ease;
-}
-.grid-item:hover img {
-  transform: scale(1.05);
-}
-.grid-item-text {
-  padding: 12px;
-  background: #fafafa;
-}
-.grid-item h3 {
-  font-size: 1.1rem; 
-  margin: 0; 
-  color: #333;
-  font-family: 'Inter', sans-serif;
-}
-
-
 .full-image img {
   width: 100%; 
   height: auto; 
