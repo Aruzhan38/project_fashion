@@ -160,39 +160,6 @@ img { max-width: 100%; display: block; }
 @keyframes scroll { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
 
 
-.gallery { padding: 20px 0; text-align: center; background-color: var(--bg); }
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.grid-item {
-  overflow: hidden;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  background: var(--card);
-}
-
-.grid-item img { transition: transform .3s ease; }
-.grid-item:hover img { transform: scale(1.05); }
-
-.grid-item-text { padding: 12px; background: #fafafa; }
-
-.grid-item h3 {
-  font-size: 1.1rem;
-  margin: 0;
-  color: #333;
-  font-family: Inter, sans-serif;
-}
-
-
-.seasons-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-
-
 .footer {
   border-top: 1px solid var(--line);
   padding: 20px;
