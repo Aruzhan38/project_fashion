@@ -404,3 +404,19 @@ a {
 .hero {
   background: linear-gradient(180deg, #ffffff 0%, #fbf8fb 60%, #f6f6f8 100%);
 }
+
+.page-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header header"
+    "sidebar main"
+    "footer footer";
+  gap: 24px;
+}
+
+.site-header  { grid-area: header; }
+.site-sidebar { grid-area: sidebar; }
+.site-main    { grid-area: main; }
+.site-footer  { grid-area: footer; }
