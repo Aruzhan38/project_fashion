@@ -116,7 +116,7 @@ ol, ul { list-style:none; margin:0; padding:0; }
 .card a{ text-decoration:none; color:inherit; }
 
 /* тег */
-.tag{ display:none !important; }  /* <- ключевая строчка: цифры 1/2/3 исчезнут */
+.tag{ display:none !important; }  /* ключевая строчка: цифры 1/2/3 исчезнут */
 
 /* button  */
 .btn{
