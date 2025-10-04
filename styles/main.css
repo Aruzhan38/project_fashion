@@ -9,6 +9,24 @@
   --shadow:0 10px 24px rgba(17,17,17,.08);
 }
 
+/* Tablet */
+@media (min-width: 600px){
+  :root{
+    --fs-h1: 36px;
+    --fs-h2: 26px;
+    --fs-p: 17px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 900px){
+  :root{
+    --fs-h1: 44px;
+    --fs-h2: 30px;
+    --fs-p: 18px;
+  }
+}
+
 html,body{
   margin:0;
   background:var(--bg);
@@ -171,7 +189,7 @@ ol, ul { list-style:none; margin:0; padding:0; }
 .wishlist-scroll::-webkit-scrollbar{ height:10px; }
 .wishlist-scroll::-webkit-scrollbar-thumb{ background:var(--accent); border-radius:10px; }
 .wishlist-scroll::-webkit-scrollbar-track{ background:#eee; }
-.wishlist-scroll .card{ flex:0 0 280px; scroll-snap-align:start; }. /* FLEX: фиксированная ширина элемента в ленте */
+.wishlist-scroll .card{ flex:0 0 280px; scroll-snap-align:start; } /* FLEX: фиксированная ширина элемента в ленте */
 .wishlist-scroll .card img{ width:100%; height:320px; object-fit:cover; display:block; }
 
 /* SEASONS GRID (если используешь на др. страницах)  */
