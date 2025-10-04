@@ -2,189 +2,314 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Seasons — Capsule Outfits</title>
+  <title>Seasons — Fashion Lookbook</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="styles/main.css">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    .seasons-grid .card img{
-      width:100%;
-      height:auto;
-      aspect-ratio: 3 / 4;
-      object-fit: cover;
-      display:block;
+    :root { --accent:#7a0d4f; --bg:#fafafa; --text:#0f0f10; --muted:#6b7280; }
+
+    /* Skip link for keyboard users */
+    .skip-link{
+      position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
+    }
+    .skip-link:focus{
+      left:12px; top:12px; width:auto; height:auto; padding:.5rem .75rem;
+      background:#000; color:#fff; border-radius:8px; z-index:2000;
     }
 
-    .mood-wrap{ position: relative; isolation: isolate; }
-    .seasons-grid{ position: relative; z-index: 1; }
+    body{ font-family:Inter,system-ui,Arial; color:var(--text); background:var(--bg); margin:0; }
+    h1,h2{ font-family:"Playfair Display",serif; font-weight:700; }
 
-    .mood{
-      position: absolute; inset: -60px 0 -60px 0;
-      z-index: 0; pointer-events: none;
-      opacity: 0; transition: opacity .45s ease;
-      background: radial-gradient(1200px 500px at 50% 0%,
-                  rgba(0,0,0,.04), rgba(0,0,0,0));
+    /* Navbar */
+    .navbar{ background:var(--accent)!important; }
+    .navbar-brand,.nav-link{ color:#fff!important; font-weight:600; }
+    .nav-link:hover{ text-decoration:underline; }
+
+    .dropdown-menu .dropdown-item{ font-weight:500; color:var(--text); border-radius:8px; }
+    .dropdown-menu .dropdown-item:hover{ background:rgba(122,13,79,.1); color:var(--accent); }
+
+    /* Hero */
+    .hero{ background:linear-gradient(180deg,#ffffff 0%,#fbf8fb 60%,#f6f6f8 100%); padding:80px 20px 40px; text-align:center; }
+
+    /* Buttons */
+    .btn-accent{ background:var(--accent); color:#fff; border-radius:50px; padding:10px 22px; font-weight:700; border:none; }
+    .btn-outline-accent{ border:2px solid var(--accent); color:var(--accent); border-radius:50px; padding:10px 22px; font-weight:700; }
+    .btn-outline-accent:hover{ background:var(--accent); color:#fff; }
+
+    /* Make outline-primary (Bootstrap) burgundy, not blue */
+    .btn-outline-primary{ border-color:#7a0d4f; color:#7a0d4f; }
+    .btn-outline-primary:hover,
+    .btn-check:checked + .btn-outline-primary,
+    .btn-outline-primary.active,
+    .btn-outline-primary:active{
+      background-color:#7a0d4f !important;
+      color:#fff !important;
+      border-color:#7a0d4f !important;
     }
-    .mood.base{
-      opacity: .35;
-      background:
-        radial-gradient(1100px 420px at 50% 0%, rgba(122,13,79,.08), rgba(122,13,79,0) 70%),
-        linear-gradient(#fff, #fafafa);
-    }
-    .mood.spring{
-      background:
-        radial-gradient(1000px 420px at 20% 10%, rgba(194,255,214,.25), rgba(194,255,214,0) 60%),
-        radial-gradient(900px 380px  at 80% 0%,  rgba(255,183,213,.28), rgba(255,183,213,0) 65%),
-        linear-gradient(#ffffff, #fbfbfb);
-    }
-    .mood.summer{
-      background:
-        radial-gradient(1100px 460px at 50% 0%, rgba(155,207,255,.30), rgba(155,207,255,0) 65%),
-        radial-gradient(900px 380px  at 90% 10%, rgba(255,251,185,.22), rgba(255,251,185,0) 65%),
-        linear-gradient(#ffffff, #fbfeff);
-    }
-    .mood.autumn{
-      background:
-        radial-gradient(1100px 460px at 10% 0%, rgba(255,186,120,.30), rgba(255,186,120,0) 65%),
-        radial-gradient(900px 380px  at 85% 10%, rgba(180,84,0,.22),    rgba(180,84,0,0) 65%),
-        linear-gradient(#fffaf6, #fff7ef);
-    }
-    .mood.winter{
-      background:
-        radial-gradient(1100px 460px at 50% 0%, rgba(190,205,224,.32), rgba(190,205,224,0) 65%),
-        radial-gradient(900px 380px  at 10% 10%,  rgba(230,238,245,.28), rgba(230,238,245,0) 60%),
-        linear-gradient(#ffffff, #f7f9fc);
-    }
-    .season-card:hover ~ .mood.base,
-    .season-card:focus-within ~ .mood.base{ opacity: 0; }
-    .season-card.spring:hover ~ .mood.spring,
-    .season-card.spring:focus-within ~ .mood.spring{ opacity: 1; }
-    .season-card.summer:hover ~ .mood.summer,
-    .season-card.summer:focus-within ~ .mood.summer{ opacity: 1; }
-    .season-card.autumn:hover ~ .mood.autumn,
-    .season-card.autumn:focus-within ~ .mood.autumn{ opacity: 1; }
-    .season-card.winter:hover ~ .mood.winter,
-    .season-card.winter:focus-within ~ .mood.winter{ opacity: 1; }
+    .btn-outline-primary:focus{ box-shadow:0 0 0 .25rem rgba(122,13,79,.25); }
+
+    /* Seasonal cards */
+    .card-look{ border:none; border-radius:24px; box-shadow:0 10px 24px rgba(17,17,17,.08); overflow:hidden; transition:transform .25s, box-shadow .25s; height:100%; text-align:center; }
+    .card-look:hover{ transform:translateY(-8px); box-shadow:0 18px 38px rgba(17,17,17,.16); }
+    .card-look img{ width:100%; height:340px; object-fit:cover; }
+
+    /* Vertical carousel */
+    .carousel-vertical{ height:600px; overflow:hidden; position:relative; }
+    .carousel-vertical .carousel-inner,.carousel-vertical .carousel-item{ height:100%; }
+    .carousel-vertical img{ width:auto; height:100%; margin:0 auto; border-radius:20px; object-fit:cover; display:block; }
+    .carousel-control-prev-icon,.carousel-control-next-icon{ filter:invert(1); }
+
+    /* Form */
+    .form-card{ border:none; border-radius:24px; box-shadow:0 10px 24px rgba(17,17,17,.08); }
+    .form-label{ font-weight:600; }
+    .form-help{ color:var(--muted); font-size:.9rem; }
+
+    footer{ padding:20px 0; text-align:center; color:var(--muted); font-size:15px; }
   </style>
 </head>
 <body>
 
-  <div class="page-grid">
-  <header class="site-header"></header>
-  <aside class="site-sidebar"></aside>
-  <main class="site-main"></main>
-  <footer class="site-footer"></footer>
-</div>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <header class="site-nav">
-    <div class="nav-inner">
-      <a class="brand" href="index.html"><span class="brand-dot">FL</span> Fashion Lookbook</a>
-      <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="weekly.html">Weekly Looks</a>
-        <a class="pill active" href="seasons.html">Seasons</a>
-        <a href="styles.html">Styles</a>
-        <a href="closet.html">Closet</a>
-        <a href="wishlist.html">Wishlist</a>
-        <a href="inspiration.html">Inspiration</a>
-        <a href="about.html">About</a>
-      </nav>
+/* navbar */
+
+<nav class="navbar navbar-expand-lg navbar-dark" aria-label="Main navigation">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html" aria-label="Fashion Lookbook homepage">Fashion Lookbook</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+            aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="index.html" aria-current="page">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="inspiration.html">Inspiration</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="catMenu" role="button" data-bs-toggle="dropdown"
+             aria-expanded="false" aria-haspopup="true">Categories</a>
+          <ul class="dropdown-menu shadow border-0 rounded-4 p-2" aria-labelledby="catMenu">
+            <li><a class="dropdown-item" href="seasons_bootstrap.html">Seasons</a></li>
+            <li><a class="dropdown-item" href="styles.html">Styles</a></li>
+            <li><a class="dropdown-item" href="weekly.html">Weekly Looks</a></li>
+            <li><a class="dropdown-item" href="closet.html">Closet</a></li>
+            <li><a class="dropdown-item" href="wishlist.html">Wishlist</a></li>
+          </ul>
+        </li>
+      </ul>
     </div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="container center">
-        <h1 class="hero-title">Seasonal Fashion</h1>
-        <p class="hero-sub">Explore capsule outfits for every season and find your vibe.</p>
-      </div>
-    </section>
-
-    <section class="container">
-      <h2 class="section-title center">Our Seasonal Picks</h2>
-
-      <section class="container">
-        <form class="style-filters" aria-label="Filter looks by style">
-          <input type="radio" name="style" id="style-all" checked>
-          <label for="style-all">All</label>
-
-          <input type="radio" name="style" id="style-casual">
-          <label for="style-casual">Casual</label>
-
-          <input type="radio" name="style" id="style-elegant">
-          <label for="style-elegant">Elegant</label>
-
-          <input type="radio" name="style" id="style-sporty">
-          <label for="style-sporty">Sporty</label>
-
-          <input type="radio" name="style" id="style-party">
-          <label for="style-party">Party</label>
-        </form>
-      </section>
-
-  
-
-
-      <section class="container">
-        <div class="mood-wrap">
-
-          <div class="seasons-grid">
-            <article class="card elegant season-card spring">
-              <img src="styles/spring.JPG" alt="Spring look — elegant">
-              <div class="card-body">
-                <h3 class="card-title">Spring</h3>
-                <p class="card-text">Pastel trench, knit, jeans, sneakers.</p>
-              </div>
-            </article>
-
-            <article class="card sporty season-card summer">
-              <img src="styles/summer.JPG" alt="Summer look — sporty">
-              <div class="card-body">
-                <h3 class="card-title">Summer</h3>
-                <p class="card-text">Linen top, skirt/shorts, sandals, shades.</p>
-              </div>
-            </article>
-
-            <article class="card casual season-card autumn">
-              <img src="styles/autumn.JPG" alt="Autumn look — casual">
-              <div class="card-body">
-                <h3 class="card-title">Autumn</h3>
-                <p class="card-text">Wool coat, plaid, scarf, boots.</p>
-              </div>
-            </article>
-
-            <article class="card party season-card winter">
-              <img src="styles/winter.JPG" alt="Winter look — party">
-              <div class="card-body">
-                <h3 class="card-title">Winter</h3>
-                <p class="card-text">Puffer, cashmere, trousers, leather boots.</p>
-              </div>
-            </article>
-          </div>
-
-          <div class="mood base"></div>
-          <div class="mood spring"></div>
-          <div class="mood summer"></div>
-          <div class="mood autumn"></div>
-          <div class="mood winter"></div>
-
-        </div>
-      </section>
-    </section>
-  </main>
-
-  <div class="center" style="margin-top:12px">
-    <a class="btn" href="#">View full capsule</a>
   </div>
+</nav>
 
-  <section class="container" style="padding:28px 20px 40px">
-    <p class="quote">“Buy less, choose well, make it last.” — Vivienne Westwood</p>
+<header class="hero" role="banner">
+  <h1>Build Your Capsule</h1>
+  <p class="lead mt-3 mb-4">Create a simple, elegant wardrobe made to last. Combine neutral tones, classic silhouettes, and a few bold pieces to express your personal style all year round.</p>
+  <div class="btn-group" role="group" aria-label="Hero actions">
+    <button type="button" class="btn btn-accent btn-lg">Get Started</button>
+    <button type="button" class="btn btn-outline-accent btn-lg">Learn More</button>
+    <button type="button" class="btn btn-outline-accent btn-lg">Explore</button>
+  </div>
+</header>
+
+<main id="main-content">
+
+
+  <section class="container my-5" aria-labelledby="seasonalPicks">
+    <h2 id="seasonalPicks" class="text-center mb-4">Our Seasonal Picks</h2>
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6">
+        <div class="card-look" role="article" aria-label="Spring outfit">
+          <img src="styles/spring.JPG" alt="Spring outfit with pastel trench and jeans">
+          <div class="p-3">
+            <h3>Spring</h3>
+            <p class="text-muted">Pastel trench, knit, jeans, sneakers.</p>
+            <a href="#" class="btn btn-outline-accent btn-sm" role="button" aria-label="View more spring looks">View More</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="card-look" role="article" aria-label="Summer outfit">
+          <img src="styles/summer.JPG" alt="Summer outfit with linen top and skirt">
+          <div class="p-3">
+            <h3>Summer</h3>
+            <p class="text-muted">Linen top, skirt/shorts, sandals, shades.</p>
+            <a href="#" class="btn btn-outline-accent btn-sm" role="button" aria-label="View more summer looks">View More</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="card-look" role="article" aria-label="Autumn outfit">
+          <img src="styles/autumn.JPG" alt="Autumn outfit with wool coat and plaid scarf">
+          <div class="p-3">
+            <h3>Autumn</h3>
+            <p class="text-muted">Wool coat, plaid, scarf, boots.</p>
+            <a href="#" class="btn btn-outline-accent btn-sm" role="button" aria-label="View more autumn looks">View More</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="card-look" role="article" aria-label="Winter outfit">
+          <img src="styles/winter.JPG" alt="Winter outfit with black coat and leather boots">
+          <div class="p-3">
+            <h3>Winter</h3>
+            <p class="text-muted">Puffer, cashmere, trousers, boots.</p>
+            <a href="#" class="btn btn-outline-accent btn-sm" role="button" aria-label="View more winter looks">View More</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <footer class="footer center">
-    <small>© 2025 Fashion Lookbook</small>
-  </footer>
+  <!-- vertical carousel -->
+  <section class="container my-5" aria-labelledby="lookbookTitle">
+    <h2 id="lookbookTitle" class="text-center mb-4">Lookbook Carousel</h2>
 
+    <div id="verticalCarousel" class="carousel slide carousel-vertical" data-bs-ride="carousel" data-bs-interval="3200" aria-label="Lookbook vertical carousel">
+      <div class="carousel-indicators" style="gap:6px;">
+        <button type="button" data-bs-target="#verticalCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#verticalCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#verticalCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#verticalCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        <button type="button" data-bs-target="#verticalCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+        <button type="button" data-bs-target="#verticalCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
+        <button type="button" data-bs-target="#verticalCarousel" data-bs-slide-to="6" aria-label="Slide 7"></button>
+        <button type="button" data-bs-target="#verticalCarousel" data-bs-slide-to="7" aria-label="Slide 8"></button>
+        <button type="button" data-bs-target="#verticalCarousel" data-bs-slide-to="8" aria-label="Slide 9"></button>
+      </div>
+
+      <div class="carousel-inner">
+        <div class="carousel-item active"><img src="styles/1.jpg" alt="Street look with blazer and mini skirt"></div>
+        <div class="carousel-item"><img src="styles/2.jpg" alt="Casual chic look with denim"></div>
+        <div class="carousel-item"><img src="styles/3.jpg" alt="Elegant coat outfit near the city street"></div>
+        <div class="carousel-item"><img src="styles/4.jpg" alt="Classic black dress styling"></div>
+        <div class="carousel-item"><img src="styles/5.jpg" alt="Sporty chic summer outfit"></div>
+        <div class="carousel-item"><img src="styles/6.jpg" alt="Monochrome winter look"></div>
+        <div class="carousel-item"><img src="styles/7.jpg" alt="Neutral tones layered outfit"></div>
+        <div class="carousel-item"><img src="styles/8.jpg" alt="Evening look with long coat"></div>
+        <div class="carousel-item"><img src="styles/9.jpg" alt="Minimal aesthetic everyday look"></div>
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#verticalCarousel" data-bs-slide="prev" aria-label="Previous slide">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#verticalCarousel" data-bs-slide="next" aria-label="Next slide">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </section>
+
+  <!-- responsive ans -->
+  <section class="container my-5" aria-labelledby="formTitle">
+    <h2 id="formTitle" class="text-center mb-4">Style Request Form</h2>
+    <div class="card form-card p-4">
+      <form class="needs-validation" novalidate aria-label="Style request form">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="firstName" class="form-label">First name</label>
+            <input type="text" class="form-control" id="firstName" placeholder="Dinara" required aria-required="true">
+            <div class="invalid-feedback">Please enter your first name.</div>
+          </div>
+          <div class="col-md-6">
+            <label for="lastName" class="form-label">Last name</label>
+            <input type="text" class="form-control" id="lastName" placeholder="A." required aria-required="true">
+            <div class="invalid-feedback">Please enter your last name.</div>
+          </div>
+          <div class="col-md-6">
+            <label for="email" class="form-label">Email</label>
+            <div class="input-group">
+              <span class="input-group-text" id="email-at">@</span>
+              <input type="email" class="form-control" id="email" placeholder="you@example.com" required aria-required="true" aria-describedby="email-at">
+              <div class="invalid-feedback">Enter a valid email.</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="phone" class="form-label">Phone (optional)</label>
+            <div class="input-group">
+              <span class="input-group-text">+</span>
+              <input type="tel" class="form-control" id="phone" placeholder="1 234 567 890">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="season" class="form-label">Preferred season</label>
+            <select id="season" class="form-select" required aria-required="true">
+              <option value="" selected disabled>Choose…</option>
+              <option>Spring</option>
+              <option>Summer</option>
+              <option>Autumn</option>
+              <option>Winter</option>
+            </select>
+          </div>
+
+          <!-- Budget -->
+          <div class="col-md-6">
+            <label class="form-label d-block mb-2 fw-semibold" id="budgetLabel">Select Budget Range</label>
+            <div class="btn-group" role="group" aria-labelledby="budgetLabel">
+              <input type="radio" class="btn-check" name="budget" id="budget1" autocomplete="off" checked>
+              <label class="btn btn-outline-primary px-4 py-2 rounded-pill" for="budget1">Basic</label>
+
+              <input type="radio" class="btn-check" name="budget" id="budget2" autocomplete="off">
+              <label class="btn btn-outline-primary px-4 py-2 rounded-pill" for="budget2">Standard</label>
+
+              <input type="radio" class="btn-check" name="budget" id="budget3" autocomplete="off">
+              <label class="btn btn-outline-primary px-4 py-2 rounded-pill" for="budget3">Premium</label>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <label for="notes" class="form-label">Notes / measurements</label>
+            <textarea id="notes" rows="4" class="form-control" placeholder="Tell us more about your preferences…" aria-describedby="notesHelp"></textarea>
+            <div id="notesHelp" class="form-text form-help">Optional: preferred colors, sizes, or occasions.</div>
+          </div>
+
+          <div class="col-12">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="agree" required aria-required="true">
+              <label class="form-check-label" for="agree">I agree to be contacted about this request.</label>
+            </div>
+          </div>
+
+          <div class="col-12 mt-2 d-flex gap-2">
+            <button class="btn btn-accent" type="submit" aria-label="Send request">Send Request</button>
+            <button class="btn btn-outline-accent" type="reset" aria-label="Reset form">Reset</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <div class="text-center my-4">
+    <a href="#" class="btn btn-accent btn-lg" role="button" aria-label="View full capsule">View full capsule</a>
+  </div>
+
+  <section class="container py-5" aria-label="Quote">
+    <p class="text-center fst-italic">“Buy less, choose well, make it last.” — Vivienne Westwood</p>
+  </section>
+
+</main>
+
+<footer role="contentinfo">© 2025 Fashion Lookbook</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Bootstrap validation 
+  (() => {
+    'use strict';
+    const forms = document.querySelectorAll('.needs-validation');
+    Array.from(forms).forEach(form => {
+      form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  })();
+</script>
 </body>
 </html>
