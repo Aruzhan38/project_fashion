@@ -29,7 +29,8 @@ html,body{
   padding:12px 20px;
   display:flex;        /* FLEX: контейнер */
   align-items:center;  /* FLEX: выравнивание по поперечной оси */
-  gap:16px;            /* FLEX: интервал между flex-детями */
+  gap:16px;  
+          /* FLEX: интервал между flex-детями */
 }
 
 /* фиксированный бренд */
@@ -40,6 +41,7 @@ html,body{
   align-items:center;   
   gap:10px;
   text-decoration:none; color:var(--text);
+  
 }
 .brand-dot{
   display:inline-grid;  /* GRID: инлайн-grid для центрирования точки */
