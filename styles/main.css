@@ -186,22 +186,12 @@ a {
 ;
 }
 
-.brand{
-  position: fixed;         
-  top: 10px;
-  left: 10px;
-  z-index: 1000;           
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-=======
 .brand {
   margin: 0 !important;
   padding-left: 20px !important;  
   display: inline-flex !important;
   align-items: center !important;
   gap: 10px !important;
->>>>>>> 15702f5f3653ec646f02b700d4b40eab888a67f8
   text-decoration: none;
   color: var(--text);
 }
@@ -450,5 +440,4 @@ ol, ul { list-style:none; margin:0; padding:0; }
 .site-sidebar{ grid-area:sidebar; }
 .site-main{ grid-area:main; }
 .site-footer{ grid-area:footer; }
-
 

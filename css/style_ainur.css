@@ -3,6 +3,19 @@
       --card:#fff; --radius:18px; --shadow:0 10px 24px rgba(17,17,17,.08);
     }
     html,body{background:#fff;color:var(--text)}
+    .site-nav{
+      position:sticky; top:0; z-index:1000;
+      background:#fff; border-bottom:1px solid #eee;
+    }
+    .nav-inner {
+  width: auto !important;
+  max-width: 1200px !important;
+  padding: 12px 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+}
+
 
     .hero{padding:72px 20px 36px; text-align:center}
     .hero-title{font-family:"Playfair Display",serif; font-size:42px; margin:0 0 8px}
@@ -17,6 +30,7 @@
       animation-timing-function:linear;
       animation-iteration-count:infinite}
 
+    
     .item{
       flex:0 0 auto; 
       width:210px; 
@@ -226,37 +240,58 @@
       font-size: 14px;
     }
 
+    .top-row .track {
+      display: inline-flex;
+      gap: 20px;
+      animation: scroll-right 25s linear infinite;
+    }
 
-.top-row .track {
-  display: inline-flex;
-  gap: 20px;
-  animation: scroll-right 25s linear infinite;
-}
+    .bottom-row .track {
+      display: inline-flex;
+      gap: 20px;
+      animation: scroll-left 25s linear infinite;
+    }
 
-.bottom-row .track {
-  display: inline-flex;
-  gap: 20px;
-  animation: scroll-left 25s linear infinite;
-}
+    .track:hover {
+      animation-play-state: paused;
+    }
 
-.track:hover {
-  animation-play-state: paused;
-}
-
-@keyframes scroll-right {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+   @keyframes scroll-right {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 @keyframes scroll-left {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(50%);
-  }
+  from { transform: translateX(0); }
+  to { transform: translateX(50%); }
+}
+
+.marquee-row{
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 24px 0;
+  position: relative;
+  border-top: 1px solid var(--line);
+}
+
+.track{
+  display: inline-flex;
+  gap: 20px;
+  width: max-content;          
+  will-change: transform;     
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.top-row .track{
+  animation: scroll 25s linear infinite;
+}
+
+.bottom-row .track{
+  animation: scroll 25s linear infinite reverse;
 }
