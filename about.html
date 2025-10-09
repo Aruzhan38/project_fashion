@@ -5,26 +5,31 @@
   <title>About — Fashion Lookbook</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <link rel="stylesheet" href="styles/main.css" />
-  <link rel="stylesheet" href="css/style_ainur.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="styles/main.css">
+<link rel="stylesheet" href="css/style_ainur.css">
+
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 </head>
+
 <body>
-  <header class="site-nav">
-    <div class="nav-inner">
-      <a class="brand" href="index.html"><span class="brand-dot">FL</span> Fashion Lookbook</a>
-      <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="weekly.html">Weekly Looks</a>
-        <a href="seasons.html">Seasons</a>
-        <a href="styles.html">Styles</a>
-        <a href="closet.html">Closet</a>
-        <a href="wishlist.html">Wishlist</a>
-        <a href="inspiration.html">Inspiration</a>
-        <a class="pill active" href="about.html">About</a>
-      </nav>
-    </div>
+  <header class="site-nav bg-white shadow-sm">
+    <nav class="nav-inner container d-flex align-items-center justify-content-between" aria-label="Main navigation">
+      <a class="brand d-flex align-items-center" href="index.html">
+        <span class="brand-dot">FL</span>&nbsp; Fashion Lookbook
+      </a>
+      <ul class="nav-links d-flex gap-3 mb-0">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="weekly.html">Weekly Looks</a></li>
+        <li><a href="seasons.html">Seasons</a></li>
+        <li><a href="styles.html">Styles</a></li>
+        <li><a href="closet.html">Closet</a></li>
+        <li><a href="wishlist.html">Wishlist</a></li>
+        <li><a href="inspiration.html">Inspiration</a></li>
+        <li><a class="pill active" href="about.html">About</a></li>
+      </ul>
+    </nav>
   </header>
 
   <main>
@@ -37,7 +42,7 @@
 
     <section class="container section">
       <div class="about-intro">
-        <p>
+        <p style="text-align: right;">
           Fashion Lookbook — a small web project that helps you quickly find style ideas. 
           We aim to inspire you with collections organized by season, style, and weekly looks. 
           Everything is compact, clear, and beautiful.
@@ -83,17 +88,52 @@
       </div>
     </section>
 
-    <section class="container section faq">
-      <h2 class="section-title center">FAQ</h2>
+    <section class="container section">
+      <h2 class="section-title center mb-4">Contact Us</h2>
+      <form class="mx-auto" style="max-width: 600px;" aria-label="Contact Form">
+        <div class="mb-3">
+          <label for="name" class="form-label">Full Name</label>
+          <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <div class="input-group">
+            <span class="input-group-text" id="email-icon">@</span>
+            <input type="email" id="email" class="form-control" placeholder="example@gmail.com" aria-describedby="email-icon" required>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label d-block">Subscription Type</label>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="type" id="basic" checked>
+            <label class="form-check-label" for="basic">Basic</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="type" id="premium">
+            <label class="form-check-label" for="premium">Premium</label>
+          </div>
+        </div>
+
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="agree" required>
+          <label class="form-check-label" for="agree">I agree to the terms and conditions</label>
+        </div>
+
+        <button type="submit" class="btn btn-dark w-100">Submit</button>
+      </form>
     </section>
 
     <section class="container cta">
-      <a class="btn" href="seasons.html">Explore Seasons</a>
+      <a class="btn btn-outline-dark" href="seasons.html">Explore Seasons</a>
     </section>
   </main>
 
   <footer class="footer center">
     <small>© 2025 Fashion Lookbook</small>
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

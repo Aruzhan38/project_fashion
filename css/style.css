@@ -1,4 +1,27 @@
+/*HEAD*/
+:root {
+  --primary-color: #7a0d4f; 
+  --secondary-color: #643333; 
+  --tertiary-color: #5a083f; 
+  --accent-color: #f0cacb; 
+  --text-color: var(--secondary-color);
+  --bg-color: #fdf0f8;
+  --highlight-bg: var(--accent-color);
+  --border-radius: 8px;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
+.header-section {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill-opacity=".1"><rect width="1" height="1" fill="%23f8e7ef"/><rect y="1" width="1" height="1" fill="%23f8e7ef"/><rect x="1" width="1" height="1" fill="%238a6a74"/><rect x="1" y="1" width="1" height="1" fill="%238a6a74"/></svg>');
+  background-color: #8a6a74;
+
+  color: #fff;
+  text-align: center;
+  padding: 40px 20px 20px;
+  position: relative;
+  overflow: hidden;
+
+}
 :root{
   --accent:#7a0d4f;
   --text:#0f0f10;
@@ -8,6 +31,7 @@
   --bg:#fafafa;
   --radius:18px;
   --shadow:0 10px 24px rgba(17,17,17,.08);
+
 }
 
 
@@ -302,6 +326,12 @@ html,body{
 .navbar-brand {
   padding: 0 !important;
   line-height: 38px;
+}
+
+
+.btn:hover {
+  background-color: #55484e;
+  color:#fdf0f8;
 }
 
 
