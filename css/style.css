@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+/*HEAD*/
 :root {
   --primary-color: #7a0d4f; 
   --secondary-color: #643333; 
@@ -20,8 +20,8 @@
   padding: 40px 20px 20px;
   position: relative;
   overflow: hidden;
-=======
 
+}
 :root{
   --accent:#7a0d4f;
   --text:#0f0f10;
@@ -31,7 +31,7 @@
   --bg:#fafafa;
   --radius:18px;
   --shadow:0 10px 24px rgba(17,17,17,.08);
->>>>>>> 15702f5f3653ec646f02b700d4b40eab888a67f8
+
 }
 
 
@@ -328,13 +328,12 @@ html,body{
   line-height: 38px;
 }
 
-<<<<<<< HEAD
+
 .btn:hover {
   background-color: #55484e;
   color:#fdf0f8;
 }
-=======
->>>>>>> 15702f5f3653ec646f02b700d4b40eab888a67f8
+
 
 
 
