@@ -12,6 +12,7 @@
   --fs-p: 16px;
 }
 
+
 /* Tablet */
 @media (min-width: 600px){
   :root{
@@ -179,7 +180,7 @@ a {
 .btn {
   background: linear-gradient(135deg, #7a0d4f, #a83279);
   box-shadow: 0 8px 18px rgba(122,30,73,.25);
-  transition: color  #eee;
+  transition: color .2s ease;
 }
 
 .btn:hover {
