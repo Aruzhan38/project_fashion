@@ -2,27 +2,69 @@
       --accent:#7a0d4f; --text:#0f0f10; --muted:#6b7280; --bg:#fafafa; --line:#eee;
       --card:#fff; --radius:18px; --shadow:0 10px 24px rgba(17,17,17,.08);
     }
-    html,body{background:#fff;color:var(--text)}
+    html,body{
+      background:#fff;
+      color:var(--text)}
     .site-nav{
       position:sticky; top:0; z-index:1000;
       background:#fff; border-bottom:1px solid #eee;
     }
-    .nav-inner {
-  width: auto !important;
-  max-width: 1200px !important;
-  padding: 12px 24px !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 16px !important;
-}
+    
+    .site-nav{
+      position:sticky; 
+      top:0; 
+      z-index:1000;
+      background:#fff; 
+      border-bottom:1px solid #eee;
+    }
 
+    .nav-inner{
+      width:100%;
+      max-width:none;
+      padding:12px 24px;
+      display:flex; align-items:center; gap:16px;
+    }
 
-    .hero{padding:72px 20px 36px; text-align:center}
-    .hero-title{font-family:"Playfair Display",serif; font-size:42px; margin:0 0 8px}
+    .nav-links{ 
+      margin-left:auto; 
+      display:flex; 
+      align-items:center;
+      gap:28px; 
+      white-space: nowrap;
+    }
+
+    .brand{ 
+      display:inline-flex; 
+      align-items:center; 
+      gap:10px; 
+      text-decoration:none; 
+      color:var(--text); }
+
+    .brand-dot{
+      display:inline-grid; place-items:center;
+      width:32px; height:32px;
+      border-radius:50%;
+      background:var(--accent);
+      color:#fff;
+      font-weight:700;
+      transition:transform .15s ease;
+    }
+
+    .hero{
+      padding:72px 20px 36px; 
+      text-align:center
+    }
+
+    .hero-title{
+      font-family:"Playfair Display",serif; 
+      font-size:42px; 
+      margin:0 0 8px
+    }
+
     .hero-sub{color:#555; margin:0}
 
-    .row{overflow:hidden; white-space:nowrap; padding:24px 0; position:relative; border-top:1px solid var(--line)}
     .row:first-of-type{border-top:0}
+
     .track{
       display:inline-flex; 
       gap:20px; 
@@ -48,6 +90,7 @@
       padding:56px 20px 72px; 
       background:var(--bg)
     }
+
     .quotes h2{
       font-family:"Playfair Display",serif; 
       text-align:center; 
@@ -61,45 +104,34 @@
       grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); 
       gap:18px
     }
+
     .q{
       border-radius:18px; 
       padding:20px; 
       box-shadow:var(--shadow)
     }
+
     .q p{
       margin:0; 
       line-height:1.55
     }
+
     .q small{
       display:block; 
       margin-top:10px; 
       opacity:.85
     }
+
     .q.burg{
       background:#7a0d4f; 
       color:#fff
     }
+
     .q.dark{background:#0f0f10; color:#fff}
     .q.gray{background:#6b7280; color:#fff}
     .q.light{background:#fafafa; color:#111; border:1px solid var(--line)}
 
     .center{ text-align:center }
-
-    .closet {
-      text-align: center;
-      padding: 40px 20px;
-    }
-
-    .closet h1 {
-      font-family: "Playfair Display", serif;
-      font-size: 2.2rem;
-      margin-bottom: 30px;
-    }
-
-    .shoes .item img:hover {
-      transform: scale(1.2);
-      cursor: zoom-in;
-    }
 
     .hero.about { 
       padding: 72px 0 36px; 
@@ -134,21 +166,13 @@
       margin-bottom:6px; 
     }
     
-    .section { 
-      padding: 40px 20px; 
-    }
+    .section { padding: 40px 20px;}
 
     .card-grid { 
       display:grid; 
       gap:20px; 
       grid-template-columns: 
       repeat(auto-fit,minmax(260px,1fr)); 
-    }
-
-    .card-gr { 
-      display: grid; 
-      grid-row: 2;
-      grid-column: 2;
     }
 
     .card { 
@@ -175,15 +199,6 @@
       font-size:.9rem; 
       background:#fff; 
     }
-
-    .faq details { 
-      background:#fff; 
-      border:1px solid #eee; 
-      border-radius:14px; 
-      padding:12px 14px; 
-    }
-
-    .faq details + details { margin-top:10px; }
 
     .cta { 
       text-align:center; 
@@ -256,42 +271,65 @@
       animation-play-state: paused;
     }
 
-   @keyframes scroll-right {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
+    .marquee-row{
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 24px 0;
+      position: relative;
+      border-top: 1px solid var(--line);
+    }
 
-@keyframes scroll-left {
-  from { transform: translateX(0); }
-  to { transform: translateX(50%); }
-}
+    .track{
+      display: inline-flex;
+      gap: 20px;
+      width: max-content;          
+      will-change: transform;     
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
 
-.marquee-row{
-  overflow: hidden;
-  white-space: nowrap;
-  padding: 24px 0;
-  position: relative;
-  border-top: 1px solid var(--line);
-}
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
 
-.track{
-  display: inline-flex;
-  gap: 20px;
-  width: max-content;          
-  will-change: transform;     
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
+    .top-row .track{
+      animation: scroll 25s linear infinite;
+    }
 
-@keyframes scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
+    .bottom-row .track{
+      animation: scroll 25s linear infinite reverse;
+    }
 
-.top-row .track{
-  animation: scroll 25s linear infinite;
-}
+    .faq-item { 
+      border:1px solid #eee; 
+      border-radius:16px; 
+      background:#fff; 
+      overflow:hidden; 
+      margin-bottom:12px; }
 
-.bottom-row .track{
-  animation: scroll 25s linear infinite reverse;
-}
+    .faq-btn {
+      width:100%; text-align:left; padding:14px 16px;
+      background:#fff; border:0; font-weight:600;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+
+    .faq-btn:hover { background:#f8f8f8; }
+
+    .chev { transition:transform .25s ease; }
+
+    .faq-btn[aria-expanded="true"] .chev { transform:rotate(180deg); }
+    
+    .faq-panel {
+      max-height:0; 
+      overflow:hidden; 
+      transition:max-height .35s ease;
+      border-top:1px solid #f1f1f1;
+    }
+
+    .faq-panel p { 
+      margin:0; 
+      padding:14px 16px; 
+      color:#555; }
+
+  

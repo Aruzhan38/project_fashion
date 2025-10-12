@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 /*HEAD*/
+=======
+>>>>>>> 1fa6661 (вйнур)
 :root {
   --primary-color: #7a0d4f; 
   --secondary-color: #643333; 
@@ -20,6 +23,7 @@
   padding: 40px 20px 20px;
   position: relative;
   overflow: hidden;
+<<<<<<< HEAD
 
 }
 :root{
@@ -32,8 +36,9 @@
   --radius:18px;
   --shadow:0 10px 24px rgba(17,17,17,.08);
 
+=======
+>>>>>>> 1fa6661 (вйнур)
 }
-
 
 html,body{
   margin:0;
@@ -352,11 +357,14 @@ html,body{
 
 
 
+<<<<<<< HEAD
 .btn:hover {
   background-color: #55484e;
   color:#fdf0f8;
 }
 
 
+=======
+>>>>>>> 1fa6661 (вйнур)
 
 
