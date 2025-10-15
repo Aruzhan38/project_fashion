@@ -41,3 +41,33 @@ document.addEventListener('DOMContentLoaded', () => {
   updateDateTime();
   setInterval(updateDateTime, 60000);
 });
+
+
+//bg colors
+const colors = ['#f8e9ec', '#f6f0f5','#fdf6f0', '#f3e8ee','#ece6eb', '#fff7f8'] 
+let i = 0;
+
+// button creation
+const colorBtn = document.createElement('button');
+colorBtn.textContent = 'Change Background';
+colorBtn.className = 'btn btn-outline-accent';
+
+colorBtn.style.display = 'block';
+colorBtn.style.margin = '40px auto';
+
+const wrapper = document.createElement('div');
+wrapper.className = 'container center'; 
+wrapper.appendChild(colorBtn);
+
+const footer = document.querySelector('footer');
+if (footer) {
+  footer.parentNode.insertBefore(wrapper, footer);
+} else {
+  document.body.appendChild(wrapper);
+}
+
+colorBtn.addEventListener('click', () => {
+  document.body.style.transition = 'background-color 0.4s ease';
+  document.body.style.backgroundColor = colors[i];
+  i = (i + 1) % colors.length;
+});
