@@ -121,50 +121,52 @@
 
         <button type="submit" class="btn btn-dark w-100">Submit</button>
       </form>
-    </section>
+        </section>
 
     <section class="container cta">
-      <a class="btn btn-outline-dark" href="seasons.html">Explore Seasons</a>
+        <a class="btn btn-outline-dark" href="seasons.html">Explore Seasons</a>
     </section>
 
     <section class="container section faq" id="faq" aria-label="FAQ">
-  <h2 class="section-title center mb-4">FAQ</h2>
+      <h2 class="section-title center mb-4">FAQ</h2>
+      
+      <div class="faq-item" data-accordion>
+        <button class="faq-btn" aria-expanded="false" aria-controls="faq1" id="q1">
+          How can I create a capsule wardrobe?
+          <span class="chev">▾</span>
+        </button>
+        <div class="faq-panel" id="faq1" role="region" aria-labelledby="q1">
+          <p>Start with high-quality basics in neutral colors — white shirts, black trousers, beige knits. 
+          Mix them with one or two accent pieces for variety while keeping everything minimal and timeless.</p>
+        </div>
+      </div>
 
-  <div class="faq-item" data-accordion>
-    <button class="faq-btn" aria-expanded="false" aria-controls="faq1" id="q1">
-      How do I start a capsule wardrobe?
-      <span class="chev">▾</span>
-    </button>
-    <div class="faq-panel" id="faq1" role="region" aria-labelledby="q1">
-      <p>Begin with neutral basics and timeless pieces you can mix and match every season.</p>
-    </div>
-  </div>
+      <div class="faq-item" data-accordion>
+        <button class="faq-btn" aria-expanded="false" aria-controls="faq2" id="q2">
+          What is the main purpose of Fashion Lookbook?
+          <span class="chev">▾</span>
+        </button>
+        <div class="faq-panel" id="faq2" role="region" aria-labelledby="q2">
+          <p>Fashion Lookbook helps you find clear outfit ideas by categories — seasons, styles, and weekly looks — 
+          to simplify your daily dressing routine and inspire creativity.</p>
+        </div>
+      </div>
 
-  <div class="faq-item" data-accordion>
-    <button class="faq-btn" aria-expanded="false" aria-controls="faq2" id="q2">
-      Can I add new styles later?
-      <span class="chev">▾</span>
-    </button>
-    <div class="faq-panel" id="faq2" role="region" aria-labelledby="q2">
-      <p>Yes — your capsule can evolve with you. Simply swap old items for new essentials.</p>
-    </div>
-  </div>
-
-  <div class="faq-item" data-accordion>
-    <button class="faq-btn" aria-expanded="false" aria-controls="faq3" id="q3">
-      Where do I find outfit ideas?
-      <span class="chev">▾</span>
-    </button>
-    <div class="faq-panel" id="faq3" role="region" aria-labelledby="q3">
-      <p>Visit our <a href="weekly.html">Weekly Looks</a> or <a href="inspiration.html">Inspiration</a> pages for curated ideas.</p>
-    </div>
-  </div>
-</section>
-
+      <div class="faq-item" data-accordion>
+        <button class="faq-btn" aria-expanded="false" aria-controls="faq3" id="q3">
+          Can I suggest looks or upload my own ideas?
+          <span class="chev">▾</span>
+        </button>
+        <div class="faq-panel" id="faq3" role="region" aria-labelledby="q3">
+          <p>Yes! Use the contact form above to send us your suggestions. 
+          We love featuring new creative looks from our community.</p>
+        </div>
+      </div>
+    </section>
 
     <section class="container">
       <div class="container-my5">
-        <div class row >
+           <div class row >
     </section>
   </main>
 
@@ -173,5 +175,6 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="ainur.js"></script>
 </body>
 </html>
