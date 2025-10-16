@@ -50,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const btn = document.getElementById("bg-color-btn");
   if (!btn) return;
+  
 
   btn.addEventListener("click", () => {
     document.body.style.backgroundColor = colors[i];
@@ -57,8 +58,4 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-//парактика
-function sayHello() {
-  console.log("Hello, World!");
-}
-sayHello();
+//практика
