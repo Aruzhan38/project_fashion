@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>Weekly Looks — Fashion Lookbook</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -69,22 +69,34 @@
     <section class="container">
       <div class="section-box">
         <h2 class="section-title">Vote your favorite</h2>
-        <form class="form" action="#" method="post">
+        <form id="voteForm" class="form" action="#" method="post" novalidate>
           <input type="text" name="name" placeholder="Your name">
+          <small class="error"></small>
           <select name="favday">
+            <option value="">Choose a day</option>
             <option>Monday</option><option>Tuesday</option><option>Wednesday</option>
             <option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option>
           </select>
+          <small class="error"></small>
           <textarea rows="4" name="comment" placeholder="Why this look?"></textarea>
+          <small class="error"></small>
           <button class="btn" type="submit">Submit</button>
         </form>
       </div>
     </section>
+
+    <div class="container center">
+      <div id="datetime" class="datetime-box">
+      </div>
+    </div>
   </main>
+
 
   <footer class="footer center">
     <small>© 2025 Fashion Lookbook</small>
   </footer>
+  <script src="images/asem.js"></script>
+
 </body>
 </html>
 
