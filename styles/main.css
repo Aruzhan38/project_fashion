@@ -445,3 +445,31 @@ ol, ul { list-style:none; margin:0; padding:0; }
 .site-main{ grid-area:main; }
 .site-footer{ grid-area:footer; }
 
+.rating {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;   
+  width: 100%;              
+  margin: 10px auto;         
+}
+
+.rating span {
+  cursor: pointer;
+  font-size: 22px;
+  color: #d1c9d8;
+  transition: transform .12s ease, color .12s ease;
+}
+
+.rating span.active {
+  color: #7a0d4f;
+}
+
+.rating span:hover {
+  transform: scale(1.1);
+}
+
+.rating-note {
+  margin-left: 6px;
+  color: #6b7280;
+}

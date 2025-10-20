@@ -128,6 +128,7 @@
   <p class="lead">Explore capsule outfits for every season and find your vibe.</p>
 </header>
 
+
 <main id="main-content">
 
   <section class="container my-5" aria-labelledby="seasonalPicks">
@@ -278,8 +279,33 @@
   </div>
 
   <section class="container py-5" aria-label="Quote">
-    <p class="text-center fst-italic">“Buy less, choose well, make it last.” — Vivienne Westwood</p>
+    <p class="text-center" id="quote-text">“Buy less, choose well, make it last.” — Vivienne Westwood</p>
   </section>
+
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+
+ quote = document.getElementById("quote-text");
+
+  const colors = ["#f8e9ec", "#f6f0f5", "#fdf6f0", "#f3e8ee", "#ece6eb", "#fff7f8"];
+  let i = 0;
+
+  btn.addEventListener("click", () => {
+    // 1) change background
+    document.body.style.backgroundColor = colors[i];
+    document.quote.color = colors[i];
+
+    // 2) change text immediately (innerText)
+    quote.innerText = "Background changed! 🌈";
+
+    // 3) (optional) adjust quote color for contrast
+    quote.style.color = "#7a0d4f";
+
+    i = (i + 1) % colors.length;
+  });
+});
+
+    </script>
 </main>
 
 <div class="center-btn">
