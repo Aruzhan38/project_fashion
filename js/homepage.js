@@ -261,7 +261,7 @@ button.addEventListener("click", function() {
 });
 /*Button Click Sound*/
 (() => {
-  const clickSound = new Audio('../images_aru/click.mp3');
+  const clickSound = new Audio('images_aru/click.mp3');
 
   document.querySelectorAll('button, .btn').forEach(btn => {
     btn.addEventListener('click', () => {
