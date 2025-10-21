@@ -301,19 +301,49 @@
       animation: scroll 25s linear infinite reverse;
     }
 
-    .faq-item { border:1px solid #eee; border-radius:16px; background:#fff; overflow:hidden; margin-bottom:12px; }
-    .faq-btn {
-      width:100%; text-align:left; padding:14px 16px;
-      background:#fff; border:0; font-weight:600;
-      display:flex; align-items:center; justify-content:space-between;
+    .faq-item { 
+      border:1px solid #eee; 
+      border-radius:16px; 
+      background:#fff; 
+      overflow:hidden; 
+      margin-bottom:12px; 
     }
-    .faq-btn:hover { background:#f8f8f8; }
+
+    .faq-btn {
+      width:100%; 
+      text-align:left; 
+      padding:14px 16px;
+      background:#fff; 
+      border:0; 
+      font-weight:600;
+      display:flex; 
+      align-items:center; 
+      justify-content:space-between;
+    }
+
+    .faq-btn:hover { 
+      background:#f8f8f8; 
+    }
+
     .chev { transition:transform .25s ease; }
     .faq-btn[aria-expanded="true"] .chev { transform:rotate(180deg); }
     .faq-panel {
-      max-height:0; overflow:hidden; transition:max-height .35s ease;
+      max-height:0; 
+      overflow:hidden; 
+      transition:max-height .35s ease;
       border-top:1px solid #f1f1f1;
     }
-    .faq-panel p { margin:0; padding:14px 16px; color:#555; }
 
-  
+    .faq-panel p { 
+      margin:0; 
+      padding:14px 16px; 
+      color:#555; 
+    }
+
+    .pop {
+      transform: scale(1.025);
+      transition: transform .18s ease;
+    }
+    .pop:where(.item, .card, button, .faq-panel) { will-change: transform; }
+    .star.active { color: var(--accent, #7a0d4f); }
+    .muted { color: var(--muted, #6b7280); }
