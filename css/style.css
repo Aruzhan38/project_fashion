@@ -363,6 +363,128 @@ html,body{
   color:#fdf0f8;
 }
 
+.stars { display: inline-flex; gap: 8px; }
+.star {
+  font-size: 32px;
+  line-height: 1;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #ccc;
+  transition: transform .1s ease;
+}
+.star.selected,
+.star.hover { color: gold; }
+.star:active { transform: scale(0.95); }
+
+
+body {
+  background-color: #fff;
+  color: #222;
+  transition: background-color 0.4s, color 0.4s;
+}
+
+
+body.night {
+  background-color: #1a1a1a;
+  color: #f8f8f8;
+}
+
+
+.theme-toggle button {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+
+
+
+
+
+
+
+body.night {
+  --bg: #0f0f12;
+  --text: #f1f1f3;
+  --line: rgba(255,255,255,.14);
+}
+
+body.night .section-box,
+body.night .card,
+body.night .g-item,
+body.night .palette.no-js .chip,
+body.night .link-list a,
+body.night .week-grid .card figcaption,
+body.night .datetime-box {
+  background: #181a1f !important;
+  color: #f1f1f3 !important;
+  border-color: rgba(255,255,255,.14) !important;
+}
+
+
+body.night .form input,
+body.night .form select,
+body.night .form textarea {
+  background: #121419 !important;
+  color: #f1f1f3 !important;
+  border: 1px solid rgba(255,255,255,.14) !important;
+}
+body.night .form input::placeholder,
+body.night .form textarea::placeholder {
+  color: #9aa1ad !important;
+}
+
+
+body.night .pill { background: rgba(255,255,255,.06) !important; color: #f1f1f3 !important; }
+
+body.night .card-text,
+body.night .text-muted { color: #b8bdc7 !important; }
+
+body.night .hero-sub { color: #b8bdc7 !important; }
+
+
+
+body.night .site-nav {
+  background: #0f0f12;        
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+body.night .nav-links a { color: var(--text); }
+body.night .pill { background: rgba(255,255,255,.08); color: var(--text); }
+body.night .pill.active { background: var(--accent); color:#fff; }
+body.night .brand { color: var(--text); }
+body.night .brand-dot { background: var(--accent); color:#fff; }
+
+
+body.night .hero{
+  background: linear-gradient(#151515, #151515 55%, #0f0f12);
+}
+body.night .hero::before{
+  
+  background: radial-gradient(1200px 420px at 50% 20%, rgba(122,30,73,.22), rgba(122,30,73,0));
+}
+
+
+body.night .header-section{
+  background-color:#151515;
+  background-image:none;               
+  color: var(--text);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 =======
 >>>>>>> 1fa6661 (вйнур)
