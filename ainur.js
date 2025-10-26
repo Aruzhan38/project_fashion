@@ -110,7 +110,6 @@ const FL = {
 
     renderRecommendations() {
       if (!FL.state.closet.length) return;
-      // HOF: filter shoes + map tops
       const tops    = FL.state.closet.filter(i => i.type === "top").slice(0, 3);
       const bottoms = FL.state.closet.filter(i => i.type === "bottom").slice(0, 2);
       const shoes   = FL.state.closet.filter(i => i.type === "shoes").slice(0, 1);
@@ -182,7 +181,7 @@ const FL = {
         e.preventDefault();
         if (!form.reportValidity()) return;
         if (status) {
-          status.textContent = "Submitted successfully ✅";
+          status.textContent = "Submitted successfully";
           status.classList.remove("visually-hidden");
         }
         FL.methods.beep(120, 700);
@@ -221,3 +220,221 @@ const FL = {
     this.methods.initBoops();
   }
 };
+
+// ========== UX Addons (jQuery) ==========
+$(function () {
+  // ---------------- Task 4: Scroll Progress ----------------
+  const $bar = $("#scrollProgress .bar");
+  const onScroll = () => {
+    const h = $(document).height() - $(window).height();
+    const p = h > 0 ? (window.scrollY / h) * 100 : 0;
+    $bar.css("width", p + "%");
+  };
+  $(document).on("scroll", onScroll);
+  onScroll();
+
+  // Collect searchable items (titles/alt/text) once per page
+  const collectTextItems = () => {
+    const items = [];
+    // anything visual with title: .item (images), .card (cards), faq buttons, headings
+    $(".item img, .card .card-text h3, .card .card-title, .faq-btn, h1,h2,h3").each(function () {
+      const $el = $(this);
+      const text = ($el.attr("alt") || $el.text() || "").trim();
+      if (text) items.push({ text, $el });
+    });
+    return items;
+  };
+  const TEXT_ITEMS = collectTextItems();
+
+  // Helper: show toast
+  function toast(msg, type = "info", timeout = 2200) {
+    const $t = $(`<div class="toast ${type}">${msg}</div>`);
+    $("#toastStack").append($t);
+    requestAnimationFrame(() => $t.addClass("show"));
+    setTimeout(() => {
+      $t.removeClass("show");
+      setTimeout(() => $t.remove(), 300);
+    }, timeout);
+  }
+
+  // ---------------- Task 1: Live Filter (keyup) ----------------
+  // Filters anything matching selector in data-filter-target (default .item,.card)
+  const $live = $("#liveSearch");
+  const filterSel = $live.data("filter-target") || ".item, .card";
+  $live.on("keyup input", function () {
+    const q = $(this).val().toString().toLowerCase().trim();
+    const $targets = $(filterSel);
+    if (!q) {
+      $targets.show();
+      return;
+    }
+    $targets.each(function () {
+      const $t = $(this);
+      // text source: alt for images, text() otherwise
+      const txt =
+        $t.find("img[alt]").attr("alt") ||
+        $t.find(".card-text h3,.card-title").first().text() ||
+        $t.text();
+      $t.toggle(txt.toLowerCase().includes(q));
+    });
+  });
+
+  // ---------------- Task 2: Autocomplete Suggestions ----------------
+  const $suggest = $("#autoSuggest");
+  function buildSuggestions(q) {
+    $suggest.empty();
+    if (!q) return $suggest.hide();
+    const rx = new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i");
+    const matches = TEXT_ITEMS
+      .map(o => o.text)
+      .filter((t, i, arr) => rx.test(t) && arr.indexOf(t) === i)
+      .slice(0, 8);
+    if (!matches.length) return $suggest.hide();
+
+    matches.forEach(t => {
+      const $btn = $(`<button type="button" role="option"></button>`).text(t);
+      $btn.on("click", () => {
+        $live.val(t).trigger("input");
+        $suggest.hide();
+        toast(`Filtered by “${t}”`, "success");
+      });
+      $suggest.append($btn);
+    });
+    $suggest.show();
+  }
+  $live.on("input focus", function () {
+    buildSuggestions($(this).val().trim());
+  });
+  $(document).on("click", function (e) {
+    if (!$(e.target).closest(".search-wrap").length) $suggest.hide();
+  });
+
+  // ---------------- Task 3: Search Highlight (regex + wrap) ----------------
+  function clearMarks(root = document) {
+    $(root).find("mark.hl").each(function () {
+      const $m = $(this);
+      $m.replaceWith($m.text());
+    });
+  }
+  function highlightAll(q, root = document) {
+    if (!q) return;
+    const rx = new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi");
+    // choose zones to highlight (FAQ + body texts)
+    const $zones = $(".faq, .card, main, .quotes").clone(false);
+    // Real DOM pass:
+    $(".faq, .card, main, .quotes")
+      .contents()
+      .each(function deep() {
+        if (this.nodeType === 3) {
+          const text = this.nodeValue;
+          if (rx.test(text)) {
+            const html = text.replace(rx, m => `<mark class="hl">${m}</mark>`);
+            $(this).replaceWith(html);
+          }
+        } else if (this.nodeType === 1 && !$(this).is("script,style,mark")) {
+          $(this).contents().each(deep);
+        }
+      });
+  }
+  $("#highlightBtn").on("click", function () {
+    const q = $("#highlightInput").val().trim();
+    clearMarks(document);
+    if (!q) return;
+    highlightAll(q, document);
+    toast(`Highlighted “${q}”`, "info");
+  });
+  $("#clearHighlight").on("click", function () {
+    clearMarks(document);
+  });
+
+  // ---------------- Task 5: Animated Number Counter ----------------
+  $("[data-count]").each(function () {
+    const $el = $(this);
+    const target = parseFloat($el.data("count"));
+    const dur = 1200; // ms
+    const start = performance.now();
+    const step = (now) => {
+      const t = Math.min(1, (now - start) / dur);
+      const eased = 1 - Math.pow(1 - t, 3);
+      // integer counter (қажет болса форматта)
+      $el.text(Math.round(target * eased));
+      if (t < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  });
+
+  // ---------------- Task 6: Loading Spinner on Submit ----------------
+  const $form = $("#contactForm");
+  $form.on("submit", function (e) {
+    e.preventDefault();
+    const $btn = $(this).find('button[type="submit"]');
+    if (!$btn.length) return this.submit();
+    const original = $btn.html();
+    $btn.prop("disabled", true).html(`<span class="spinner"></span>Please wait…`);
+    // "Fake server" delay
+    setTimeout(() => {
+      // restore
+      $btn.prop("disabled", false).html(original);
+      toast("Form submitted successfully", "success");
+      this.reset();
+      $("#formStatus").removeClass("visually-hidden").text("Submitted successfully");
+    }, 1200);
+  });
+
+  // ---------------- Task 7: Notification System (toast) ----------------
+  // Қолдану мысалы:
+  $(".item, .card").on("click", function () {
+    const name =
+      $(this).find("img[alt]").attr("alt") ||
+      $(this).find(".card-text h3").text() ||
+      "Item";
+    toast(`“${name}” viewed`, "info");
+  });
+
+  // ---------------- Task 8: Copy to Clipboard ----------------
+  $(".copy-btn").on("click", function () {
+    const sel = $(this).data("copy-target");
+    const $src = $(sel);
+    if (!$src.length) return;
+    const text = $src.text().trim();
+    navigator.clipboard.writeText(text).then(() => {
+      $(this).addClass("copied").text("Copied ✓");
+      toast("Copied to clipboard!", "success");
+      setTimeout(() => $(this).removeClass("copied").text("Copy"), 1200);
+    }).catch(() => toast("Copy failed", "error"));
+  });
+
+  // ---------------- Task 9: Image Lazy Loading ----------------
+  const $lazy = $("img.lazy[data-src]");
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const img = entry.target;
+        const src = img.getAttribute("data-src");
+        if (src) {
+          img.src = src;
+          img.removeAttribute("data-src");
+          img.classList.remove("lazy");
+        }
+        obs.unobserve(img);
+      });
+    }, { rootMargin: "200px 0px" });
+    $lazy.each(function () { io.observe(this); });
+  } else {
+    // Fallback: on scroll
+    const lazyLoadFallback = () => {
+      $lazy.each(function () {
+        const $img = $(this);
+        if ($img.data("loaded")) return;
+        const rect = this.getBoundingClientRect();
+        if (rect.top < window.innerHeight + 200) {
+          this.src = $img.attr("data-src");
+          $img.removeAttr("data-src").data("loaded", true).removeClass("lazy");
+        }
+      });
+    };
+    $(document).on("scroll resize", lazyLoadFallback);
+    lazyLoadFallback();
+  }
+});

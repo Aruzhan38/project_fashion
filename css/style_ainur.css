@@ -4,10 +4,7 @@
     }
     html,body{
       background:#fff;
-      color:var(--text)}
-    .site-nav{
-      position:sticky; top:0; z-index:1000;
-      background:#fff; border-bottom:1px solid #eee;
+      color:var(--text)
     }
     
     .site-nav{
@@ -347,3 +344,65 @@
     .pop:where(.item, .card, button, .faq-panel) { will-change: transform; }
     .star.active { color: var(--accent, #7a0d4f); }
     .muted { color: var(--muted, #6b7280); }
+
+    /* Scroll progress */
+#scrollProgress{
+  position: fixed; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg,#0000,#0000); z-index: 2000;
+}
+#scrollProgress .bar{
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--accent), #ff8fab);
+  box-shadow: 0 0 12px rgba(122,13,79,.35);
+  transition: width .08s linear;
+}
+
+/* Search / suggestions */
+.search-wrap{ max-width: 680px; margin: 0 auto 10px; position: relative; }
+.search-wrap input{ width: 100%; border:1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+.suggestions{
+  position: absolute; left: 0; right: 0; top: 46px; background: #fff;
+  border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow);
+  display: none; overflow: hidden;
+}
+.suggestions button{
+  width: 100%; text-align: left; background: #fff; border: 0; padding: 10px 14px; cursor: pointer;
+}
+.suggestions button:hover{ background: #f8f8f8; }
+
+/* Highlight */
+mark.hl{ background: #fff176; color: inherit; padding: 0 .15em; border-radius: 4px; }
+
+/* Toasts */
+#toastStack{
+  position: fixed; right: 16px; bottom: 16px; display: grid; gap: 10px; z-index: 2100;
+}
+.toast{
+  background: #111; color: #fff; padding: 12px 14px; border-radius: 12px; box-shadow: var(--shadow);
+  opacity: 0; transform: translateY(8px); transition: .25s ease;
+}
+.toast.show{ opacity: 1; transform: translateY(0); }
+.toast.success{ background: #0e7a3e; }
+.toast.info{ background: #111; }
+.toast.warn{ background: #b76e00; }
+.toast.error{ background: #a1172a; }
+
+/* Copy button */
+.copy-card{
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  border:1px solid var(--line); border-radius: 14px; padding: 10px 12px; background: #fff;
+  max-width: 680px; margin: 10px auto;
+}
+.copy-card code{ white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+.copy-btn{
+  border:1px solid var(--line); background:#fff; border-radius: 999px; padding: 6px 12px; cursor: pointer;
+}
+.copy-btn.copied{ border-color: #34c759; }
+
+/* Submit spinner (inline) */
+.btn .spinner{
+  width: 16px; height: 16px; border: 2px solid #fff; border-bottom-color: transparent;
+  border-radius: 50%; display: inline-block; vertical-align: -2px; margin-right: 8px;
+  animation: spin .8s linear infinite;
+}
+@keyframes spin{ to{ transform: rotate(360deg); } }
