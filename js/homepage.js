@@ -122,57 +122,21 @@ form?.addEventListener('submit', (e) => {
   }
 });
 /* === Read More Toggle === */
-(function () {
+(() => {
   const btn = document.getElementById('readMoreBtn');
   const extra = document.getElementById('extraEditorial');
   if (!btn || !extra) return;
 
+  extra.style.display = 'none';
+  btn.textContent = 'Read more';
+  btn.setAttribute('aria-expanded', 'false');
+
   btn.addEventListener('click', () => {
-    const hidden = extra.style.display === 'none' || extra.style.display === '';
-    extra.style.display = hidden ? 'block' : 'none';
-    btn.textContent = hidden ? 'Read less' : 'Read more';
-    btn.setAttribute('aria-expanded', String(hidden));
-  });
-})();
-
-
-/* Keyboard navigation по меню */
-(() => {
-  const links = Array.from(document.querySelectorAll('#mainNav .nav-link'));
-  if (!links.length) return;
-
-  links.forEach(a => a.setAttribute('tabindex', '0'));
-
-  function moveFocus(idxDelta, current) {
-    const idx = links.indexOf(current);
-    if (idx === -1) return;
-    let next = (idx + idxDelta + links.length) % links.length;
-    links[next].focus();
-  }
-
-  links.forEach(link => {
-    link.addEventListener('keydown', (e) => {
-      switch (e.key) {
-        case 'ArrowRight':
-        case 'ArrowDown':
-          e.preventDefault();
-          moveFocus(1, e.currentTarget);
-          break;
-        case 'ArrowLeft':
-        case 'ArrowUp':
-          e.preventDefault();
-          moveFocus(-1, e.currentTarget);
-          break;
-        case 'Home':
-          e.preventDefault();
-          links[0].focus();
-          break;
-        case 'End':
-          e.preventDefault();
-          links[links.length - 1].focus();
-          break;
-      }
-    });
+    const visible = extra.style.display === 'none';
+    
+    extra.style.display = visible ? 'block' : 'none';
+    btn.textContent = visible ? 'Read less' : 'Read more';
+    btn.setAttribute('aria-expanded', String(visible));
   });
 })();
 
@@ -238,7 +202,10 @@ form?.addEventListener('submit', (e) => {
   if (!btn || !out) return;
 
   btn.addEventListener('click', () => {
-    out.textContent = new Date().toLocaleTimeString();
+    setInterval(() => {
+      out.textContent = new Date().toLocaleTimeString();
+    }, 1000);
+
     out.setAttribute('aria-live', 'polite');
   });
 })();
@@ -250,6 +217,7 @@ let colors = ["#f5e1e1", "#e8d7f1", "#d3f8e2", "#f6eec7", "#f4cccc"];
 let currentColorIndex = 0;
 
 button.addEventListener("click", function() {
+
   document.body.style.transition = "background 0.5s ease";
   document.body.style.backgroundColor = colors[currentColorIndex];
 
@@ -271,3 +239,4 @@ button.addEventListener("click", function() {
     });
   });
 })();
+

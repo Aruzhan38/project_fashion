@@ -487,3 +487,44 @@ body.theme-dark .hero::after {
 body.theme-dark .full-image img {
   box-shadow: 0 6px 20px rgba(0,0,0,0.35);
 }
+
+
+.btn.is-loading { pointer-events: none; opacity: .8; }
+.btn .spinner {
+  display:inline-block; width:16px; height:16px; margin-right:8px;
+  border:2px solid rgba(255,255,255,.35);
+  border-top-color:#fff; border-radius:50%; animation:spin .7s linear infinite;
+  vertical-align:-2px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+
+#toastStack {
+  position: fixed; right: 16px; bottom: 16px; z-index: 10000;
+  display: grid; gap: 10px;
+}
+.toast {
+  background: #111; color: #fff; padding: 10px 14px; border-radius: 12px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.18); opacity: 0; transform: translateY(6px);
+}
+.toast.show { opacity: 1; transform: translateY(0); transition: .24s ease; }
+.toast.success { background: #1b8a4a; }
+.toast.error   { background: #b42318; }
+
+
+.copy-wrap { display:flex; align-items:center; gap:10px; }
+.btn-copy {
+  background:#eee; border:none; border-radius:12px; padding:6px 10px; font-weight:600; cursor:pointer;
+}
+.btn-copy.copied { background:#d8f5dd; }
+.btn-copy::after {
+  content: attr(data-tip);
+  position:absolute; transform:translate(-50%,-8px); left:50%; top:-6px;
+  background:#111; color:#fff; font-size:12px; padding:4px 8px; border-radius:8px;
+  opacity:0; pointer-events:none; white-space:nowrap;
+}
+.btn-copy.show-tip::after { opacity:1; transition:.2s; }
+
+
+img.lazy { filter: blur(6px); opacity:.85; transition: filter .35s ease, opacity .35s ease; }
+img.lazy.loaded { filter: blur(0); opacity:1; }

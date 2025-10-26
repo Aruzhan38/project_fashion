@@ -8,7 +8,8 @@
   <link rel="stylesheet" href="css/style_aru_styles.css">
 </head>
 
-<body>
+<body >
+  <div id="scrollProgress" aria-hidden="true"></div>
   
   <header class="site-nav">
     <div class="nav-inner">
@@ -47,11 +48,45 @@
     </div>
   </section>
 
+    <section class="stats container center">
+    <h2 class="section-title">Our Impact</h2>
+    <div class="stats-grid">
+      <div class="stat">
+        <span class="counter" data-target="1200" data-suffix="+">0</span>
+        <p>Happy Clients</p>
+      </div>
+      <div class="stat">
+        <span class="counter" data-target="85" data-suffix="%">0</span>
+        <p>Repeat Orders</p>
+      </div>
+      <div class="stat">
+        <span class="counter" data-target="48">0</span>
+        <p>New Looks / week</p>
+      </div>
+      </div>
+    </section>
+
   
   <section class="gallery">
     <div class="container">
       <h2 class="section-title center">Our Style Picks</h2>
+
+      <div class="styles-searchbar">
+          <label for="styleSearch" class="visually-hidden">Search styles</label>
+          <input type="text" id="styleSearch" placeholder="Search styles… (e.g., casual, boho, muslim)" autocomplete="off">
+          <div class="search-meta">
+            <small><span id="matchCount">8</span> styles</small>
+          </div>
+        </div>
+
+        <div id="noResults" style="display:none">
+          <p>😕 No styles found. Try a different keyword.</p>
+        </div>
+
       <div class="grid">
+
+        
+
         <div class="grid-item">
           <img src="images_aru/casual.jpg" alt="Casual style">
           <div class="grid-item-text">
@@ -123,6 +158,11 @@
  <footer class="footer center">
     <small>© 2025 Fashion Lookbook</small>
   </footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="js/search-filter.js"></script>
+  <script src="js/autocomplete.js"></script>
+  <script src="js/ui-extras.js"></script>
 
 </body>
 </html>
