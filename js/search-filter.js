@@ -1,41 +1,31 @@
-function debounce(fn, delay) {
-  let t;
-  return function () {
-    clearTimeout(t);
-    const ctx = this, args = arguments;
-    t = setTimeout(() => fn.apply(ctx, args), delay);
-  };
-}
-
 $(function () {
-  const $cards = $('.grid .grid-item');
-  const $input = $('#styleSearch');
-  const $match = $('#matchCount');
-  const $empty = $('#noResults');
+
+  var $cards = $('.grid .grid-item');
+  var $input = $('#styleSearch');  
+  var $match = $('#matchCount'); 
 
   $match.text($cards.length);
 
-  const norm = (s) => (s || '').toString().toLowerCase().trim();
+  $input.on('keyup', function () {
 
-  function runFilter() {
-    const q = norm($input.val());
-    if (!q) {
-      $cards.stop(true, true).fadeIn(120);
+    var query = $input.val().toLowerCase().trim();
+
+    if (query === "") {
+      $cards.show(); 
       $match.text($cards.length);
-      $empty.hide();
       return;
     }
 
-    const $visible = $cards.filter(function () {
-      return norm($(this).text()).indexOf(q) > -1;
+    var $visible = $cards.filter(function () {
+   
+      var text = $(this).text().toLowerCase();
+      return text.indexOf(query) !== -1;
     });
 
-    $cards.not($visible).stop(true, true).fadeOut(120);
-    $visible.stop(true, true).fadeIn(120);
+    $cards.hide();
+
+    $visible.show();
 
     $match.text($visible.length);
-    $empty.toggle($visible.length === 0);
-  }
-
-  $input.on('keyup', debounce(runFilter, 120));
+  });
 });

@@ -1,10 +1,20 @@
 
 $(function () {
   /* ========== Task 6: Loading spinner on Submit ========== */
+const overlay = document.getElementById('popupOverlay');
+
+$(function () {
   const $form = $('#contactForm');
+
   $form.on('submit', function (e) {
     e.preventDefault();
-   
+
+    const domForm = this; 
+    if (!validateContact(domForm)) {
+      showToast('Please fix the errors above.', 'error');
+      return;
+    }
+
     const $btn = $(this).find('button[type="submit"]');
     if ($btn.data('loading')) return;
 
@@ -14,20 +24,26 @@ $(function () {
         .addClass('is-loading')
         .html('<span class="spinner"></span>Please wait…');
 
-    setTimeout(() => {
+    setTimeout(function () {
+      
       $btn.prop('disabled', false)
           .removeClass('is-loading')
           .data('loading', false)
           .html(original);
 
-      showToast('Form submitted successfully', 'success');
-
       try {
-        $('#contactForm')[0].reset();
-        $('#popupOverlay').removeClass('is-open').attr('aria-hidden', 'true');
-      } catch(_) {}
+        domForm.reset();
+        if (overlay) {
+          overlay.classList.remove('is-open');
+          overlay.setAttribute('aria-hidden', 'true');
+        }
+      } catch (_) {}
+
+      showToast('Form submitted successfully', 'success');
     }, 1200);
   });
+});
+
 
   /* ========== Task 7: Notification / Toast ========== */
   function ensureToastStack() {
@@ -53,93 +69,82 @@ $(function () {
 
   /* ========== Task 8: Copy to Clipboard Button ========== */
 
-$(document).on('click', '.btn-copy', async function () {
-  const $btn = $(this);
-  const targetSel = $btn.data('copy-target');
-  let text = '';
+$(document).on('click', '.btn-copy', function () {
+    var $btn = $(this);
+    var targetSel = $btn.data('copy-target');
+    var text = '';
 
-  if (targetSel) {
-    const $t = $(targetSel).first();
-    text = ($t.text() || $t.val() || '').trim();
-  } else {
-    const $prev = $btn.prev();
-    text = ($prev.text() || $prev.val() || '').trim();
-  }
-
-  if (!text) return showToast('Nothing to copy', 'error');
-
-  try {
-    if (navigator.clipboard?.writeText) {
-      await navigator.clipboard.writeText(text);
+    if (targetSel) {
+      var $t = $(targetSel).first();
+      text = ($t.val() || $t.text() || '').trim();
     } else {
-      const $ta = $('<textarea style="position:absolute;left:-9999px;"></textarea>').val(text);
-      $('body').append($ta);
-      $ta[0].select();
-      document.execCommand('copy');
-      $ta.remove();
+      var $prev = $btn.prev();
+      text = ($prev.val() || $prev.text() || '').trim();
     }
 
-    $btn.trigger('copy');
-  } catch (err) {
-    showToast('Copy failed', 'error');
-  }
-});
+    if (!text) { showToast('Nothing to copy', 'error'); return; }
 
-$(document).on('copy', '.btn-copy', function () {
-  const $btn = $(this);
-  $btn.addClass('copied').attr('data-tip', 'Copied!');
-  $btn.addClass('show-tip');
-  showToast('Copied to clipboard', 'success');
-  setTimeout(() => {
-    $btn.removeClass('show-tip copied').removeAttr('data-tip');
-  }, 1200);
-});
+    var $ta = $('<textarea style="position:fixed;left:-9999px;top:-9999px;"></textarea>').val(text);
+    $('body').append($ta);
+    $ta[0].select();
 
-  /* ========== Task 9: Image Lazy Loading (jQuery scroll/offset/attr) ========== */
- 
-  const BLANK =
-    'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    $ta.remove();
 
-  $('img.lazy').each(function () {
-    const $img = $(this);
-    if (!$img.attr('src')) $img.attr('src', BLANK);
+    $btn.trigger('copy', [ ok ]);
   });
 
-  const $win = $(window);
-  const preload = 120; 
+  $(document).on('copy', '.btn-copy', function (e, ok) {
+    var $btn = $(this);
+    if (ok) {
+      $btn.addClass('copied');
+      showToast('Copied to clipboard', 'success');
+      setTimeout(function () { $btn.removeClass('copied'); }, 1200);
+    } else {
+      showToast('Copy failed', 'error');
+    }
+  });
+
+  /* =========================== Task 9: Image Lazy Loading =========================== */
+ 
+  var $win = $(window);
+  var preload = 120; 
+
+  $('img.lazy').each(function () {
+    var $img = $(this);
+    if (!$img.attr('src')) {
+      $img.attr('src','data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=');
+    }
+  });
 
   function inView($el) {
-    const top = $el.offset().top;
-    const h = $el.outerHeight() || 0;
-    const winTop = $win.scrollTop();
-    const winH = $win.height();
+    var top = $el.offset().top;      
+    var h   = $el.outerHeight() || 0;
+    var winTop = $win.scrollTop();
+    var winH   = $win.height();
     return (top < winTop + winH + preload) && (top + h > winTop - preload);
   }
 
   function loadVisible() {
     $('img.lazy[data-src]').each(function () {
-      const $img = $(this);
+      var $img = $(this);
       if ($img.data('loaded')) return;
       if (!inView($img)) return;
 
-      const real = $img.attr('data-src');
-      $img.attr('src', real)
-          .on('load', function () {
-            $img.addClass('loaded').data('loaded', true).removeAttr('data-src');
-          });
+      var real = $img.attr('data-src');
+      if (!real) return;
+
+   
+      $img.attr('src', real).on('load', function () {
+        $img.addClass('loaded').data('loaded', true).removeAttr('data-src');
+      });
     });
   }
 
-  let ticking = false;
-  function onScroll() {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => {
-      loadVisible();
-      ticking = false;
-    });
-  }
-
-  $win.on('scroll resize load', onScroll);
-  loadVisible(); // первая проверка
+  
+  $win.on('scroll', loadVisible);
+  $win.on('resize', loadVisible);
+  $win.on('load',   loadVisible);
+  loadVisible(); 
 });

@@ -489,42 +489,94 @@ body.theme-dark .full-image img {
 }
 
 
-.btn.is-loading { pointer-events: none; opacity: .8; }
-.btn .spinner {
-  display:inline-block; width:16px; height:16px; margin-right:8px;
-  border:2px solid rgba(255,255,255,.35);
-  border-top-color:#fff; border-radius:50%; animation:spin .7s linear infinite;
-  vertical-align:-2px;
+/* ========== Task 6: Submit spinner ========== */
+button.is-loading {
+  position: relative;
+  pointer-events: none;
+  opacity: .85;
 }
-@keyframes spin { to { transform: rotate(360deg); } }
 
+button .spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  border: 2px solid #cfcfd5;
+  border-top-color: #35363a;         
+  border-radius: 50%;
+  vertical-align: -3px;
+  animation: fl-spin .8s linear infinite;
+}
 
+@keyframes fl-spin { to { transform: rotate(360deg); } }
+
+/* ========== Task 7: Toast / Notification ========== */
 #toastStack {
-  position: fixed; right: 16px; bottom: 16px; z-index: 10000;
-  display: grid; gap: 10px;
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
-.toast {
-  background: #111; color: #fff; padding: 10px 14px; border-radius: 12px;
-  box-shadow: 0 10px 24px rgba(0,0,0,.18); opacity: 0; transform: translateY(6px);
+
+#toastStack .toast {
+  min-width: 220px;
+  max-width: 360px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.25;
+  box-shadow: 0 8px 24px rgba(0,0,0,.12);
+  background: #333;             
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity .18s ease, transform .18s ease;
 }
-.toast.show { opacity: 1; transform: translateY(0); transition: .24s ease; }
-.toast.success { background: #1b8a4a; }
-.toast.error   { background: #b42318; }
+
+#toastStack .toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 
-.copy-wrap { display:flex; align-items:center; gap:10px; }
+#toastStack .toast.info    { background: #2563eb; }  
+#toastStack .toast.success { background: #16a34a; }  
+#toastStack .toast.error   { background: #dc2626; }  
+
+/* ========== Task 8: Copy button tooltip ========== */
 .btn-copy {
-  background:#eee; border:none; border-radius:12px; padding:6px 10px; font-weight:600; cursor:pointer;
-}
-.btn-copy.copied { background:#d8f5dd; }
-.btn-copy::after {
-  content: attr(data-tip);
-  position:absolute; transform:translate(-50%,-8px); left:50%; top:-6px;
-  background:#111; color:#fff; font-size:12px; padding:4px 8px; border-radius:8px;
-  opacity:0; pointer-events:none; white-space:nowrap;
-}
-.btn-copy.show-tip::after { opacity:1; transition:.2s; }
+  position: relative;
+  background: var(--accent, #7a0d4f);
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background .3s ease, transform .3s ease;
 
+}
 
-img.lazy { filter: blur(6px); opacity:.85; transition: filter .35s ease, opacity .35s ease; }
-img.lazy.loaded { filter: blur(0); opacity:1; }
+.btn-copy.copied {
+  border-color: #16a34a !important;
+  box-shadow: 0 0 0 3px rgba(22,163,74,.15);
+}
+
+/* ========== Task 9: Lazy images (плавное появление) ========== */
+img.lazy {
+  opacity: 0;
+  transition: opacity .28s ease;
+}
+
+img.lazy.loaded {
+  opacity: 1;
+}
+
+button[disabled] {
+  cursor: not-allowed;
+  opacity: .6;
+}

@@ -113,14 +113,7 @@ function validateContact(formElement) {
 
   return ok;
 }
-form?.addEventListener('submit', (e) => {
-  e.preventDefault();
-  if (validateContact(form)) {
-    alert('Form submitted successfully!');
-    form.reset();
-    closeOverlay();
-  }
-});
+
 /* === Read More Toggle === */
 (() => {
   const btn = document.getElementById('readMoreBtn');

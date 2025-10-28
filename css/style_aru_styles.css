@@ -276,7 +276,7 @@ img { max-width: 100%; display: block; }
   z-index: 1000;
   left: 6px;                  
   right: 6px;
-  margin-top: 6px;
+  margin-top: 50px;
   background: #fff;
   border: 1px solid #e6e6e9;
   border-radius: calc(var(--radius) - 6px); 
@@ -307,8 +307,7 @@ img { max-width: 100%; display: block; }
   padding: 0 .1em;
 }
 
-.hl-wrap { display: inline-block; box-shadow: inset 0 -6px 0 rgba(255, 243, 163, .35); border-radius: 4px; }
-mark.hl { background: #fff3a3; border-radius: 3px; padding: 0 .15em; }
+mark { background: #ffa3ea; border-radius: 3px; padding: 0 .15em; }
 
 
 #scrollProgress{
@@ -352,3 +351,5 @@ mark.hl { background: #fff3a3; border-radius: 3px; padding: 0 .15em; }
   color: var(--text);
   margin-bottom: 8px;
 }
+
+

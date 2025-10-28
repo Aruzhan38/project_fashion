@@ -1,58 +1,91 @@
+$(function () {
+  var $bar = $('#scrollProgress');
+  var $counters = $('.counter');
 
-(() => {
+  function updateScrollBar() {
+    var docH = $(document).height();
+    var winH = $(window).height();
+    var max  = docH - winH;
+    var sc   = $(window).scrollTop();
+    var pct  = max > 0 ? (sc / max) * 100 : 0;
+    $bar.css('width', pct + '%');
+  }
+
+ 
+  function isInView($el) {
+    var winTop = $(window).scrollTop();
+    var winBot = winTop + $(window).height();
+
+    var elTop = $el.offset().top;
+    var elBot = elTop + $el.outerHeight();
+
+    return elBot > winTop && elTop < winBot;
+  }
+
+
+  function animateCounter($el) {
+    if ($el.data('animated')) return;
+    $el.data('animated', true);
+
+    var targetStr = $el.data('target') || $el.text() || '0';
+    var target    = parseFloat(targetStr) || 0;
+    var hasDot    = String(targetStr).indexOf('.') !== -1;
+    var decimals  = hasDot ? (String(targetStr).split('.')[1] || '').length : 0;
+
+    var from = 0;
+    var duration = 1200;   
+    var fps = 60;       
+    var steps = Math.max(1, Math.round((duration / 1000) * fps));
+    var step  = 0;
+    var delta = (target - from) / steps;
+
+    var prefix = $el.data('prefix') || '';
+    var suffix = $el.data('suffix') || '';
+
+    var timer = setInterval(function () {
+      step++;
+      var value = from + delta * step;
+
+      
+      if (decimals > 0) {
+        value = value.toFixed(decimals);
+      } else {
+        value = Math.round(value);
+      }
+
+      $el.text(prefix + value + suffix);
+
+      if (step >= steps) {
+        
+        var finalVal = (decimals > 0) ? target.toFixed(decimals) : Math.round(target);
+        $el.text(prefix + finalVal + suffix);
+        clearInterval(timer);
+      }
+    }, 1000 / fps);
+  }
+
   
-  const bar = document.getElementById('scrollProgress');
-  if (bar) {
-    const onScroll = () => {
-      const doc = document.documentElement;
-      const win = window;
-      const max = doc.scrollHeight - win.innerHeight;
-      const pct = max > 0 ? (win.scrollY / max) * 100 : 0;
-      bar.style.width = pct + '%';
-    };
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
+  function checkCounters() {
+    $counters.each(function () {
+      var $el = $(this);
+      if (isInView($el)) {
+        animateCounter($el);
+      }
+    });
   }
 
-  const fmt = new Intl.NumberFormat(undefined, { maximumFractionDigits: 0 });
+ 
+  $(window).on('scroll', function () {
+    updateScrollBar();
+    checkCounters();
+  });
 
-  function animateCount(el, target, { duration = 1200, decimals = 0 } = {}) {
-    const start = performance.now();
-    const from = 0;
-    const to = Number(target);
-    const ease = t => 1 - Math.pow(1 - t, 3); 
+  $(window).on('resize', function () {
+    updateScrollBar();
+    checkCounters();
+  });
 
-    function frame(now) {
-      const p = Math.min(1, (now - start) / duration);
-      const v = from + (to - from) * ease(p);
-      const fixed = v.toFixed(decimals);
-      const prefix = el.dataset.prefix || '';
-      const suffix = el.dataset.suffix || '';
 
-      el.textContent = prefix + (decimals ? fixed : fmt.format(Math.round(v))) + suffix;
-      if (p < 1) requestAnimationFrame(frame);
-    }
-    requestAnimationFrame(frame);
-  }
-
-  const counters = Array.from(document.querySelectorAll('.counter'));
-  if (counters.length) {
-    const started = new WeakSet();
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          if (!started.has(el)) {
-            started.add(el);
-            const target = el.dataset.target || el.textContent || '0';
-            const decimals = (target.includes('.') ? (target.split('.')[1] || '').length : 0);
-            animateCount(el, target, { duration: 1400, decimals });
-          }
-        }
-      });
-    }, { threshold: 0.35 });
-
-    counters.forEach(el => io.observe(el));
-  }
-})();
+  updateScrollBar();
+  checkCounters();
+});
