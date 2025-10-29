@@ -82,3 +82,138 @@ document.addEventListener("DOMContentLoaded", () => {
     sound.play();
   });
 });
+
+
+
+$(document).ready(function(){ 
+console.log("jQuery is ready!"); 
+}); 
+
+
+$(function(){
+  const pool = [];
+  $('.link-list a').each(function(){ pool.push($(this).text().trim()); });
+
+  $('#brandSearch').on('keyup', function(){
+    const q = $(this).val().toLowerCase();
+    const $list = $('#brandSuggestions').empty();
+
+    const hits = pool.filter(v => v.toLowerCase().includes(q)).slice(0,8);
+
+    if(q && hits.length){
+      hits.forEach(v => $list.append('<li>'+v+'</li>'));
+      $list.show();
+    } else {
+      $list.hide();
+    }
+  });
+  $('#brandSuggestions').on('click', 'li', function(){
+    $('#brandSearch').val($(this).text());
+    $('#brandSuggestions').hide();
+  });
+});
+
+
+
+
+
+
+
+
+
+$(function () {
+  const $form   = $('#voteForm');
+  const $submit = $('#voteForm button[type="submit"]');
+  const normal  = $submit.html(); 
+  $form.on('submit', function (e) {
+    e.preventDefault();                  
+    if ($submit.prop('disabled')) return;  
+    $submit
+      .prop('disabled', true)
+      .attr('aria-busy', 'true')
+      .html('<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Please wait…');
+    setTimeout(function () {
+      $submit
+        .prop('disabled', false)
+        .removeAttr('aria-busy')
+        .html(normal);
+      $form[0].reset();
+      alert('Submitted!');
+    }, 1500); 
+  });
+});
+
+
+
+
+
+
+
+function notify(message, type = 'info', duration = 2000) {
+  if (!$('#toasts').length) {
+    $('body').append('<div id="toasts"></div>');
+  }
+
+  const $toast = $('<div class="toast-mini ' + type + '">' + message + '</div>');
+  $('#toasts').append($toast);
+
+  $toast.fadeIn(300);
+
+  setTimeout(function(){
+    $toast.fadeOut(400, function(){ $(this).remove(); });
+  }, duration);
+}
+notify('Form submitted successfully!', 'success');
+
+
+
+
+
+
+
+
+
+$(function(){
+  $('#copyBtn').on('click', function(){
+    const text = $('#copyText').text();
+    navigator.clipboard.writeText(text); 
+    const $btn = $(this);
+    $btn.text('✓ Copied'); 
+    $btn.addClass('show-tip');
+    setTimeout(function(){
+      $btn.text('Copy');
+      $btn.removeClass('show-tip');
+    }, 2000);
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+$(function(){
+  const $lazyImages = $('img.lazy');
+  function loadVisibleImages() {
+    const windowBottom = $(window).scrollTop() + $(window).height();
+    $lazyImages.each(function(){
+      const $img = $(this);
+      if ($img.attr('src')) return;
+      const imgTop = $img.offset().top;
+      if (imgTop < windowBottom + 100) { 
+        $img.attr('src', $img.data('src'));
+        $img.on('load', function(){
+          $img.addClass('loaded');
+        });
+      }
+    });
+  }
+  $(window).on('scroll resize', loadVisibleImages);
+  loadVisibleImages(); 
+});

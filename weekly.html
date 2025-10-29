@@ -6,8 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
 </head>
 <body>
+<div id="scrollProgress">
+  <div id="spBar"></div>
+  <span id="spPct">0%</span>
+</div>
+
   <header class="site-nav">
     <div class="nav-inner">
       <a class="brand" href="index.html"><span class="brand-dot">FL</span> Fashion Lookbook</a>
@@ -34,6 +41,9 @@
 
     <section class="container">
       <h2 class="section-title center">Looks of the Week</h2>
+      <input id="lookSearch" type="text" placeholder="Search looks..." class="form-control" style="max-width:300px; margin:10px auto; display:block;">
+
+
       <div class="week-grid">
         <figure class="card">
           <img src="images/day1.jpg" alt="Monday look">
@@ -141,6 +151,15 @@
 
 
 </main>
+<section class="container center" id="stats">
+  <h2 class="section-title">Stats</h2>
+  <div class="stats">
+    <div class="stat"><span class="num" data-target="7">0</span><small>Looks</small></div>
+    <div class="stat"><span class="num" data-target="9">0</span><small>Moodboard</small></div>
+    <div class="stat"><span class="num" data-target="8">0</span><small>Brands</small></div>
+  </div>
+</section>
+
   <footer class="footer center">
     <small>© 2025 Fashion Lookbook</small>
   </footer>

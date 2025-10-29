@@ -74,6 +74,14 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
 
 
+
+
+
+
+
+
+
+
 document.addEventListener("DOMContentLoaded",()=>{
     const ratingWrap=document.getElementById("weekRating");
     const starContainers=document.getElementsByClassName("stars");
@@ -110,12 +118,11 @@ document.addEventListener("DOMContentLoaded",()=>{
 document.addEventListener("DOMContentLoaded",()=>{
     const btn=document.getElementById("changeTextBtn");
     const message =document.getElementById("messageText");
-
     btn.addEventListener("click",()=>{
         message.textContent="you are amazing!";
         message.innerHTML+="<br><small>you are amazing<small>";
         console.log(message.innerText);
-    })
+    });
 });
 
 
@@ -145,6 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
 
 
 
@@ -194,4 +202,87 @@ if (showTimeBtn && timeDisplay) {
   });
 }
 
+
+$(function(){
+  $("#lookSearch").on("keyup", function(){
+    let value = $(this).val().toLowerCase();
+    $(".week-grid .card").filter(function(){
+      $(this).toggle($(this).text().toLowerCase().includes(value));
+    });
+  });
+});
+
+
+$(function () {
+  const $scope = $('main'); 
+  function clearHighlights(){
+    $scope.find('mark.hl').each(function(){
+      $(this).replaceWith($(this).text()); 
+    });
+  }
+  function escapeReg(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+  function highlightAll(q){
+    const re = new RegExp(escapeReg(q), 'gi'); 
+    $scope.find('h1,h2,h3,p,figcaption,li,span,div,button,option').each(function(){
+      const html = $(this).html();
+      if(!html) return;
+      $(this).html(html.replace(re, '<mark class="hl">$&</mark>')); 
+    });
+  }
+  $('#lookSearch').on('input keyup', function(){
+    const q = $(this).val().trim();
+    clearHighlights();
+    if(q) highlightAll(q);
+  });
+});
+
+
+
+
+
+
+
+
+$(function(){
+  function updateScrollBar(){
+    const s = $(window).scrollTop();
+    const h = $(document).height() - $(window).height();
+    const pct = h > 0 ? (s / h) * 100 : 0;
+    $('#spBar').css('width', pct + '%'); 
+    $('#spPct').text(Math.round(pct) + '%');
+  }
+
+  $(window).on('scroll resize', updateScrollBar);
+  updateScrollBar();
+});
+
+
+
+
+$(function(){
+  let started = false;
+
+  function countNumbers(){
+    if(started) return;
+
+    let top = $('#stats').offset().top;
+    if($(window).scrollTop() + $(window).height() > top){
+      started = true;
+
+      $('.num').each(function(){
+        let $el = $(this);
+        let target = $el.data('target');
+        let count = 0;
+
+        let timer = setInterval(function(){
+          count++;
+          $el.text(count);
+          if(count >= target) clearInterval(timer);
+        }, 30); 
+      });
+    }
+  }
+
+  $(window).on('scroll', countNumbers);
+});
 
