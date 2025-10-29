@@ -1,21 +1,4 @@
-//form validation
-const form = document.querySelector('.needs-validation');
 
-if (form) {
-  form.addEventListener('submit', (event) => {
-    if (!form.checkValidity()) {
-      event.preventDefault();
-      event.stopPropagation();
-      alert("⚠️ Please fill out all required fields correctly.");
-    } else {
-      event.preventDefault(); 
-      alert("✅ Form submitted successfully!");
-      form.reset();
-    }
-//bootsrap validation class for mistakes
-    form.classList.add('was-validated');
-  });
-}
 
 //time
 document.addEventListener('DOMContentLoaded', () => {
@@ -43,22 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-//bg colors
-document.addEventListener("DOMContentLoaded", () => {
-  const colors = ['#f8e9ec', '#f6f0f5', '#fdf6f0', '#f3e8ee', '#ece6eb', '#fff7f8'];
-  let i = 0;
-
-  const btn = document.getElementById("bg-color-btn");
-  if (!btn) return;
-  
-
-  btn.addEventListener("click", () => {
-    document.body.style.backgroundColor = colors[i];
-    i = (i + 1) % colors.length;
-  });
-});
-
-
 // star rating
 document.querySelectorAll('.rating').forEach(block => {
   const stars = block.querySelectorAll('span[data-value]');
@@ -82,11 +49,11 @@ document.querySelectorAll('.rating').forEach(block => {
 
 //night and day mode
 document.addEventListener('keydown', (event) => {
-  if (event.key.toLowerCase() === 'n') {
+  if (event.key.toUpperCase() === 'N') {
     document.body.style.backgroundColor = '#2b2b2b';
     document.body.style.color = '#fff';
   } 
-  else if (event.key.toLowerCase() === 'd') {
+  else if (event.key.toUpperCase() === 'D') {
     document.body.style.backgroundColor = '#fff7f8';
     document.body.style.color = '#0f0f10';
   }
@@ -96,40 +63,27 @@ document.addEventListener('keydown', (event) => {
 document.addEventListener('DOMContentLoaded', () => {
   const isWishlist = window.location.pathname.endsWith('wishlist.html');
   if (!isWishlist) return;
+
   const hero = document.querySelector('.hero') || document.body;
 
-  const greetingText = document.createElement('h2');
-  greetingText.id = 'greetingText';
-  greetingText.className = 'center';
-  greetingText.style.margin = '40px 0';
-  greetingText.style.color = '#7a0d4f';
-  greetingText.style.transition = 'opacity 1s ease';
-  greetingText.style.opacity = '0';
-  hero.insertAdjacentElement('afterend', greetingText);
+  const el = document.createElement('h2');
+  el.id = 'greetingText';
+  el.className = 'greeting';
+  el.textContent = getGreetingByTime();     
+  hero.insertAdjacentElement('afterend', el);
 
-  const now = new Date();
-  const hour = now.getHours();
-  let greeting;
-
-  switch (true) {
-    case (hour >= 5 && hour < 12):
-      greeting = "☀️ Good Morning! Ready for new looks?";
-      break;
-    case (hour >= 12 && hour < 18):
-      greeting = "🌸 Good Afternoon! Explore fresh styles today.";
-      break;
-    case (hour >= 18 && hour < 23):
-      greeting = "🌙 Good Evening! Perfect time to update your wishlist.";
-      break;
-    default:
-      greeting = "💤 Late Night Mode - style never sleeps!";
-  }
-
-  greetingText.textContent = greeting;
-
-  // эффект плавного появления
-  setTimeout(() => (greetingText.style.opacity = '1'), 300);
+  requestAnimationFrame(() => {
+    el.classList.add('visible');
+  });
 });
+
+function getGreetingByTime(){
+  const h = new Date().getHours();
+  if (h >= 5  && h < 12) return "☀️ Good Morning! Ready for new looks?";
+  if (h >= 12 && h < 18) return "🌸 Good Afternoon! Explore fresh styles today.";
+  if (h >= 18 && h < 23) return "🌙 Good Evening! Perfect time to update your wishlist.";
+  return "💤 Late Night Mode — style never sleeps!";
+}
 
 
 //звук по клику на кнопку
@@ -143,3 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(btn);
   }
   btn.addEventListener('click', () => snd.play());
+
+
+

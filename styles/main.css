@@ -473,3 +473,120 @@ ol, ul { list-style:none; margin:0; padding:0; }
   margin-left: 6px;
   color: #6b7280;
 }
+
+.greeting{
+  text-align:center;
+  margin:40px 0;
+  color:#7a0d4f;
+  opacity:0;
+  transition:opacity 1s ease;
+  will-change: opacity;
+}
+.greeting.visible{ opacity:1; }
+
+.search-input {
+  display:block;
+  margin:25px auto;
+  padding:10px 18px;
+  width:280px;
+  border:2px solid #7a0d4f;
+  border-radius:999px;
+  text-align:center;
+  font-size:16px;
+  outline:none;
+  transition:.25s;
+}
+.search-input:focus {
+  box-shadow:0 0 10px rgba(122,13,79,.3);
+}
+.suggestions {
+  list-style:none;
+  margin:0 auto;
+  padding:0;
+  width:280px;
+  border:1px solid #ccc;
+  border-radius:10px;
+  background:#fff;
+  position:absolute;
+  left:0; right:0;
+  z-index:100;
+}
+.suggestions li {
+  padding:8px 12px;
+  cursor:pointer;
+}
+.suggestions li:hover {
+  background:#f3e8ee;
+  color:#7a0d4f;
+}
+
+#brands {
+  list-style:none;
+  padding:0;
+  text-align:center;
+  margin-top:20px;
+}
+#brands li {
+  margin:6px 0;
+  font-size:18px;
+  transition:.2s;
+}
+#brands li:hover { color:#7a0d4f; }
+
+mark.hl {
+  background:#fff3a1;
+  padding:0 .15em;
+  border-radius:3px;
+}
+
+.stats {
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  margin:60px 0;
+  text-align:center;
+}
+.stats .count {
+  font-size:42px;
+  color:#7a0d4f;
+  font-weight:700;
+}
+
+.search-input {
+  display: block;
+  margin: 15px auto;
+  padding: 10px 18px;
+  width: 280px;
+  border: 2px solid #7a0d4f;
+  border-radius: 999px;
+  text-align: center;
+  font-size: 16px;
+  outline: none;
+  transition: 0.25s;
+}
+
+.search-input:focus {
+  box-shadow: 0 0 10px rgba(122, 13, 79, 0.3);
+}
+
+#copyQuote {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 22px;
+  border: 2px solid #7a0d4f;
+  border-radius: 999px;
+  background: transparent;
+  color: #7a0d4f;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+#copyQuote:hover {
+  background: #7a0d4f;
+  color: #fff;
+}
+
+/*Lazy-load visual hint */
+img.lazy { filter: blur(8px); transform: scale(1.01); transition: filter .4s ease, transform .4s ease, opacity .4s ease; opacity: .8; }
+img.lazy.loaded { filter: blur(0); transform: scale(1); opacity: 1; }
