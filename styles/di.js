@@ -1,31 +1,3 @@
-
-
-//time
-document.addEventListener('DOMContentLoaded', () => {
-  const dateTimeElement = document.getElementById('dateTime');
-  if (!dateTimeElement) return;
-
-  function updateDateTime() {
-    const now = new Date();
-
-    const options = {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-    };
-
-    const formatted = now.toLocaleString('en-US', options);
-    dateTimeElement.textContent = formatted;
-  }
-
-//обнова времени каждую минуту
-  updateDateTime();
-  setInterval(updateDateTime, 60000);
-});
-
-
 // star rating
 document.querySelectorAll('.rating').forEach(block => {
   const stars = block.querySelectorAll('span[data-value]');
