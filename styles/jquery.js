@@ -1,35 +1,3 @@
-// Tasks 1–3: Search + Autocomplete + Highlight
-$(function () {
-  const $input = $('#search');
-  const $list = $('#brands li');
-  const $drop = $('#suggestions');
-
-  const highlight = (text, query) =>
-    query ? text.replace(new RegExp(`(${query})`, 'gi'), '<mark>$1</mark>') : text;
-
-  $input.on('input', function () {
-    const val = $(this).val().toLowerCase().trim();
-    const matches = [];
-
-    $list.each(function () {
-      const txt = $(this).text();
-      const match = txt.toLowerCase().includes(val);
-      $(this).toggle(match).html(highlight(txt, val));
-      if (match && val) matches.push(txt);
-    });
-
-    $drop.html(matches.slice(0, 5).map(m => `<li>${m}</li>`).join(''))[matches.length ? 'show' : 'hide']();
-  });
-
-  $drop.on('click', 'li', function () {
-    $input.val($(this).text()).trigger('input');
-    $drop.hide();
-  });
-
-  $(document).on('click', e => $(e.target).closest('#suggestions, #search').length || $drop.hide());
-});
-
-
 //Task 4. Colorful and Stylized Scroll Progress Bar
 $(window).on("scroll", function () {
   const scrollTop = $(window).scrollTop();
@@ -93,17 +61,6 @@ $(function () {
   });
 });
 
-//Task 8. Copied to Clipboard Button
-$(function () {
-  $("#copyQuote").on("click", function () {
-    const text = $("#quote-text").text().trim();
-    navigator.clipboard.writeText(text).then(() => {
-      $(this).text("✓ Copied!").prop("disabled", true);
-      setTimeout(() => $(this).text("Copy").prop("disabled", false), 1200);
-    });
-  });
-});
-
 
 // Task 9: Image Lazy Loading
 $(function () {
@@ -123,3 +80,33 @@ $(function () {
   check(); 
 });
 
+
+
+// Theme toggle + persistence 
+  $(function () {
+    const $root = $('html');
+    const $btn  = $('#themeToggle');
+
+    function apply(theme){
+      const dark = theme === 'dark';
+      $root.toggleClass('theme-dark', dark);
+      $btn.html(dark ? '🌙' : '🌞')
+          .attr('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    }
+
+    const saved   = localStorage.getItem('theme');
+    const systemD = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    apply(saved || (systemD ? 'dark' : 'light'));
+
+    $btn.on('click', function () {
+      const next = $root.hasClass('theme-dark') ? 'light' : 'dark';
+      apply(next);
+      localStorage.setItem('theme', next);
+    });
+
+    if(!saved && window.matchMedia){
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        apply(e.matches ? 'dark' : 'light');
+      });
+    }
+  });

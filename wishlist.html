@@ -13,7 +13,8 @@
 
   <header class="site-nav">
     <div class="nav-inner">
-      <a class="brand" href="index.html"><span class="brand-dot">FL</span> </a>
+      <a class="brand" href="index.html"><span class="brand-dot">FL</span></a>
+
       <nav class="nav-links">
         <a href="index.html">Home</a>
         <a href="weekly.html">Weekly Looks</a>
@@ -24,6 +25,9 @@
         <a href="inspiration.html">Inspiration</a>
         <a href="about.html">About</a>
       </nav>
+
+      <!-- Day/Night toggle button -->
+      <button id="themeToggle" class="btn btn-sm rounded-pill ms-2 px-3" aria-label="Switch to dark mode">🌞</button>
     </div>
   </header>
 
@@ -34,152 +38,118 @@
     </div>
   </section>
 
+  <section class="stats">
+    <div class="stat">
+      <h3 class="count" data-target="2500">0</h3>
+      <p>Active Users</p>
+    </div>
+    <div class="stat">
+      <h3 class="count" data-target="120">0</h3>
+      <p>Luxury Brands</p>
+    </div>
+  </section>
 
+  <section class="container">
+    <h2 class="section-title">Favorite Brands</h2>
 
-<section class="stats">
-  <div class="stat">
-    <h3 class="count" data-target="2500">0</h3>
-    <p>Active Users</p>
-  </div>
-  <div class="stat">
-    <h3 class="count" data-target="120">0</h3>
-    <p>Luxury Brands</p>
-  </div>
-</section>
+    <div class="wishlist-scroll">
+      <div class="card">
+        <img src="styles/chanel.JPG" alt="Chanel">
+        <div class="card-body">
+          <h3 class="card-title">Chanel</h3>
+          <p class="card-text">Timeless Parisian elegance, iconic tweed suits, quilted bags, and pearls.</p>
+          <ul class="swatches">
+            <li style="--c:#0f0f10"></li><li style="--c:#bcbcbc"></li><li style="--c:#f2f2f2"></li>
+          </ul>
+        </div>
+      </div>
 
+      <div class="card">
+        <img src="styles/dior.JPG" alt="Dior">
+        <div class="card-body">
+          <h3 class="card-title">Dior</h3>
+          <p class="card-text">Feminine silhouettes, haute couture heritage, and modern luxury with a classic touch.</p>
+          <ul class="swatches">
+            <li style="--c:#2f1b17"></li><li style="--c:#7a1e49"></li><li style="--c:#f3e8ee"></li>
+          </ul>
+        </div>
+      </div>
 
-<section class="container">
-  <h2 class="section-title">Favorite Brands</h2>
+      <div class="card">
+        <img src="styles/prada.JPG" alt="Prada">
+        <div class="card-body">
+          <h3 class="card-title">Prada</h3>
+          <p class="card-text">Minimalist sophistication, innovative fabrics, and bold yet refined Italian style.</p>
+          <ul class="swatches">
+            <li style="--c:#1c2a44"></li><li style="--c:#9db4c0"></li><li style="--c:#e6eef2"></li>
+          </ul>
+        </div>
+      </div>
 
-<div class="autocomplete">
-  <input id="search" class="search-input" placeholder="Search brands…">
-  <ul id="suggestions" class="suggestions" style="display:none"></ul>
-</div>
-
-<ul id="brands" class="searchable">
-  <li>Chanel</li>
-  <li>Dior</li>
-  <li>Prada</li>
-  <li>Polo Ralph Lauren</li>
-</ul>
-
-
-  <div class="wishlist-scroll">
-    <div class="card">
-      <img src="styles/chanel.JPG" alt="Chanel">
-      <div class="card-body">
-        <h3 class="card-title">Chanel</h3>
-        <p class="card-text">Timeless Parisian elegance, iconic tweed suits, quilted bags, and pearls.</p>
-        <ul class="swatches">
-          <li style="--c:#0f0f10"></li><li style="--c:#bcbcbc"></li><li style="--c:#f2f2f2"></li>
-        </ul>
+      <div class="card">
+        <img src="styles/polo.JPG" alt="Polo Ralph Lauren">
+        <div class="card-body">
+          <h3 class="card-title">Polo Ralph Lauren</h3>
+          <p class="card-text">All-American heritage, casual chic, preppy classics, and effortless lifestyle fashion.</p>
+          <ul class="swatches">
+            <li style="--c:#3d2b1f"></li><li style="--c:#b08968"></li><li style="--c:#efe1d1"></li>
+          </ul>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="card">
-      <img src="styles/dior.JPG" alt="Dior">
-      <div class="card-body">
-        <h3 class="card-title">Dior</h3>
-        <p class="card-text">Feminine silhouettes, haute couture heritage, and modern luxury with a classic touch.</p>
-        <ul class="swatches">
-          <li style="--c:#2f1b17"></li><li style="--c:#7a1e49"></li><li style="--c:#f3e8ee"></li>
-        </ul>
-      </div>
+  <section class="container section">
+    <h2 class="section-title center">New Collections</h2>
+    <div class="card-grid cols-3">
+      <article class="card product">
+        <img class="lazy"
+             src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+             data-src="styles/shoes.JPG" alt="Shoes">
+        <div class="card-body">
+          <h3 class="card-title">Shoes</h3>
+          <p class="card-text">From sleek pumps to timeless boots</p>
+        </div>
+      </article>
+
+      <article class="card product">
+        <img class="lazy"
+             src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+             data-src="styles/accessories.JPG" alt="Accessories">
+        <div class="card-body">
+          <h3 class="card-title">Accessories</h3>
+          <p class="card-text">Statement earrings, chic bracelets</p>
+        </div>
+      </article>
+
+      <article class="card product">
+        <img class="lazy"
+             src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+             data-src="styles/bags.JPG" alt="Bags">
+        <div class="card-body">
+          <h3 class="card-title">Bags</h3>
+          <p class="card-text">Iconic handbags</p>
+        </div>
+      </article>
     </div>
 
-    <div class="card">
-      <img src="styles/prada.JPG" alt="Prada">
-      <div class="card-body">
-        <h3 class="card-title">Prada</h3>
-        <p class="card-text">Minimalist sophistication, innovative fabrics, and bold yet refined Italian style.</p>
-        <ul class="swatches">
-          <li style="--c:#1c2a44"></li><li style="--c:#9db4c0"></li><li style="--c:#e6eef2"></li>
-        </ul>
-      </div>
+    <div class="center" style="margin-top:12px">
+      <a class="btn" href="#">See more drops</a>
     </div>
-
-    <div class="card">
-      <img src="styles/polo.JPG" alt="Polo Ralph Lauren">
-      <div class="card-body">
-        <h3 class="card-title">Polo Ralph Lauren</h3>
-        <p class="card-text">All-American heritage, casual chic, preppy classics, and effortless lifestyle fashion.</p>
-        <ul class="swatches">
-          <li style="--c:#3d2b1f"></li><li style="--c:#b08968"></li><li style="--c:#efe1d1"></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-
- <section class="container section">
-  <h2 class="section-title center">New Collections</h2>
-  <div class="card-grid cols-3">
-
-    <article class="card product">
-      <img class="lazy" 
-           src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" 
-           data-src="styles/shoes.JPG" 
-           alt="Shoes">
-      <div class="card-body">
-        <h3 class="card-title">Shoes</h3>
-        <p class="card-text">From sleek pumps to timeless boots</p>
-      </div>
-    </article>
-
-    <article class="card product">
-      <img class="lazy" 
-           src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" 
-           data-src="styles/accessories.JPG" 
-           alt="Accessories">
-      <div class="card-body">
-        <h3 class="card-title">Accessories</h3>
-        <p class="card-text">Statement earrings, chic bracelets</p>
-      </div>
-    </article>
-
-    <article class="card product">
-      <img class="lazy" 
-           src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" 
-           data-src="styles/bags.JPG" 
-           alt="Bags">
-      <div class="card-body">
-        <h3 class="card-title">Bags</h3>
-        <p class="card-text">Iconic handbags</p>
-      </div>
-    </article>
-
-  </div>
-
-  <div class="center" style="margin-top:12px">
-    <a class="btn" href="#">See more drops</a>
-  </div>
-</section>
+  </section>
 
   <div class="rating" data-name="Chanel" aria-label="Rate this item">
-  <span data-value="1" aria-hidden="true">★</span>
-  <span data-value="2" aria-hidden="true">★</span>
-  <span data-value="3" aria-hidden="true">★</span>
-  <span data-value="4" aria-hidden="true">★</span>
-  <span data-value="5" aria-hidden="true">★</span>
-  <small class="rating-note">Rate: 0/5</small>
-</div>
+    <span data-value="1" aria-hidden="true">★</span>
+    <span data-value="2" aria-hidden="true">★</span>
+    <span data-value="3" aria-hidden="true">★</span>
+    <span data-value="4" aria-hidden="true">★</span>
+    <span data-value="5" aria-hidden="true">★</span>
+    <small class="rating-note">Rate: 0/5</small>
+  </div>
 
-<section class="container center" style="padding:28px 20px 40px">
-  <p id="quote-text" class="quote">“Buy less, choose well, make it last.” — Vivienne Westwood</p>
-
-  <button
-    id="copyQuote"
-    class="btn btn-outline-accent"
-    data-copy="#quote-text">
-    Copy
-  </button>
-</section>
-
-   <section class="container center my-5">
-  <h3 class="section-title">Current Date-Time</h3>
-  <p id="dateTime" class="hero-sub"></p>
-</section>
+  <section class="container center" style="padding:28px 20px 40px">
+    <p id="quote-text" class="quote">“Buy less, choose well, make it last.” — Vivienne Westwood</p>
+  </section>
 
   <footer class="footer center">
     <small>© 2025 Fashion Lookbook
@@ -187,6 +157,6 @@
     </small>
   </footer>
 
-<script src="styles/di.js"></script>
+  <script src="styles/di.js"></script>
 </body>
 </html>

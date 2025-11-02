@@ -31,32 +31,6 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-// авто приветствие в зависимости от времени суток
-document.addEventListener('DOMContentLoaded', () => {
-  const isWishlist = window.location.pathname.endsWith('wishlist.html');
-  if (!isWishlist) return;
-
-  const hero = document.querySelector('.hero') || document.body;
-
-  const el = document.createElement('h2');
-  el.id = 'greetingText';
-  el.className = 'greeting';
-  el.textContent = getGreetingByTime();     
-  hero.insertAdjacentElement('afterend', el);
-
-  requestAnimationFrame(() => {
-    el.classList.add('visible');
-  });
-});
-
-function getGreetingByTime(){
-  const h = new Date().getHours();
-  if (h >= 5  && h < 12) return "☀️ Good Morning! Ready for new looks?";
-  if (h >= 12 && h < 18) return "🌸 Good Afternoon! Explore fresh styles today.";
-  if (h >= 18 && h < 23) return "🌙 Good Evening! Perfect time to update your wishlist.";
-  return "💤 Late Night Mode — style never sleeps!";
-}
-
 
 //звук по клику на кнопку
   const snd = new Audio('styles/click.mp3'); 
