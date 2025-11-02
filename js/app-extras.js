@@ -67,45 +67,6 @@ $(function () {
 
   $('#openPopup').on('click', () => showToast('Contact form opened'));
 
-  /* ========== Task 8: Copy to Clipboard Button ========== */
-
-$(document).on('click', '.btn-copy', function () {
-    var $btn = $(this);
-    var targetSel = $btn.data('copy-target');
-    var text = '';
-
-    if (targetSel) {
-      var $t = $(targetSel).first();
-      text = ($t.val() || $t.text() || '').trim();
-    } else {
-      var $prev = $btn.prev();
-      text = ($prev.val() || $prev.text() || '').trim();
-    }
-
-    if (!text) { showToast('Nothing to copy', 'error'); return; }
-
-    var $ta = $('<textarea style="position:fixed;left:-9999px;top:-9999px;"></textarea>').val(text);
-    $('body').append($ta);
-    $ta[0].select();
-
-    var ok = false;
-    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
-    $ta.remove();
-
-    $btn.trigger('copy', [ ok ]);
-  });
-
-  $(document).on('copy', '.btn-copy', function (e, ok) {
-    var $btn = $(this);
-    if (ok) {
-      $btn.addClass('copied');
-      showToast('Copied to clipboard', 'success');
-      setTimeout(function () { $btn.removeClass('copied'); }, 1200);
-    } else {
-      showToast('Copy failed', 'error');
-    }
-  });
-
   /* =========================== Task 9: Image Lazy Loading =========================== */
  
   var $win = $(window);

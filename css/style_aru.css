@@ -376,7 +376,6 @@ p, .about p, .aru-card-body p, .card-body p {
     --fs-p: 17px; --fs-hero-h1: 56px; --fs-hero-sub: 21px;
   }
 }
-
 @media (max-width: 560px){
   :root{
     --fs-h1: 32px;
@@ -545,26 +544,6 @@ button .spinner {
 #toastStack .toast.info    { background: #2563eb; }  
 #toastStack .toast.success { background: #16a34a; }  
 #toastStack .toast.error   { background: #dc2626; }  
-
-/* ========== Task 8: Copy button tooltip ========== */
-.btn-copy {
-  position: relative;
-  background: var(--accent, #7a0d4f);
-  color: #fff;
-  border: none;
-  border-radius: 20px;
-  padding: 6px 14px;
-  font-weight: 600;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background .3s ease, transform .3s ease;
-
-}
-
-.btn-copy.copied {
-  border-color: #16a34a !important;
-  box-shadow: 0 0 0 3px rgba(22,163,74,.15);
-}
 
 /* ========== Task 9: Lazy images (плавное появление) ========== */
 img.lazy {
