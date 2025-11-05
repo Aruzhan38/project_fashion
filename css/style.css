@@ -536,10 +536,6 @@ body.theme-dark .footer{
   background:#121317; border-top:1px solid rgba(255,255,255,.06); color:var(--muted);
 }
 
-/* Scroll progress */
-#scrollProgress{ background:linear-gradient(90deg,#eee,#f7f7f7); }
-body.theme-dark #scrollProgress{ background:linear-gradient(90deg,#2a2a2f,#22242a); }
-
 /* Toasts*/
 .toast-mini{ background:#fff; }
 body.theme-dark .toast-mini{
