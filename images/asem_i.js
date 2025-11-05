@@ -45,31 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-document.addEventListener("DOMContentLoaded", () => {
-  const greetingBox = document.createElement("div");
-  greetingBox.className = "text-center my-4 fs-4 fw-semibold";
-  document.body.prepend(greetingBox);
-
-  const hour = new Date().getHours();
-  let greeting = "";
-
-  switch (true) {
-    case (hour >= 5 && hour < 12):
-      greeting = " Good morning, Fashion Lover!";
-      break;
-    case (hour >= 12 && hour < 18):
-      greeting = " Good afternoon, stay stylish!";
-      break;
-    case (hour >= 18 && hour < 23):
-      greeting = " Good evening, shine bright!";
-      break;
-    default:
-      greeting = " Time to rest, queen of fashion!";
-  }
-
-  greetingBox.textContent = greeting;
-});
-
 
 
 
@@ -216,4 +191,56 @@ $(function(){
   }
   $(window).on('scroll resize', loadVisibleImages);
   loadVisibleImages(); 
+});
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const palette = document.querySelector('.palette.no-js');
+  if(!palette) return;
+
+  const form    = palette.querySelector('.swatch-picker');
+  const preview = palette.querySelector('.preview');
+  const sample  = palette.querySelector('.sample');
+  const hexOut  = palette.querySelector('.hex');
+
+  const getActiveHex = () =>
+    getComputedStyle(preview).getPropertyValue('--active').trim().toLowerCase();
+
+  const apply = () => {
+    const hex = getActiveHex();
+    hexOut.textContent = hex || '#000000';
+    sample.style.background = hex || '#000000';
+  };
+
+  apply();
+  form.addEventListener('change', e => { if(e.target.name==='pick') apply(); });
+});
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const themeBtn = document.getElementById("changeTheme");
+  const body = document.body;
+
+  if (localStorage.getItem("theme") === "night") {
+    body.classList.add("night");
+    themeBtn.textContent = "Light Mode";
+    themeBtn.classList.replace("btn-dark", "btn-light");
+  }
+
+  themeBtn.addEventListener("click", () => {
+    const isNight = body.classList.toggle("night");
+
+    if (isNight) {
+      themeBtn.textContent = "Light Mode";
+      themeBtn.classList.replace("btn-dark", "btn-light");
+      localStorage.setItem("theme", "night");
+    } else {
+      themeBtn.textContent = "Dark Mode";
+      themeBtn.classList.replace("btn-light", "btn-dark");
+      localStorage.setItem("theme", "day");
+    }
+  });
 });
