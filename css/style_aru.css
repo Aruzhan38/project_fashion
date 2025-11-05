@@ -509,6 +509,24 @@ button .spinner {
 
 @keyframes fl-spin { to { transform: rotate(360deg); } }
 
+#scrollProgress{
+  position: fixed;
+  top: 0; left: 0;
+  height: 6px;
+  width: 0%;
+  z-index: 9999;
+  background: linear-gradient(90deg,
+    #7a0d4f, #b83280, #ff7eb6, #7a0d4f);
+  background-size: 300% 100%;
+  animation: hueflow 6s linear infinite;
+  box-shadow: 0 2px 8px rgba(122, 13, 79, .25);
+  border-bottom-right-radius: 6px;
+}
+@keyframes hueflow { 
+  0%{ background-position: 0% 50% } 
+  100%{ background-position: 100% 50% } 
+}
+
 /* ========== Task 7: Toast / Notification ========== */
 #toastStack {
   position: fixed;
