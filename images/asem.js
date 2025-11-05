@@ -61,6 +61,72 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
 });
 
+(function(){
+  const $scope = $('main');
+
+  function escapeReg(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+  function clearHighlights(){
+    $scope.find('mark.hl').each(function(){
+      this.replaceWith(this.textContent);
+    });
+  }
+
+  function highlightAll(q){
+    if(!q) return;
+
+    const re = new RegExp(escapeReg(q), 'gi');
+    const root = $scope[0];
+
+    const walker = document.createTreeWalker(
+      root,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode(node){
+          const p = node.parentNode;
+          if(!p) return NodeFilter.FILTER_REJECT;
+          const tag = p.nodeName.toLowerCase();
+          if (/^(script|style|textarea|option)$/i.test(tag)) return NodeFilter.FILTER_REJECT;
+          if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      }
+    );
+
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+
+    nodes.forEach(node=>{
+      const text = node.nodeValue;
+      if(!re.test(text)) return;          
+      re.lastIndex = 0;                      
+
+      const frag = document.createDocumentFragment();
+      let last = 0;
+      text.replace(re, (m, off)=>{
+        if (off > last) frag.appendChild(document.createTextNode(text.slice(last, off)));
+        const mark = document.createElement('mark');
+        mark.className = 'hl';
+        mark.textContent = m;
+        frag.appendChild(mark);
+        last = off + m.length;
+      });
+      if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+
+      node.parentNode.replaceChild(frag, node);
+    });
+  }
+
+  $('#lookSearch')
+    .attr('autocomplete','off')
+    .on('input', function(){
+      const q = this.value.trim();
+      clearHighlights();
+      if(q) highlightAll(q);
+    });
+})();
+
+
 
 
 
@@ -115,17 +181,6 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 
 
-document.addEventListener("DOMContentLoaded",()=>{
-    const btn=document.getElementById("changeTextBtn");
-    const message =document.getElementById("messageText");
-    btn.addEventListener("click",()=>{
-        message.textContent="you are amazing!";
-        message.innerHTML+="<br><small>you are amazing<small>";
-        console.log(message.innerText);
-    });
-});
-
-
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -157,53 +212,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-const quoteArea = document.querySelector('.quote-area');
-const newQuoteBtn = document.querySelector('#new-quote-btn');
-const localQuotes = [
-  "Fashion is the armor to survive the reality of everyday life. — Bill Cunningham",
-  "Style is a way to say who you are without having to speak. — Rachel Zoe",
-  "Simplicity is the keynote of all true elegance. — Coco Chanel",
-  "In order to be irreplaceable one must always be different. — Coco Chanel",
-  "Creativity is intelligence having fun. — Albert Einstein",
-  "Elegance is not standing out, but being remembered. — Giorgio Armani",
-];
-
-async function loadNewQuote() {
-  quoteArea.textContent = 'Loading…';
-  try {
-    const res = await fetch('https://api.quotable.io/random?tags=famous-quotes|inspirational');
-    if (!res.ok) throw new Error('API error');
-
-    const data = await res.json();
-    const text = `${data.content} — ${data.author}`;
-    quoteArea.textContent = text;
-
-  } catch (err) {
-    const fallback = localQuotes[Math.floor(Math.random() * localQuotes.length)];
-    quoteArea.textContent = fallback;
-  }
-}
-
-if (newQuoteBtn && quoteArea) {
-  newQuoteBtn.addEventListener('click', loadNewQuote);
-}
 
 
-
-
-
-const timeDisplay = document.querySelector('#timeDisplay');
-const showTimeBtn = document.querySelector('#showTimeBtn');
-
-if (showTimeBtn && timeDisplay) {
-  showTimeBtn.addEventListener('click', () => {
-    const currentTime = new Date().toLocaleTimeString();
-    timeDisplay.textContent = currentTime;
-  });
-}
-
-
-$(function(){
+/*$(function(){
   $("#lookSearch").on("keyup", function(){
     let value = $(this).val().toLowerCase();
     $(".week-grid .card").filter(function(){
@@ -234,7 +245,7 @@ $(function () {
     clearHighlights();
     if(q) highlightAll(q);
   });
-});
+}); */
 
 
 
