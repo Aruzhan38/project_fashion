@@ -376,7 +376,6 @@ p, .about p, .aru-card-body p, .card-body p {
     --fs-p: 17px; --fs-hero-h1: 56px; --fs-hero-sub: 21px;
   }
 }
-
 @media (max-width: 560px){
   :root{
     --fs-h1: 32px;
@@ -486,4 +485,95 @@ body.theme-dark .hero::after {
 
 body.theme-dark .full-image img {
   box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+}
+
+
+/* ========== Task 6: Submit spinner ========== */
+button.is-loading {
+  position: relative;
+  pointer-events: none;
+  opacity: .85;
+}
+
+button .spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  border: 2px solid #cfcfd5;
+  border-top-color: #35363a;         
+  border-radius: 50%;
+  vertical-align: -3px;
+  animation: fl-spin .8s linear infinite;
+}
+
+@keyframes fl-spin { to { transform: rotate(360deg); } }
+
+#scrollProgress{
+  position: fixed;
+  top: 0; left: 0;
+  height: 6px;
+  width: 0%;
+  z-index: 9999;
+  background: linear-gradient(90deg,
+    #7a0d4f, #b83280, #ff7eb6, #7a0d4f);
+  background-size: 300% 100%;
+  animation: hueflow 6s linear infinite;
+  box-shadow: 0 2px 8px rgba(122, 13, 79, .25);
+  border-bottom-right-radius: 6px;
+}
+@keyframes hueflow { 
+  0%{ background-position: 0% 50% } 
+  100%{ background-position: 100% 50% } 
+}
+
+/* ========== Task 7: Toast / Notification ========== */
+#toastStack {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#toastStack .toast {
+  min-width: 220px;
+  max-width: 360px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.25;
+  box-shadow: 0 8px 24px rgba(0,0,0,.12);
+  background: #333;             
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+#toastStack .toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+#toastStack .toast.info    { background: #2563eb; }  
+#toastStack .toast.success { background: #16a34a; }  
+#toastStack .toast.error   { background: #dc2626; }  
+
+/* ========== Task 9: Lazy images (плавное появление) ========== */
+img.lazy {
+  opacity: 0;
+  transition: opacity .28s ease;
+}
+
+img.lazy.loaded {
+  opacity: 1;
+}
+
+button[disabled] {
+  cursor: not-allowed;
+  opacity: .6;
 }

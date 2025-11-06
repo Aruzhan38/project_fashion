@@ -8,70 +8,70 @@
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="styles/jquery.js"></script>
 
   <style>
-    :root { --accent:#7a0d4f; --bg:#fafafa; --text:#0f0f10; --muted:#6b7280; }
+    /* theme */
+    :root{
+      --accent:#7a0d4f;
+      --bg:#fafafa;
+      --text:#0f0f10;
+      --muted:#6b7280;
+      --nav-bg:#ffffff;
+      --surface:#fbf8fb;
+    }
+    /* Dark theme overrides */
+    .theme-dark{
+      --bg:#0f0f13;
+      --text:#eeeeee;
+      --muted:#a5a7ad;
+      --nav-bg:#16161b;
+      --surface:#1b1a1f;
+      --accent:#b03a76;
+    }
 
-    body{ font-family:Inter,system-ui,Arial; color:var(--text); background:var(--bg); margin:0; }
+    body{ font-family:Inter,system-ui,Arial; color:var(--text); background:var(--bg); margin:0; transition:background .25s,color .25s; }
     h1,h2{ font-family:"Playfair Display",serif; font-weight:700; }
 
-    /* navigation */
-    .site-nav{
-      position:sticky; top:0; z-index:1000;
-      background:#fff; border-bottom:1px solid #eee;
+    #scrollBar {
+      position: fixed; top: 0; left: 0; height: 8px; width: 0%;
+      background: linear-gradient(90deg, var(--accent), #d179a1, var(--accent));
+      border-radius: 0 3px 3px 0;
+      box-shadow: 0 0 6px rgba(122,13,79,0.4);
+      z-index: 9999; transition: width .15s linear;
     }
-    .nav-inner{
-      width:100%;
-      max-width:none;
-      padding:12px 24px;
-      display:flex; align-items:center; gap:16px;
-    }
+
+    /* nav */
+    .site-nav{ position:sticky; top:0; z-index:1000; background:var(--nav-bg); border-bottom:1px solid #eee; transition:background .25s; }
+    .theme-dark .site-nav{ border-bottom-color:#222; }
+
+    .nav-inner{ width:100%; max-width:none; padding:12px 24px; display:flex; align-items:center; gap:16px; }
     .brand{ display:inline-flex; align-items:center; gap:10px; text-decoration:none; color:var(--text); }
-    .brand-dot{
-      display:inline-grid; place-items:center;
-      width:32px; height:32px;
-      border-radius:50%;
-      background:var(--accent);
-      color:#fff;
-      font-weight:700;
-      transition:transform .15s ease;
-    }
+    .brand-dot{ display:inline-grid; place-items:center; width:32px; height:32px; border-radius:50%; background:var(--accent); color:#fff; font-weight:700; transition:transform .15s ease; }
     .brand:hover .brand-dot{ transform:scale(1.06); }
-    .nav-links{
-      margin-left:auto;
-      display:flex; align-items:center; gap:28px;
-      white-space:nowrap;
-    }
-    .nav-links a{
-      color:var(--text);
-      text-decoration:none;
-      font-weight:600;
-      transition:color .2s ease;
-    }
+
+    .nav-links{ margin-left:auto; display:flex; align-items:center; gap:28px; white-space:nowrap; }
+    .nav-links a{ color:var(--text); text-decoration:none; font-weight:600; transition:color .2s ease; }
     .nav-links a:hover{ color:var(--accent); }
-    .pill{
-      padding:6px 12px;
-      border-radius:999px;
-      background:#f3e8ee;
-    }
-    .pill.active{
-      background:var(--accent);
-      color:#fff;
-    }
+    .pill{ padding:6px 12px; border-radius:999px; background:#f3e8ee; }
+    .pill.active{ background:var(--accent); color:#fff; }
+
+    /* Toggle button visuals */
+    #themeToggle{ border:1px solid currentColor; background:transparent; color:var(--text); }
+    .theme-dark #themeToggle{ color:#f2f2f2; }
 
     /* hero */
     .hero{
-      background:linear-gradient(180deg,#ffffff 0%,#fbf8fb 60%,#f6f6f8 100%);
-      padding:80px 20px 40px;
-      text-align:center;
-      position:relative;
-      overflow:hidden;
+      background:linear-gradient(180deg,var(--nav-bg) 0%,var(--surface) 60%,#f6f6f8 100%);
+      padding:80px 20px 40px; text-align:center; position:relative; overflow:hidden; transition:background .25s;
+    }
+    .theme-dark .hero{
+      background:linear-gradient(180deg,var(--nav-bg) 0%,var(--surface) 60%,#141418 100%);
     }
     .hero::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:radial-gradient(1200px 420px at 50% 20%, rgba(122,13,79,.18), rgba(122,13,79,0));
+      content:""; position:absolute; inset:0;
+      background:radial-gradient(1200px 420px at 50% 20%, color-mix(in srgb, var(--accent) 30%, transparent), rgba(0,0,0,0));
       pointer-events:none;
     }
     .hero h1{ margin:0 0 10px; font-size:clamp(34px,5.6vw,56px); line-height:1.06; }
@@ -82,19 +82,21 @@
     .btn-outline-accent{ border:2px solid var(--accent); color:var(--accent); border-radius:50px; padding:10px 22px; font-weight:700; }
     .btn-outline-accent:hover{ background:var(--accent); color:#fff; }
 
-    /* card styles */
-    .card-look{ border:none; border-radius:24px; box-shadow:0 10px 24px rgba(17,17,17,.08); overflow:hidden; transition:transform .25s, box-shadow .25s; height:100%; text-align:center; }
+    /* cards */
+    .card-look{ border:none; border-radius:24px; box-shadow:0 10px 24px rgba(17,17,17,.08); overflow:hidden; transition:transform .25s, box-shadow .25s, background .25s; height:100%; text-align:center; background:var(--nav-bg); }
     .card-look:hover{ transform:translateY(-8px); box-shadow:0 18px 38px rgba(17,17,17,.16); }
     .card-look img{ width:100%; height:340px; object-fit:cover; }
+    .theme-dark .card-look{ box-shadow:0 10px 24px rgba(0,0,0,.35); }
 
-    /* carousel */
-    .carousel-vertical{ height:600px; overflow:hidden; position:relative; border-radius:24px; }
+    /* carousel*/
+    .carousel-vertical{ height:600px; overflow:hidden; position:relative; border-radius:24px; background:var(--nav-bg); }
     .carousel-vertical .carousel-inner,.carousel-vertical .carousel-item{ height:100%; }
     .carousel-vertical img{ width:auto; height:100%; margin:0 auto; border-radius:20px; object-fit:cover; display:block; }
     .carousel-control-prev-icon,.carousel-control-next-icon{ filter:invert(1); }
 
-    /* form*/
-    .form-card{ border:none; border-radius:24px; box-shadow:0 10px 24px rgba(17,17,17,.08); }
+    /* form */
+    .form-card{ border:none; border-radius:24px; box-shadow:0 10px 24px rgba(17,17,17,.08); background:var(--nav-bg); transition:background .25s; }
+    .theme-dark .form-card{ box-shadow:0 10px 24px rgba(0,0,0,.35); }
     .form-label{ font-weight:600; }
     .form-help{ color:var(--muted); font-size:.9rem; }
 
@@ -104,12 +106,14 @@
 <body>
 
 <a href="#main-content" class="skip-link"></a>
+<div id="scrollBar"></div>
 
 <header class="site-nav" aria-label="Main navigation">
   <div class="nav-inner">
     <a class="brand" href="index.html" aria-label="Fashion Lookbook homepage">
       <span class="brand-dot">FL</span>
     </a>
+
     <nav class="nav-links">
       <a href="index.html">Home</a>
       <a href="weekly.html">Weekly Looks</a>
@@ -120,6 +124,9 @@
       <a href="inspiration.html">Inspiration</a>
       <a href="about.html">About</a>
     </nav>
+
+    <!-- Day/Night toggle button -->
+    <button id="themeToggle" class="btn btn-sm rounded-pill ms-2 px-3" aria-label="Switch to dark mode">🌞</button>
   </div>
 </header>
 
@@ -127,7 +134,6 @@
   <h1>Seasonal Fashion</h1>
   <p class="lead">Explore capsule outfits for every season and find your vibe.</p>
 </header>
-
 
 <main id="main-content">
 
@@ -281,40 +287,13 @@
   <section class="container py-5" aria-label="Quote">
     <p class="text-center" id="quote-text">“Buy less, choose well, make it last.” — Vivienne Westwood</p>
   </section>
-
-  <script>
-document.addEventListener("DOMContentLoaded", () => {
-
- quote = document.getElementById("quote-text");
-
-  const colors = ["#f8e9ec", "#f6f0f5", "#fdf6f0", "#f3e8ee", "#ece6eb", "#fff7f8"];
-  let i = 0;
-
-  btn.addEventListener("click", () => {
-    // 1) change background
-    document.body.style.backgroundColor = colors[i];
-    document.quote.color = colors[i];
-
-    // 2) change text immediately (innerText)
-    quote.innerText = "Background changed! 🌈";
-
-    // 3) (optional) adjust quote color for contrast
-    quote.style.color = "#7a0d4f";
-
-    i = (i + 1) % colors.length;
-  });
-});
-
-    </script>
 </main>
-
-<div class="center-btn">
-<button id="bg-color-btn" class="btn btn-outline-accent">Change Background</button>
-</div>
 
 <footer role="contentinfo">© 2025 Fashion Lookbook
   <p> Dinara</p></footer>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
   <script src="styles/di.js"></script>
 </body>
 </html>

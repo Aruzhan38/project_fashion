@@ -21,7 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (errors.length > 0) {
       alert(errors.join('\n'));
-    } else {
+    } 
+    else {
       alert('Thank you! Your inspiration has been shared.');
       form.reset();
     }
