@@ -222,3 +222,36 @@ const Closet = (() => {
   }
   return { init };
 })();
+
+document.addEventListener("DOMContentLoaded", () => {
+  const counters = document.querySelectorAll(".num");
+  const speed = 180; 
+
+  const animateCounters = () => {
+    counters.forEach(counter => {
+      const target = +counter.getAttribute("data-target");
+      const updateCount = () => {
+        const current = +counter.innerText;
+        const increment = Math.ceil(target / speed);
+        if (current < target) {
+          counter.innerText = current + increment;
+          requestAnimationFrame(updateCount);
+        } else {
+          counter.innerText = target;
+        }
+      };
+      updateCount();
+    });
+  };
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounters();
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+
+  observer.observe(document.querySelector(".stats"));
+});
