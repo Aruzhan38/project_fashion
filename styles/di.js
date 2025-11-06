@@ -19,7 +19,7 @@ document.querySelectorAll('.rating').forEach(block => {
   });
 });
 
-//night and day mode
+//night and day mode 
 document.addEventListener('keydown', (event) => {
   if (event.key.toUpperCase() === 'N') {
     document.body.style.backgroundColor = '#2b2b2b';

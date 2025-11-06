@@ -34,28 +34,99 @@
     body{ font-family:Inter,system-ui,Arial; color:var(--text); background:var(--bg); margin:0; transition:background .25s,color .25s; }
     h1,h2{ font-family:"Playfair Display",serif; font-weight:700; }
 
-    #scrollBar {
-      position: fixed; top: 0; left: 0; height: 8px; width: 0%;
-      background: linear-gradient(90deg, var(--accent), #d179a1, var(--accent));
-      border-radius: 0 3px 3px 0;
-      box-shadow: 0 0 6px rgba(122,13,79,0.4);
-      z-index: 9999; transition: width .15s linear;
-    }
+/* Scroll Progress Bar */
+#scrollProgress{
+  position: fixed;
+  top: 0; left: 0;
+  height: 6px;
+  width: 0%;
+  z-index: 9999;
+  background: linear-gradient(90deg,
+    #7a0d4f, #b83280, #ff7eb6, #7a0d4f);
+  background-size: 300% 100%;
+  animation: hueflow 6s linear infinite;
+  box-shadow: 0 2px 8px rgba(122, 13, 79, .25);
+  border-bottom-right-radius: 6px;
+}
+@keyframes hueflow { 
+  0%{ background-position: 0% 50% } 
+  100%{ background-position: 100% 50% } 
+}
 
-    /* nav */
-    .site-nav{ position:sticky; top:0; z-index:1000; background:var(--nav-bg); border-bottom:1px solid #eee; transition:background .25s; }
-    .theme-dark .site-nav{ border-bottom-color:#222; }
 
-    .nav-inner{ width:100%; max-width:none; padding:12px 24px; display:flex; align-items:center; gap:16px; }
-    .brand{ display:inline-flex; align-items:center; gap:10px; text-decoration:none; color:var(--text); }
-    .brand-dot{ display:inline-grid; place-items:center; width:32px; height:32px; border-radius:50%; background:var(--accent); color:#fff; font-weight:700; transition:transform .15s ease; }
-    .brand:hover .brand-dot{ transform:scale(1.06); }
+    /* Navbar Styles */
+.navbar { font-family: 'Inter', sans-serif; }
 
-    .nav-links{ margin-left:auto; display:flex; align-items:center; gap:28px; white-space:nowrap; }
-    .nav-links a{ color:var(--text); text-decoration:none; font-weight:600; transition:color .2s ease; }
-    .nav-links a:hover{ color:var(--accent); }
-    .pill{ padding:6px 12px; border-radius:999px; background:#f3e8ee; }
-    .pill.active{ background:var(--accent); color:#fff; }
+.navbar .navbar-brand .brand-mark{
+  background-color: var(--accent);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.navbar .navbar-brand .brand-name{
+  font-family: "Playfair Display", serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: #000;
+}
+
+.navbar .nav-link{
+  position: relative;
+  padding: .75rem 1rem;
+  color: #333;
+  font-weight: 600;
+}
+.navbar .nav-link:hover{ color: var(--accent); }
+
+.navbar .nav-link.active{ color: var(--accent);}
+
+.navbar .nav-link.active::after{
+  content:"";
+  position:absolute;
+  left:1rem; right:1rem; bottom:.35rem;
+  height:2px; background: var(--accent);
+  border-radius:2px;
+}
+
+.navbar-toggler{ border-color: rgba(0,0,0,.15); }
+.navbar-toggler:focus{ box-shadow: 0 0 0 .15rem rgba(122,13,79,.2); }
+.navbar-light .navbar-toggler-icon,
+.navbar .navbar-toggler-icon{ 
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(20,19,22,0.85)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.nav a {
+  color: #111;
+  text-decoration: none;
+  margin: 0 14px;
+  font-weight: 500;
+}
+.btn-small {
+  background: var(--accent, #7a0d4f);
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn-small:hover {
+  background: var(--accent);
+  transform: scale(1.05);
+}
+@media (max-width: 640px) {
+  .nav { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .menu { flex-wrap: wrap; }
+}
+
 
     /* Toggle button visuals */
     #themeToggle{ border:1px solid currentColor; background:transparent; color:var(--text); }
@@ -64,7 +135,7 @@
     /* hero */
     .hero{
       background:linear-gradient(180deg,var(--nav-bg) 0%,var(--surface) 60%,#f6f6f8 100%);
-      padding:80px 20px 40px; text-align:center; position:relative; overflow:hidden; transition:background .25s;
+      padding:130px 20px 40px; text-align:center; position:relative; overflow:hidden; transition:background .25s;
     }
     .theme-dark .hero{
       background:linear-gradient(180deg,var(--nav-bg) 0%,var(--surface) 60%,#141418 100%);
@@ -105,30 +176,42 @@
 </head>
 <body>
 
-<a href="#main-content" class="skip-link"></a>
-<div id="scrollBar"></div>
+<div id="scrollProgress" aria-hidden="true"></div>
 
-<header class="site-nav" aria-label="Main navigation">
-  <div class="nav-inner">
-    <a class="brand" href="index.html" aria-label="Fashion Lookbook homepage">
-      <span class="brand-dot">FL</span>
+<nav class="navbar navbar-expand-lg bg-white fixed-top shadow-sm">
+  <div class="container-fluid justify-content-between">
+
+    <a class="navbar-brand d-flex align-items-center" href="index.html" aria-label="Home">
+      <span class="brand-mark">FL</span>
+      <span class="brand-name ms-2">Fashion Lookbook</span>
     </a>
 
-    <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="weekly.html">Weekly Looks</a>
-      <a class="pill active" href="seasons_bootstrap.html">Seasons</a>
-      <a href="styles.html">Styles</a>
-      <a href="closet.html">Closet</a>
-      <a href="wishlist.html">Wishlist</a>
-      <a href="inspiration.html">Inspiration</a>
-      <a href="about.html">About</a>
-    </nav>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+            aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <!-- Day/Night toggle button -->
-    <button id="themeToggle" class="btn btn-sm rounded-pill ms-2 px-3" aria-label="Switch to dark mode">🌞</button>
+    <div class="collapse navbar-collapse w-100 justify-content-lg-end" id="mainNav">
+      <ul class="navbar-nav align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="weekly.html">Weekly Looks</a></li>
+        <li class="nav-item"><a class="nav-link active" href="seasons.html">Seasons</a></li>
+        <li class="nav-item"><a class="nav-link" href="styles.html">Styles</a></li>
+        <li class="nav-item"><a class="nav-link" href="closet.html">Closet</a></li>
+        <li class="nav-item"><a class="nav-link" href="wishlist.html">Wishlist</a></li>
+        <li class="nav-item"><a class="nav-link" href="inspiration.html">Inspiration</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+
+        <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+          <button id="themeToggle" class="btn btn-small" aria-pressed="false"
+            aria-label="Toggle dark mode" title="Toggle theme">🌙</button>
+        </li>
+      </ul>
+    </div>
+
   </div>
-</header>
+</nav>
+
 
 <header class="hero" role="banner">
   <h1>Seasonal Fashion</h1>
@@ -295,5 +378,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
   <script src="styles/di.js"></script>
+  <script src="js/ui-extras.js"></script>
+  <script src="js/style.js"></script>
 </body>
 </html>
