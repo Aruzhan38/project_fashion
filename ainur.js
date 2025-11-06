@@ -1,223 +1,224 @@
 document.addEventListener("DOMContentLoaded", () => {
-  setupAccordion();
-  setupBgColorCycler();
-  FL.init();            
+  Theme.init();          
+  Accordion.init();     
+  Rating.init();         
+  FormEnhance.init();  
+  Closet.init();       
+  UX.init();             
 });
 
-function setupAccordion(root = document) {
-  const items = root.querySelectorAll("[data-accordion]");
-  items.forEach(item => {
-    const btn = item.querySelector(".faq-btn");
-    const panel = item.querySelector(".faq-panel");
+const Theme = (() => {
+  const STORAGE = "fl-theme";        
+  const BTN_ID  = "themeToggle";    
 
-    btn.addEventListener("click", () => {
-      const open = btn.getAttribute("aria-expanded") === "true";
-      btn.setAttribute("aria-expanded", String(!open));
-      panel.style.maxHeight = open ? "0px" : panel.scrollHeight + "px";
-      FL.methods.pop(panel);       
-      FL.methods.beep(120);        
-    });
-  });
+  function apply(mode) {
+    document.documentElement.setAttribute("data-theme", mode);
+    document.body.classList.toggle("theme-dark", mode === "dark");
 
-  const first = items[0];
-  if (first) {
-    const btn = first.querySelector(".faq-btn");
-    const panel = first.querySelector(".faq-panel");
-    btn.setAttribute("aria-expanded", "true");
-    panel.style.maxHeight = panel.scrollHeight + "px";
+    const btn = document.getElementById(BTN_ID);
+    if (btn) {
+      const isDark = mode === "dark";
+      btn.setAttribute("aria-pressed", String(isDark));
+      btn.textContent = isDark ? "☀️" : "🌙";
+      btn.title = isDark ? "Switch to light" : "Switch to dark";
+      btn.setAttribute("aria-label", isDark ? "Switch to light theme" : "Switch to dark theme");
+    }
   }
-}
 
-function setupBgColorCycler() {
-  const colors = ["#f8e9ec","#f6f0f5","#fdf6f0","#f3e8ee","#ece6eb","#60363aff"];
-  let i = 0;
-  const btn = document.getElementById("bg-color-btn");
-  if (!btn) return;
-  btn.addEventListener("click", () => {
-    document.body.style.transition = "background-color .35s ease";
-    document.body.style.backgroundColor = colors[i];
-    i = (i + 1) % colors.length;
-    FL.methods.pop(btn);        
-    FL.methods.beep(100);       
-  });
-}
+  function init() {
+    const saved = localStorage.getItem(STORAGE) || "light";
+    apply(saved);
 
-const FL = {
-  state: {
-    closet: [],             
-    rating: 0,
-    audioCtx: null
-  },
+    const btn = document.getElementById(BTN_ID);
+    if (!btn) return;
+    btn.addEventListener("click", () => {
+      const next = (localStorage.getItem(STORAGE) || "light") === "light" ? "dark" : "light";
+      localStorage.setItem(STORAGE, next);
+      apply(next);
+      UX.beep(90, 660);
+      UX.pop(btn);
+    });
+  }
 
-  methods: {
-    $(sel, parent = document)  { return parent.querySelector(sel); },
-    $all(sel, parent = document){ return [...parent.querySelectorAll(sel)]; },
-    beep(durationMs = 120, freq = 880, type = "sine", volume = 0.08) {
-      try {
-        const ctx = FL.state.audioCtx ?? new (window.AudioContext || window.webkitAudioContext)();
-        FL.state.audioCtx = ctx;
-        const o = ctx.createOscillator();
-        const g = ctx.createGain();
-        o.type = type;
-        o.frequency.value = freq;
-        g.gain.value = volume;
-        o.connect(g); g.connect(ctx.destination);
-        o.start();
-        setTimeout(() => { o.stop(); o.disconnect(); g.disconnect(); }, durationMs);
-      } catch (_) {}
-    },
+  return { init };
+})();
 
-    pop(el) {
-      if (!el) return;
-      el.classList.remove("pop");
-      void el.offsetWidth;
-      el.classList.add("pop");
-      setTimeout(() => el.classList.remove("pop"), 220);
-    },
+const Accordion = (() => {
+  function init(root = document) {
+    const items = [...root.querySelectorAll("[data-accordion]")];
+    items.forEach(item => {
+      const btn   = item.querySelector(".faq-btn");
+      const panel = item.querySelector(".faq-panel");
+      if (!btn || !panel) return;
 
-    initThemeToggle() {
-      const btn = FL.methods.$("#theme-toggle");
-      if (!btn) return;
-      const apply = (mode) => {
-        document.documentElement.dataset.theme = mode; 
-        btn.textContent = mode === "dark" ? "Light" : "Night";
-        btn.setAttribute("aria-pressed", String(mode === "dark"));
-      };
-      const saved = localStorage.getItem("fl-theme") || "light";
-      apply(saved);
+      btn.setAttribute("aria-expanded", "false");
+      panel.style.maxHeight = "0px";
+
       btn.addEventListener("click", () => {
-        const mode = (localStorage.getItem("fl-theme") || "light") === "light" ? "dark" : "light";
-        localStorage.setItem("fl-theme", mode);
-        apply(mode);
-        FL.methods.pop(btn);
-        FL.methods.beep(90, 660);
-      });
-    },
+        const willOpen = btn.getAttribute("aria-expanded") !== "true";
 
-    collectCloset() {
-      const imgs = FL.methods.$all(".item img, #shoes .card img");
-      FL.state.closet = imgs.map(img => {
-        const title = img.alt?.trim() || "Item";
-        const src = img.currentSrc || img.src;
-        const lower = title.toLowerCase();
-        const type = lower.includes("heel") || lower.includes("sneaker") || lower.includes("boot")
-          ? "shoes"
-          : (lower.includes("trouser") || lower.includes("jeans") || lower.includes("skirt"))
-            ? "bottom" : "top";
-        return { title, src, type };
-      });
-    },
-
-    renderRecommendations() {
-      if (!FL.state.closet.length) return;
-      // HOF: filter shoes + map tops
-      const tops    = FL.state.closet.filter(i => i.type === "top").slice(0, 3);
-      const bottoms = FL.state.closet.filter(i => i.type === "bottom").slice(0, 2);
-      const shoes   = FL.state.closet.filter(i => i.type === "shoes").slice(0, 1);
-
-      let sec = document.getElementById("recommend");
-      if (!sec) {
-        sec = document.createElement("section");
-        sec.id = "recommend";
-        sec.className = "container section";
-        sec.innerHTML = `
-          <h2 class="section-title center">Recommended Capsule</h2>
-          <p class="center muted">Auto-picked from items already on this page.</p>
-          <ul class="capsule-list"></ul>
-        `;
-        const anchor = document.querySelector(".quotes") || document.querySelector("footer");
-        anchor?.parentNode?.insertBefore(sec, anchor.nextSibling);
-      }
-
-      const ul = sec.querySelector(".capsule-list");
-      ul.innerHTML = "";
-
-      const pack = [...tops, ...bottoms, ...shoes];
-      for (let i = 0; i < pack.length; i++) {
-        const li = document.createElement("li");
-        li.textContent = `• ${pack[i].title}`;
-        li.style.margin = "6px 0";
-        ul.appendChild(li);
-      }
-    },
-
-    initRating() {
-      const wrap = FL.methods.$("#rating");
-      if (!wrap) return;
-      const stars = FL.methods.$all(".star", wrap);
-      const msg = FL.methods.$("#ratingMsg");
-      const saved = Number(localStorage.getItem("fl-rating") || 0);
-      if (saved) render(saved);
-
-      stars.forEach(star => {
-        star.addEventListener("click", () => {
-          const v = Number(star.dataset.value);
-          localStorage.setItem("fl-rating", String(v));
-          render(v);
-          FL.methods.beep(120, 520);
-          FL.methods.pop(wrap);
+        items.forEach(other => {
+          const ob = other.querySelector(".faq-btn");
+          const op = other.querySelector(".faq-panel");
+          if (!ob || !op) return;
+          ob.setAttribute("aria-expanded", "false");
+          op.style.maxHeight = "0px";
         });
-      });
 
-      function render(val) {
-        stars.forEach(s => {
-          const cur = Number(s.dataset.value);
-          s.classList.toggle("active", cur <= val);
-          s.setAttribute("aria-pressed", String(cur <= val));
-        });
-        if (msg) {
-          msg.textContent = val ? `Thanks! You rated this page ${val}/5.` : "";
-          msg.classList.toggle("visually-hidden", !val);
+        if (willOpen) {
+          btn.setAttribute("aria-expanded", "true");
+          panel.style.maxHeight = panel.scrollHeight + "px";
         }
+        UX.beep(120);
+        UX.pop(panel);
+      });
+    });
+  }
+  return { init };
+})();
+
+const Rating = (() => {
+  function init() {
+    const wrap = document.getElementById("rating");
+    if (!wrap) return;
+    const stars = [...wrap.querySelectorAll(".star")];
+    const msg = document.getElementById("ratingMsg");
+    const saved = Number(localStorage.getItem("fl-rating") || 0);
+    if (saved) render(saved);
+
+    stars.forEach(star => {
+      star.addEventListener("click", () => {
+        const v = Number(star.dataset.value);
+        localStorage.setItem("fl-rating", String(v));
+        render(v);
+        UX.beep(120, 520);
+        UX.pop(wrap);
+      });
+    });
+
+    function render(val) {
+      stars.forEach(s => {
+        const cur = Number(s.dataset.value);
+        const active = cur <= val;
+        s.classList.toggle("active", active);
+        s.setAttribute("aria-pressed", String(active));
+      });
+      if (msg) {
+        msg.textContent = val ? `Thanks! You rated this page ${val}/5.` : "";
+        msg.classList.toggle("visually-hidden", !val);
       }
-    },
+    }
+  }
+  return { init };
+})();
 
-    initForm() {
-      const form = FL.methods.$("#contactForm");
-      if (!form) return;
-      const status = FL.methods.$("#formStatus");
-      const resetBtn = FL.methods.$("#formReset");
+const FormEnhance = (() => {
+  function init() {
+    const form = document.getElementById("contactForm");
+    if (!form) return;
 
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        if (!form.reportValidity()) return;
-        if (status) {
-          status.textContent = "Submitted successfully ✅";
-          status.classList.remove("visually-hidden");
-        }
-        FL.methods.beep(120, 700);
-        FL.methods.pop(form);
-        form.reset();
-      });
+    const status  = document.getElementById("formStatus");
+    const resetBn = document.getElementById("formReset");
 
-      resetBtn?.addEventListener("click", () => {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        form.classList.add("was-validated");
+        return;
+      }
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const original = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<span class="spinner"></span>Please wait…`;
+
+      setTimeout(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = original;
+        form.classList.remove("was-validated");
         form.reset();
         if (status) {
-          status.textContent = "Form cleared.";
+          status.textContent = "Submitted successfully";
           status.classList.remove("visually-hidden");
         }
-        FL.methods.beep(90, 440);
-        FL.methods.pop(resetBtn);
-      });
-    },
+        UX.beep(120, 700);
+        UX.pop(form);
+        UX.toast("Form submitted successfully", "success");
+      }, 1000);
+    });
 
-    initBoops() {
-      const tappables = FL.methods.$all(".item, .card, .pill, .btn");
-      tappables.forEach(el => {
-        el.addEventListener("click", () => {
-          FL.methods.pop(el);
-          FL.methods.beep(80, 600);
-        });
+    resetBn?.addEventListener("click", () => {
+      form.reset();
+      form.classList.remove("was-validated");
+      if (status) { status.textContent = "Form cleared."; status.classList.remove("visually-hidden"); }
+      UX.beep(90, 440);
+      UX.pop(resetBn);
+    });
+  }
+  return { init };
+})();
+
+const Closet = (() => {
+  let TEXT_ITEMS = [];
+
+  function collectTextItems() {
+    const items = [];
+    document.querySelectorAll(".item img, .card .card-text h3, .card .card-title, .faq-btn, h1,h2,h3")
+      .forEach(el => {
+        const text = (el.getAttribute("alt") || el.textContent || "").trim();
+        if (text) items.push(text);
+      });
+    return [...new Set(items)];
+  }
+
+  function initSearch() {
+    const input = document.getElementById("liveSearch");
+    const suggest = document.getElementById("autoSuggest");
+    if (!input || !suggest) return;
+
+    const filterSel = input.dataset.filterTarget || ".item, .card";
+
+    function filter(q) {
+      const targets = document.querySelectorAll(filterSel);
+      if (!q) { targets.forEach(t => t.style.display = ""); return; }
+      const qq = q.toLowerCase();
+      targets.forEach(t => {
+        const imgAlt = t.querySelector("img[alt]")?.getAttribute("alt");
+        const title  = t.querySelector(".card-text h3, .card-title")?.textContent;
+        const txt = (imgAlt || title || t.textContent || "").toLowerCase();
+        t.style.display = txt.includes(qq) ? "" : "none";
       });
     }
-  },
 
-  init() {
-    this.methods.initThemeToggle();
-    this.methods.collectCloset();
-    this.methods.renderRecommendations();
-    this.methods.initRating();
-    this.methods.initForm();
-    this.methods.initBoops();
+    function buildSuggestions(q) {
+      suggest.innerHTML = "";
+      if (!q) { suggest.style.display = "none"; return; }
+      const rx = new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i");
+      const matches = TEXT_ITEMS.filter(t => rx.test(t)).slice(0, 8);
+      if (!matches.length) { suggest.style.display = "none"; return; }
+      matches.forEach(t => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.role = "option";
+        btn.textContent = t;
+        btn.addEventListener("click", () => {
+          input.value = t;
+          filter(t);
+          suggest.style.display = "none";
+          UX.toast(`Filtered by “${t}”`, "success");
+        });
+        suggest.appendChild(btn);
+      });
+      suggest.style.display = "block";
+    }
+
+    input.addEventListener("input",  () => { filter(input.value); buildSuggestions(input.value.trim()); });
+    input.addEventListener("focus",  () => { buildSuggestions(input.value.trim()); });
+    document.addEventListener("click", (e) => { if (!e.target.closest(".search-wrap")) suggest.style.display = "none"; });
   }
-};
+
+  function init() {
+    TEXT_ITEMS = collectTextItems();
+    initSearch();
+  }
+  return { init };
+})();

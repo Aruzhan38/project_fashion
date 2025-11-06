@@ -1,154 +1,137 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Closet — Capsule Wardrobe</title>
+  <script>!function(){try{var t=localStorage.getItem("fl-theme")||"light";document.documentElement.setAttribute("data-theme",t);t==="dark"&&document.body?.classList?.add("theme-dark")}catch(e){}}();</script>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+
   <link rel="stylesheet" href="styles/main.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style_ainur.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 </head>
 
 <body>
-  <header class="site-nav">
-    <div class="nav-inner">
-      <a class="brand" href="index.html"><span class="brand-dot">FL</span> Fashion Lookbook</a>
-      <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="weekly.html">Weekly Looks</a>
-        <a href="seasons.html">Seasons</a>
-        <a href="styles.html">Styles</a>
-        <a class="pill active" href="closet.html">Closet</a>
-        <a href="wishlist.html">Wishlist</a>
-        <a href="inspiration.html">Inspiration</a>
-        <a href="about.html">About</a>
-      </nav>
-    </div>
-  </header>
+<a href="#main" class="visually-hidden-focusable">Skip to content</a>
 
-  <section class="hero">
-    <div class="container center">
+<header class="site-nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="Fashion Lookbook homepage">
+      <span class="brand-dot">FL</span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="weekly.html">Weekly Looks</a>
+      <a href="seasons_bootstrap.html">Seasons</a>
+      <a href="styles.html">Styles</a>
+      <a class="pill active" href="closet.html">Closet</a>
+      <a href="wishlist.html">Wishlist</a>
+      <a href="inspiration.html">Inspiration</a>
+      <a href="about.html">About</a>
+    </nav>
+    <button id="themeToggle" class="btn btn-small ms-lg-2 mt-2 mt-lg-0" aria-pressed="false" aria-label="Toggle dark mode" title="Toggle theme">Mode</button>
+  </div>
+</header>
+
+<div id="scrollProgress" aria-hidden="true"><div class="bar"></div></div>
+
+<div id="toastStack" aria-live="polite" aria-atomic="true"></div>
+
+<main id="main">
+  <section class="hero text-center">
+    <div class="container">
       <h1 class="hero-title">Capsule Closet</h1>
       <p class="hero-sub">“A capsule closet where tops glide right and bottoms drift left — timeless fashion in motion.”</p>
     </div>
   </section>
 
+  <section class="container section" id="searchBox">
+    <div class="search-wrap">
+      <input id="liveSearch" type="text" placeholder="Search items… (tops, jeans, blazer…)" autocomplete="off"
+             data-filter-target=".item, .card" aria-label="Live filter" />
+      <div class="suggestions" id="autoSuggest" role="listbox" aria-label="Suggestions"></div>
+    </div>
+  </section>
+
   <section id="tops" class="row top-row" aria-label="Tops">
     <div class="track">
-      <div class="item"><img src="images_ainur/white shirt.jpeg" alt="White Shirt"></div>
-      <div class="item"><img src="images_ainur/1.jpeg" alt="Black Blazer"></div>
-      <div class="item"><img src="images_ainur/2.jpg" alt="White Shirt"></div>
-      <div class="item"><img src="images_ainur/3.jpg"  alt="Beige Knit"></div>
-      <div class="item"><img src="images_ainur/4.jpg"  alt="Beige Knit"></div>
-      <div class="item"><img src="images_ainur/5.jpg"  alt="Beige Knit"></div>
-      <div class="item"><img src="images_ainur/13.jpg"  alt="Beige Knit"></div>
-      <div class="item"><img src="images_ainur/14.jpg"  alt="Beige Knit"></div>
-      <div class="item"><img src="images_ainur/15.jpg"  alt="Beige Knit"></div>
-      <div class="item"><img src="images_ainur/16.jpg"  alt="Beige Knit"></div>
-      <div class="item"><img src="images_ainur/white shirt.jpeg" alt="White Shirt"></div>
-      <div class="item"><img src="images_ainur/1.jpeg" alt="Black Blazer"></div>
-      <div class="item"><img src="images_ainur/2.jpg" alt="White Shirt"></div>
-      <div class="item"><img src="images_ainur/3.jpg"  alt="Beige Knit"></div>
-      <div class="item"><img src="images_ainur/4.jpg"  alt="Beige Knit"></div>
-      <div class="item"><img src="images_ainur/5.jpg"  alt="Beige Knit"></div>
-      <div class="item"><img src="images_ainur/13.jpg"  alt="Beige Knit"></div>
-      <div class="item"><img src="images_ainur/14.jpg"  alt="Beige Knit"></div>
-      <div class="item"><img src="images_ainur/15.jpg"  alt="Beige Knit"></div>
-      <div class="item"><img src="images_ainur/16.jpg"  alt="Beige Knit"></div>
+      <div class="item"><img src="images_ainur/white shirt.jpeg" alt="White Shirt" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/1.jpeg" alt="Black Blazer" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/2.jpg" alt="Black cardigan" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/3.jpg" alt="Red polo" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/4.jpg" alt="Black top" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/5.jpg" alt="beige top" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/13.jpg" alt="dark sleeveless top" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/14.jpg" alt="red corset with open shoulder" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/15.jpg" alt="blue shirt" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/16.jpg" alt="beige open-top" loading="lazy" width="210" height="270"></div>
+
+      <div class="item"><img src="images_ainur/white shirt.jpeg" alt="White Shirt" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/1.jpeg" alt="Black Blazer" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/2.jpg" alt="Black cardigan" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/3.jpg" alt="Red polo" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/4.jpg" alt="Black top" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/5.jpg" alt="beige top" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/13.jpg" alt="dark sleeveless top" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/14.jpg" alt="red corset with open shoulder" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/15.jpg" alt="blue shirt" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/16.jpg" alt="beige open-top" loading="lazy" width="210" height="270"></div>
     </div>
   </section>
 
   <section id="bottoms" class="marquee-row bottom-row" aria-label="Bottoms">
     <div class="track">
-      <div class="item"><img src="images_ainur/6.jpg" alt="Blue Jeans"></div>
-      <div class="item"><img src="images_ainur/black trousers.jpeg" alt="Black Trousers"></div>
-      <div class="item"><img src="images_ainur/7.jpg" alt="Pleated Skirt"></div>
-      <div class="item"><img src="images_ainur/8.jpg" alt="Pleated Skirt"></div>
-      <div class="item"><img src="images_ainur/9.jpg" alt="Pleated Skirt"></div>
-      <div class="item"><img src="images_ainur/10.jpg" alt="Pleated Skirt"></div>
-      <div class="item"><img src="images_ainur/11.jpg" alt="Pleated Skirt"></div>
-      <div class="item"><img src="images_ainur/17.jpg" alt="Pleated Skirt"></div>
-      <div class="item"><img src="images_ainur/18.jpg" alt="Pleated Skirt"></div>
-      <div class="item"><img src="images_ainur/6.jpg" alt="Blue Jeans"></div>
-      <div class="item"><img src="images_ainur/black trousers.jpeg" alt="Black Trousers"></div>
-      <div class="item"><img src="images_ainur/7.jpg" alt="Pleated Skirt"></div>
-      <div class="item"><img src="images_ainur/8.jpg" alt="Pleated Skirt"></div>
-      <div class="item"><img src="images_ainur/9.jpg" alt="Pleated Skirt"></div>
-      <div class="item"><img src="images_ainur/10.jpg" alt="Pleated Skirt"></div>
-      <div class="item"><img src="images_ainur/11.jpg" alt="Pleated Skirt"></div>
-      <div class="item"><img src="images_ainur/17.jpg" alt="Pleated Skirt"></div>
-      <div class="item"><img src="images_ainur/18.jpg" alt="Pleated Skirt"></div>
+      <div class="item"><img src="images_ainur/6.jpg" alt="beige trousers" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/black trousers.jpeg" alt="Black Trousers" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/7.jpg" alt="white skirt" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/8.jpg" alt="dark jeans" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/9.jpg" alt="black skirt" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/10.jpg" alt="skirt with a bow" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/11.jpg" alt="black mini skirt" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/17.jpg" alt="black skirt with rhinestones" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/18.jpg" alt="mini skirt with beads" loading="lazy" width="210" height="270"></div>
+
+      <div class="item"><img src="images_ainur/6.jpg" alt="beige trousers" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/black trousers.jpeg" alt="Black Trousers" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/7.jpg" alt="white skirt" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/8.jpg" alt="dark jeans" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/9.jpg" alt="black skirt" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/10.jpg" alt="skirt with a bow" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/11.jpg" alt="black mini skirt" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/17.jpg" alt="black skirt with rhinestones" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/18.jpg" alt="mini skirt with beads" loading="lazy" width="210" height="270"></div>
     </div>
   </section>
 
   <section id="shoes" class="collections">
-  <h2>Shoes</h2>
-  <div class="grid">
-    <div class="card">
-      <img src="images_ainur/21.jpg" alt="Shoes">
-      <div class="card-text">
-        <h3>Heels</h3>
-        <p>Heels that add elegance to every step.</p>
+    <h2>Shoes</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="images_ainur/21.jpg" alt="Heels" loading="lazy" width="600" height="500">
+        <div class="card-text"><h3>Heels</h3><p>Heels that add elegance to every step.</p></div>
       </div>
-    </div>
 
-    <div class="card">
-      <img src="images_ainur/24.jpg" alt="Shoes">
-      <div class="card-text">
-        <h3>Sneakers</h3>
-        <p>Sneakers designed for comfort and style.</p>
+      <div class="card">
+        <img src="images_ainur/24.jpg" alt="Sneakers" loading="lazy" width="600" height="500">
+        <div class="card-text"><h3>Sneakers</h3><p>Sneakers designed for comfort and style.</p></div>
       </div>
-    </div>
 
-    <div class="card">
-      <img src="images_ainur/26.jpg" alt="Shoes">
-      <div class="card-text">
-        <h3>Boots</h3>
-        <p>Boots that make a bold statement.</p>
+      <div class="card">
+        <img src="images_ainur/26.jpg" alt="Boots" loading="lazy" width="600" height="500">
+        <div class="card-text"><h3>Boots</h3><p>Boots that make a bold statement.</p></div>
       </div>
-    </div>
-  </div>
-</section>
-
-
-  <section class="quotes">
-    <h2>Fashion Quotes</h2>
-    <div class="quote-grid">
-      <figure class="q burg">
-        <p>“Style is a way to say who you are without having to speak.”</p>
-        <small>— Rachel Zoe</small>
-      </figure>
-      <figure class="q dark">
-        <p>“Fashion is the armor to survive the reality of everyday life.”</p>
-        <small>— Bill Cunningham</small>
-      </figure>
-      <figure class="q gray">
-        <p>“Elegance is not about being noticed, it’s about being remembered.”</p>
-        <small>— Giorgio Armani</small>
-      </figure>
-      <figure class="q light">
-        <p>“Buy less, choose well, make it last.”</p>
-        <small>— Vivienne Westwood</small>
-      </figure>
     </div>
   </section>
+</main>
 
-  <section id="recommend" class="container section">
-  <h2 class="section-title center">Recommended Capsule</h2>
-  <p class="center muted">Auto-picked from items already on this page.</p>
-  <ul class="capsule-list"></ul>
-  </section>
+<footer class="footer text-center py-4">
+  <small>© 2025 Fashion Lookbook · <a href="about.html">About</a> · <a href="wishlist.html">Wishlist</a></small>
+</footer>
 
-
-<section class="container cta">
-  <button id="bg-color-btn" class="btn btn-outline-dark">Change Background</button>
-</section>
-
-  <footer class="footer center">
-    <small>© 2025 Fashion Lookbook</small>
-  </footer>
-  
-  <script src="ainur.js"></script>
+<script src="ainur.js" defer></script>
 </body>
 </html>
