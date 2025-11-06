@@ -223,14 +223,16 @@ footer{
   gap:10px; 
   margin-top:8px; }
 
-.top-row .track{ 
-  display:inline-flex; 
-  gap:20px; 
-  animation:scroll 25s linear infinite; }
-.bottom-row .track{ 
-  display:inline-flex; 
-  gap:20px; 
-  animation:scroll 25s linear infinite reverse; }
+.top-row .track,
+.bottom-row .track {
+  display: inline-flex;
+  gap: 20px;
+  animation: scroll 15s linear infinite;   
+}
+.bottom-row .track {
+  animation-direction: reverse;           
+}
+
 .track:hover{ 
   animation-play-state:paused; 
 }
