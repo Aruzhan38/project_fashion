@@ -22,14 +22,14 @@
       --surface:#fbf8fb;
     }
     /* Dark theme overrides */
-    .theme-dark{
+    /*.theme-dark{
       --bg:#0f0f13;
       --text:#eeeeee;
       --muted:#a5a7ad;
       --nav-bg:#16161b;
       --surface:#1b1a1f;
       --accent:#b03a76;
-    }
+    }*/
 
     body{ font-family:Inter,system-ui,Arial; color:var(--text); background:var(--bg); margin:0; transition:background .25s,color .25s; }
     h1,h2{ font-family:"Playfair Display",serif; font-weight:700; }
@@ -127,19 +127,124 @@
   .menu { flex-wrap: wrap; }
 }
 
+/* === Dark theme – Seasons page === */
+body.theme-dark {
+  --bg:#0f0f13;
+  --text:#eeeeee;
+  --muted:#a5a7ad;
+  --nav-bg:#16161b;
+  --surface:#1b1a1f;
+  --accent:#b03a76;          /* можно вернуть #7a0d4f, если хочешь один акцент везде */
+}
 
-    /* Toggle button visuals */
+/* Base */
+body.theme-dark { background:var(--bg); color:var(--text); }
+body.theme-dark a{ color:#ff7eb6; }
+body.theme-dark #scrollProgress{ box-shadow:0 2px 8px rgba(0,0,0,.35); }
+
+/* Navbar */
+body.theme-dark .navbar.bg-white{ background-color:#1b1b1f !important; }
+body.theme-dark .navbar .navbar-brand .brand-name{ color:#fff; }
+body.theme-dark .navbar .nav-link{ color:#e9e9ee; }
+body.theme-dark .navbar .nav-link:hover,
+body.theme-dark .navbar .nav-link.active{ color:var(--accent); }
+
+/* Hero */
+body.theme-dark .hero{
+  background:linear-gradient(180deg,var(--nav-bg) 0%,var(--surface) 60%,#141418 100%);
+  position:relative;
+}
+body.theme-dark .hero::before{
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(1200px 420px at 50% 20%, color-mix(in srgb, var(--accent) 28%, transparent), transparent);
+  pointer-events:none;
+}
+body.theme-dark .hero .lead{ color:var(--muted); }
+
+/* Cards (season tiles) */
+body.theme-dark .card-look{
+  background:var(--nav-bg);
+  box-shadow:0 10px 24px rgba(0,0,0,.35);
+}
+body.theme-dark .card-look h3{ color:var(--text); }
+body.theme-dark .card-look .text-muted{ color:var(--muted) !important; }
+
+/* Carousel */
+body.theme-dark .carousel-vertical{ background:var(--nav-bg); box-shadow:0 10px 24px rgba(0,0,0,.35); }
+body.theme-dark .carousel-control-prev-icon,
+body.theme-dark .carousel-control-next-icon{ filter:invert(1); }
+
+/* Form card */
+body.theme-dark .form-card{
+  background:var(--nav-bg);
+  box-shadow:0 10px 24px rgba(0,0,0,.35);
+}
+body.theme-dark .form-label{ color:var(--text); }
+body.theme-dark .form-text,
+body.theme-dark .form-help{ color:var(--muted); }
+
+/* Inputs */
+body.theme-dark .form-control,
+body.theme-dark .form-select{
+  background:#141418; color:var(--text);
+  border-color:rgba(255,255,255,.14);
+}
+body.theme-dark .input-group-text{
+  background:#1b1b20; color:var(--text);
+  border-color:rgba(255,255,255,.14);
+}
+body.theme-dark .form-control:focus,
+body.theme-dark .form-select:focus{
+  background:#141418; color:var(--text);
+  border-color:var(--accent);
+  box-shadow:0 0 0 .25rem color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+/* Buttons */
+body.theme-dark .btn-accent{ background:var(--accent); color:#fff; }
+body.theme-dark .btn-accent:hover{ filter:brightness(1.05); }
+body.theme-dark .btn-outline-accent{
+  border-color:var(--accent); color:var(--accent);
+}
+body.theme-dark .btn-outline-accent:hover{
+  background:var(--accent); color:#fff;
+}
+
+/* Bootstrap outline primary pills (радио-кнопки бюджета) */
+body.theme-dark .btn-outline-primary{
+  --bs-btn-color: var(--accent);
+  --bs-btn-border-color: var(--accent);
+  --bs-btn-hover-bg: var(--accent);
+  --bs-btn-hover-border-color: var(--accent);
+  --bs-btn-active-bg: var(--accent);
+  --bs-btn-active-border-color: var(--accent);
+  color:var(--accent); border-color:var(--accent);
+}
+
+/* Quote & footer */
+body.theme-dark #quote-text{ color:var(--muted); }
+body.theme-dark footer{ color:var(--muted); }
+
+/* Misc */
+.navbar .nav-link.active::after{ bottom:.25rem; }
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition:none !important; }
+}
+
+
+    /* Toggle button visuals 
     #themeToggle{ border:1px solid currentColor; background:transparent; color:var(--text); }
-    .theme-dark #themeToggle{ color:#f2f2f2; }
+    .theme-dark #themeToggle{ color:#f2f2f2; }*/
 
     /* hero */
     .hero{
       background:linear-gradient(180deg,var(--nav-bg) 0%,var(--surface) 60%,#f6f6f8 100%);
       padding:130px 20px 40px; text-align:center; position:relative; overflow:hidden; transition:background .25s;
     }
-    .theme-dark .hero{
+    /*.theme-dark .hero{
       background:linear-gradient(180deg,var(--nav-bg) 0%,var(--surface) 60%,#141418 100%);
-    }
+    }*/
     .hero::before{
       content:""; position:absolute; inset:0;
       background:radial-gradient(1200px 420px at 50% 20%, color-mix(in srgb, var(--accent) 30%, transparent), rgba(0,0,0,0));

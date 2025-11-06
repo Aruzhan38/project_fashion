@@ -544,7 +544,7 @@ img.lazy { filter: blur(8px); transform: scale(1.01); transition: filter .4s eas
 img.lazy.loaded { filter: blur(0); transform: scale(1); opacity: 1; }
 
 /* === Dark theme – Wishlist page === */
-html.theme-dark {
+body.theme-dark {
   --bg: #0f0f12;
   --text: #f4f4f6;
   --muted: #b4b7c2;
@@ -554,26 +554,26 @@ html.theme-dark {
 }
 
 /* Navbar */
-html.theme-dark .navbar.bg-white {
+body.theme-dark .navbar.bg-white {
   background-color: #1b1b1f !important;
 }
-html.theme-dark .navbar .navbar-brand .brand-name {
+body.theme-dark .navbar .navbar-brand .brand-name {
   color: #fff;
 }
-html.theme-dark .navbar .nav-link {
+body.theme-dark .navbar .nav-link {
   color: #e9e9ee;
 }
-html.theme-dark .navbar .nav-link:hover,
-html.theme-dark .navbar .nav-link.active {
+body.theme-dark .navbar .nav-link:hover,
+body.theme-dark .navbar .nav-link.active {
   color: var(--accent);
 }
 
 /* Hero Section */
-html.theme-dark .hero {
+body.theme-dark .hero {
   background: linear-gradient(180deg, #0f0f12 0%, #16171c 60%, #0f0f12 100%);
   position: relative;
 }
-html.theme-dark .hero::before {
+body.theme-dark .hero::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -584,7 +584,7 @@ html.theme-dark .hero::before {
   );
   pointer-events: none;
 }
-html.theme-dark .hero::after {
+body.theme-dark .hero::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -592,81 +592,81 @@ html.theme-dark .hero::after {
   pointer-events: none;
   z-index: 0;
 }
-html.theme-dark .hero h1,
-html.theme-dark .hero p {
+body.theme-dark .hero h1,
+body.theme-dark .hero p {
   color: var(--text);
 }
 
 /* Marquee Section */
-html.theme-dark .marquee {
+body.theme-dark .marquee {
   background: #121317;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
-html.theme-dark .marquee-track span {
+body.theme-dark .marquee-track span {
   color: #ff7eb6;
 }
 
 /* Wishlist cards & sections */
-html.theme-dark .card {
+body.theme-dark .card {
   background: var(--card);
   color: var(--text);
   border: 1px solid rgba(255,255,255,0.06);
   box-shadow: 0 6px 20px rgba(0,0,0,.35);
 }
-html.theme-dark .card-title,
-html.theme-dark .card-text {
+body.theme-dark .card-title,
+body.theme-dark .card-text {
   color: var(--text);
 }
-html.theme-dark .section-title {
+body.theme-dark .section-title {
   color: var(--text);
 }
-html.theme-dark .wishlist-scroll {
+body.theme-dark .wishlist-scroll {
   background: var(--bg);
 }
 
 /* Buttons */
-html.theme-dark .btn {
+body.theme-dark .btn {
   background-color: var(--accent);
   color: #fff;
 }
-html.theme-dark .btn:hover {
+body.theme-dark .btn:hover {
   background-color: #8b2060;
   transform: translateY(-2px);
 }
 
 /* Rating stars */
-html.theme-dark .rating span {
+body.theme-dark .rating span {
   color: #ff7eb6;
 }
-html.theme-dark .rating-note {
+body.theme-dark .rating-note {
   color: var(--muted);
 }
 
 /* Quote */
-html.theme-dark .quote {
+body.theme-dark .quote {
   color: var(--muted);
 }
 
 /* Footer */
-html.theme-dark .footer {
+body.theme-dark .footer {
   background: #121317;
   border-top: 1px solid rgba(255,255,255,.06);
 }
-html.theme-dark .footer p,
-html.theme-dark .footer small {
+body.theme-dark .footer p,
+body.theme-dark .footer small {
   color: var(--muted);
 }
 
 /* Links and images */
-html.theme-dark a {
+body.theme-dark a {
   color: #ff7eb6;
 }
-html.theme-dark img {
+body.theme-dark img {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
 }
 
-/* Navbar underline fix */
+/* Navbar underline fix (без темы) */
 .navbar .nav-link.active::after {
   bottom: 0.25rem;
 }
@@ -679,6 +679,7 @@ html.theme-dark img {
     transition: none !important;
   }
 }
+
 
 /* Scroll Progress Bar */
 #scrollProgress{

@@ -82,7 +82,7 @@ $(function () {
 
 
 
-// Theme toggle + persistence 
+/*// Theme toggle + persistence 
   $(function () {
     const $root = $('html');
     const $btn  = $('#themeToggle');
@@ -109,4 +109,4 @@ $(function () {
         apply(e.matches ? 'dark' : 'light');
       });
     }
-  });
+  });*/
