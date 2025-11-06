@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Closet — Capsule Wardrobe</title>
+  <script>!function(){try{var t=localStorage.getItem("fl-theme")||"light";document.documentElement.setAttribute("data-theme",t);t==="dark"&&document.body?.classList?.add("theme-dark")}catch(e){}}();</script>
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -12,102 +13,10 @@
   <link rel="stylesheet" href="styles/main.css" />
   <link rel="stylesheet" href="css/style_ainur.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-
-  <style>
-    :root { --accent:#7a0d4f; --bg:#fafafa; --text:#0f0f10; --muted:#6b7280; }
-
-    body{ font-family:Inter,system-ui,Arial; color:var(--text); background:var(--bg); margin:0; }
-    h1,h2{ font-family:"Playfair Display",serif; font-weight:700; }
-
-    /* navigation */
-    .site-nav{
-      position:sticky; top:0; z-index:1000;
-      background:#fff; border-bottom:1px solid #eee;
-    }
-    .nav-inner{
-      width:100%;
-      max-width:none;
-      padding:12px 24px;
-      display:flex; align-items:center; gap:16px;
-    }
-    .brand{ display:inline-flex; align-items:center; gap:10px; text-decoration:none; color:var(--text); }
-    .brand-dot{
-      display:inline-grid; place-items:center;
-      width:32px; height:32px;
-      border-radius:50%;
-      background:var(--accent);
-      color:#fff;
-      font-weight:700;
-      transition:transform .15s ease;
-    }
-    .brand:hover .brand-dot{ transform:scale(1.06); }
-    .nav-links{
-      margin-left:auto;
-      display:flex; align-items:center; gap:28px;
-      white-space:nowrap;
-    }
-    .nav-links a{
-      color:var(--text);
-      text-decoration:none;
-      font-weight:600;
-      transition:color .2s ease;
-    }
-    .nav-links a:hover{ color:var(--accent); }
-    .pill{
-      padding:6px 12px;
-      border-radius:999px;
-      background:#f3e8ee;
-    }
-    .pill.active{
-      background:var(--accent);
-      color:#fff;
-    }
-
-    /* hero */
-    .hero{
-      background:linear-gradient(180deg,#ffffff 0%,#fbf8fb 60%,#f6f6f8 100%);
-      padding:80px 20px 40px;
-      text-align:center;
-      position:relative;
-      overflow:hidden;
-    }
-    .hero::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:radial-gradient(1200px 420px at 50% 20%, rgba(122,13,79,.18), rgba(122,13,79,0));
-      pointer-events:none;
-    }
-    .hero h1{ margin:0 0 10px; font-size:clamp(34px,5.6vw,56px); line-height:1.06; }
-    .hero .lead{ color:var(--muted); font-size:clamp(16px,2.2vw,20px); margin:0; }
-
-    /* buttons */
-    .btn-accent{ background:var(--accent); color:#fff; border-radius:50px; padding:10px 22px; font-weight:700; border:none; }
-    .btn-outline-accent{ border:2px solid var(--accent); color:var(--accent); border-radius:50px; padding:10px 22px; font-weight:700; }
-    .btn-outline-accent:hover{ background:var(--accent); color:#fff; }
-
-    /* card styles */
-    .card-look{ border:none; border-radius:24px; box-shadow:0 10px 24px rgba(17,17,17,.08); overflow:hidden; transition:transform .25s, box-shadow .25s; height:100%; text-align:center; }
-    .card-look:hover{ transform:translateY(-8px); box-shadow:0 18px 38px rgba(17,17,17,.16); }
-    .card-look img{ width:100%; height:340px; object-fit:cover; }
-
-    /* carousel */
-    .carousel-vertical{ height:600px; overflow:hidden; position:relative; border-radius:24px; }
-    .carousel-vertical .carousel-inner,.carousel-vertical .carousel-item{ height:100%; }
-    .carousel-vertical img{ width:auto; height:100%; margin:0 auto; border-radius:20px; object-fit:cover; display:block; }
-    .carousel-control-prev-icon,.carousel-control-next-icon{ filter:invert(1); }
-
-    /* form*/
-    .form-card{ border:none; border-radius:24px; box-shadow:0 10px 24px rgba(17,17,17,.08); }
-    .form-label{ font-weight:600; }
-    .form-help{ color:var(--muted); font-size:.9rem; }
-
-    footer{ padding:20px 0; text-align:center; color:var(--muted); font-size:15px; }
-    </style>
 </head>
 
 <body>
-<a href="#main-content" class="skip-link"></a>
+<a href="#main" class="visually-hidden-focusable">Skip to content</a>
 
 <header class="site-nav" aria-label="Main navigation">
   <div class="nav-inner">
@@ -124,131 +33,109 @@
       <a href="inspiration.html">Inspiration</a>
       <a href="about.html">About</a>
     </nav>
-    <button id="themeToggle"
-        class="btn btn-small ms-lg-2 mt-2 mt-lg-0"
-        aria-pressed="false"
-        aria-label="Toggle dark mode"
-        title="Toggle theme">Mode
-      </button>
+    <button id="themeToggle" class="btn btn-small ms-lg-2 mt-2 mt-lg-0" aria-pressed="false" aria-label="Toggle dark mode" title="Toggle theme">Mode</button>
   </div>
 </header>
 
+<div id="scrollProgress" aria-hidden="true"><div class="bar"></div></div>
 
-  <!-- Scroll Progress -->
-  <div id="scrollProgress" aria-hidden="true"><div class="bar"></div></div>
+<div id="toastStack" aria-live="polite" aria-atomic="true"></div>
 
-  <!-- Toast / Notifications -->
-  <div id="toastStack" aria-live="polite" aria-atomic="true"></div>
+<main id="main">
+  <section class="hero text-center">
+    <div class="container">
+      <h1 class="hero-title">Capsule Closet</h1>
+      <p class="hero-sub">“A capsule closet where tops glide right and bottoms drift left — timeless fashion in motion.”</p>
+    </div>
+  </section>
 
-  <main id="main">
-    <section class="hero text-center">
-      <div class="container">
-        <h1 class="hero-title">Capsule Closet</h1>
-        <p class="hero-sub">“A capsule closet where tops glide right and bottoms drift left — timeless fashion in motion.”</p>
+  <section class="container section" id="searchBox">
+    <div class="search-wrap">
+      <input id="liveSearch" type="text" placeholder="Search items… (tops, jeans, blazer…)" autocomplete="off"
+             data-filter-target=".item, .card" aria-label="Live filter" />
+      <div class="suggestions" id="autoSuggest" role="listbox" aria-label="Suggestions"></div>
+    </div>
+  </section>
+
+  <section id="tops" class="row top-row" aria-label="Tops">
+    <div class="track">
+      <div class="item"><img src="images_ainur/white shirt.jpeg" alt="White Shirt" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/1.jpeg" alt="Black Blazer" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/2.jpg" alt="Black cardigan" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/3.jpg" alt="Red polo" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/4.jpg" alt="Black top" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/5.jpg" alt="beige top" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/13.jpg" alt="dark sleeveless top" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/14.jpg" alt="red corset with open shoulder" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/15.jpg" alt="blue shirt" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/16.jpg" alt="beige open-top" loading="lazy" width="210" height="270"></div>
+
+      <div class="item"><img src="images_ainur/white shirt.jpeg" alt="White Shirt" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/1.jpeg" alt="Black Blazer" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/2.jpg" alt="Black cardigan" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/3.jpg" alt="Red polo" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/4.jpg" alt="Black top" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/5.jpg" alt="beige top" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/13.jpg" alt="dark sleeveless top" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/14.jpg" alt="red corset with open shoulder" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/15.jpg" alt="blue shirt" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/16.jpg" alt="beige open-top" loading="lazy" width="210" height="270"></div>
+    </div>
+  </section>
+
+  <section id="bottoms" class="marquee-row bottom-row" aria-label="Bottoms">
+    <div class="track">
+      <div class="item"><img src="images_ainur/6.jpg" alt="beige trousers" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/black trousers.jpeg" alt="Black Trousers" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/7.jpg" alt="white skirt" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/8.jpg" alt="dark jeans" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/9.jpg" alt="black skirt" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/10.jpg" alt="skirt with a bow" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/11.jpg" alt="black mini skirt" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/17.jpg" alt="black skirt with rhinestones" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/18.jpg" alt="mini skirt with beads" loading="lazy" width="210" height="270"></div>
+
+      <div class="item"><img src="images_ainur/6.jpg" alt="beige trousers" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/black trousers.jpeg" alt="Black Trousers" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/7.jpg" alt="white skirt" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/8.jpg" alt="dark jeans" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/9.jpg" alt="black skirt" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/10.jpg" alt="skirt with a bow" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/11.jpg" alt="black mini skirt" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/17.jpg" alt="black skirt with rhinestones" loading="lazy" width="210" height="270"></div>
+      <div class="item"><img src="images_ainur/18.jpg" alt="mini skirt with beads" loading="lazy" width="210" height="270"></div>
+    </div>
+  </section>
+
+  <section id="shoes" class="collections">
+    <h2>Shoes</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="images_ainur/21.jpg" alt="Heels" loading="lazy" width="600" height="500">
+        <div class="card-text"><h3>Heels</h3><p>Heels that add elegance to every step.</p></div>
       </div>
-    </section>
 
-    <section class="container section" id="searchBox">
-      <div class="search-wrap">
-        <input id="liveSearch" type="text" placeholder="Search items… (tops, jeans, blazer…)" autocomplete="off"
-               data-filter-target=".item, .card" aria-label="Live filter" />
-        <div class="suggestions" id="autoSuggest" role="listbox" aria-label="Suggestions"></div>
+      <div class="card">
+        <img src="images_ainur/24.jpg" alt="Sneakers" loading="lazy" width="600" height="500">
+        <div class="card-text"><h3>Sneakers</h3><p>Sneakers designed for comfort and style.</p></div>
       </div>
-    </section>
 
-    <!-- TOPS -->
-    <section id="tops" class="row top-row" aria-label="Tops">
-      <div class="track">
-        <div class="item"><img src="images_ainur/white shirt.jpeg" alt="White Shirt" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/1.jpeg" alt="Black Blazer" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/2.jpg" alt="White Shirt" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/3.jpg" alt="Beige Knit" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/4.jpg" alt="Beige Knit" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/5.jpg" alt="Beige Knit" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/13.jpg" alt="Beige Knit" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/14.jpg" alt="Beige Knit" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/15.jpg" alt="Beige Knit" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/16.jpg" alt="Beige Knit" loading="lazy" width="210" height="270"></div>
-
-        <!-- повтор для бесшовной прокрутки -->
-        <div class="item"><img src="images_ainur/white shirt.jpeg" alt="White Shirt" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/1.jpeg" alt="Black Blazer" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/2.jpg" alt="White Shirt" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/3.jpg" alt="Beige Knit" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/4.jpg" alt="Beige Knit" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/5.jpg" alt="Beige Knit" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/13.jpg" alt="Beige Knit" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/14.jpg" alt="Beige Knit" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/15.jpg" alt="Beige Knit" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/16.jpg" alt="Beige Knit" loading="lazy" width="210" height="270"></div>
+      <div class="card">
+        <img src="images_ainur/26.jpg" alt="Boots" loading="lazy" width="600" height="500">
+        <div class="card-text"><h3>Boots</h3><p>Boots that make a bold statement.</p></div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- BOTTOMS -->
-    <section id="bottoms" class="marquee-row bottom-row" aria-label="Bottoms">
-      <div class="track">
-        <div class="item"><img src="images_ainur/6.jpg" alt="Blue Jeans" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/black trousers.jpeg" alt="Black Trousers" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/7.jpg" alt="Pleated Skirt" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/8.jpg" alt="Pleated Skirt" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/9.jpg" alt="Pleated Skirt" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/10.jpg" alt="Pleated Skirt" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/11.jpg" alt="Pleated Skirt" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/17.jpg" alt="Pleated Skirt" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/18.jpg" alt="Pleated Skirt" loading="lazy" width="210" height="270"></div>
+  <section class="container cta text-center">
+    <button id="bg-color-btn" class="btn btn-outline-dark">Change Background</button>
+  </section>
+</main>
 
-        <!-- повтор -->
-        <div class="item"><img src="images_ainur/6.jpg" alt="Blue Jeans" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/black trousers.jpeg" alt="Black Trousers" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/7.jpg" alt="Pleated Skirt" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/8.jpg" alt="Pleated Skirt" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/9.jpg" alt="Pleated Skirt" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/10.jpg" alt="Pleated Skirt" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/11.jpg" alt="Pleated Skirt" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/17.jpg" alt="Pleated Skirt" loading="lazy" width="210" height="270"></div>
-        <div class="item"><img src="images_ainur/18.jpg" alt="Pleated Skirt" loading="lazy" width="210" height="270"></div>
-      </div>
-    </section>
+<footer class="footer text-center py-4">
+  <small>© 2025 Fashion Lookbook · <a href="about.html">About</a> · <a href="wishlist.html">Wishlist</a></small>
+</footer>
 
-    <!-- SHOES grid -->
-    <section id="shoes" class="collections">
-      <h2>Shoes</h2>
-      <div class="grid">
-        <div class="card">
-          <img src="images_ainur/21.jpg" alt="Heels" loading="lazy" width="600" height="500">
-          <div class="card-text">
-            <h3>Heels</h3>
-            <p>Heels that add elegance to every step.</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="images_ainur/24.jpg" alt="Sneakers" loading="lazy" width="600" height="500">
-          <div class="card-text">
-            <h3>Sneakers</h3>
-            <p>Sneakers designed for comfort and style.</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="images_ainur/26.jpg" alt="Boots" loading="lazy" width="600" height="500">
-          <div class="card-text">
-            <h3>Boots</h3>
-            <p>Boots that make a bold statement.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="container cta text-center">
-      <button id="bg-color-btn" class="btn btn-outline-dark">Change Background</button>
-    </section>
-  </main>
-
-  <footer class="footer text-center py-4">
-    <small>© 2025 Fashion Lookbook · <a href="about.html">About</a> · <a href="wishlist.html">Wishlist</a></small>
-  </footer>
-
-  <script src="ainur.js" defer></script>
+<script src="ainur.js" defer></script>
 </body>
 </html>

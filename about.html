@@ -4,15 +4,7 @@
   <meta charset="UTF-8" />
   <title>About — Fashion Lookbook</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <script>
-  (function(){
-    try {
-      var saved = localStorage.getItem('fl-theme') || 'light';
-      document.documentElement.setAttribute('data-theme', saved);
-    } catch(e){}
-  })();
-  </script>
+  <script>!function(){try{var t=localStorage.getItem("fl-theme")||"light";document.documentElement.setAttribute("data-theme",t);t==="dark"&&document.body?.classList?.add("theme-dark")}catch(e){}}();</script>
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -21,95 +13,9 @@
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="css/style_ainur.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-<style>
-    :root { --accent:#7a0d4f; --bg:#fafafa; --text:#0f0f10; --muted:#6b7280; }
-
-    body{ font-family:Inter,system-ui,Arial; color:var(--text); background:var(--bg); margin:0; }
-    h1,h2{ font-family:"Playfair Display",serif; font-weight:700; }
-
-    /* navigation */
-    .site-nav{
-      position:sticky; top:0; z-index:1000;
-      background:#fff; border-bottom:1px solid #eee;
-    }
-    .nav-inner{
-      width:100%;
-      max-width:none;
-      padding:12px 24px;
-      display:flex; align-items:center; gap:16px;
-    }
-    .brand{ display:inline-flex; align-items:center; gap:10px; text-decoration:none; color:var(--text); }
-    .brand-dot{
-      display:inline-grid; place-items:center;
-      width:32px; height:32px;
-      border-radius:50%;
-      background:var(--accent);
-      color:#fff;
-      font-weight:700;
-      transition:transform .15s ease;
-    }
-    .brand:hover .brand-dot{ transform:scale(1.06); }
-    .nav-links{
-      margin-left:auto;
-      display:flex; align-items:center; gap:28px;
-      white-space:nowrap;
-    }
-    .nav-links a{
-      color:var(--text);
-      text-decoration:none;
-      font-weight:600;
-      transition:color .2s ease;
-    }
-    .nav-links a:hover{ color:var(--accent); }
-    .pill{
-      padding:6px 12px;
-      border-radius:999px;
-      background:#f3e8ee;
-    }
-    .pill.active{
-      background:var(--accent);
-      color:#fff;
-    }
-    .hero{
-      background:linear-gradient(180deg,#ffffff 0%,#fbf8fb 60%,#f6f6f8 100%);
-      padding:80px 20px 40px;
-      text-align:center;
-      position:relative;
-      overflow:hidden;
-    }
-    .hero::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:radial-gradient(1200px 420px at 50% 20%, rgba(122,13,79,.18), rgba(122,13,79,0));
-      pointer-events:none;
-    }
-    .hero h1{ margin:0 0 10px; font-size:clamp(34px,5.6vw,56px); line-height:1.06; }
-    .hero .lead{ color:var(--muted); font-size:clamp(16px,2.2vw,20px); margin:0; }
-
-    /* buttons */
-    .btn-accent{ background:var(--accent); color:#fff; border-radius:50px; padding:10px 22px; font-weight:700; border:none; }
-    .btn-outline-accent{ border:2px solid var(--accent); color:var(--accent); border-radius:50px; padding:10px 22px; font-weight:700; }
-    .btn-outline-accent:hover{ background:var(--accent); color:#fff; }
-
-    /* card styles */
-    .card-look{ border:none; border-radius:24px; box-shadow:0 10px 24px rgba(17,17,17,.08); overflow:hidden; transition:transform .25s, box-shadow .25s; height:100%; text-align:center; }
-    .card-look:hover{ transform:translateY(-8px); box-shadow:0 18px 38px rgba(17,17,17,.16); }
-    .card-look img{ width:100%; height:340px; object-fit:cover; }
-
-    /* form*/
-    .form-card{ border:none; border-radius:24px; box-shadow:0 10px 24px rgba(17,17,17,.08); }
-    .form-label{ font-weight:600; }
-    .form-help{ color:var(--muted); font-size:.9rem; }
-
-    footer{ padding:20px 0; text-align:center; color:var(--muted); font-size:15px; }
-  </style>
-
 </head>
-
 <body>
-
-<a href="#main-content" class="skip-link"></a>
+<a href="#main" class="visually-hidden-focusable">Skip to content</a>
 
 <header class="site-nav" aria-label="Main navigation">
   <div class="nav-inner">
@@ -126,169 +32,143 @@
       <a href="inspiration.html">Inspiration</a>
       <a class="pill active" href="about.html">About</a>
     </nav>
-    <button id="themeToggle"
-        class="btn btn-small ms-lg-2 mt-2 mt-lg-0"
-        aria-pressed="false"
-        aria-label="Toggle dark mode"
-        title="Toggle theme">Mode
-      </button>
+    <button id="themeToggle" class="btn btn-small ms-lg-2 mt-2 mt-lg-0" aria-pressed="false" aria-label="Toggle dark mode" title="Toggle theme">Mode</button>
   </div>
 </header>
-  <div id="toastStack" aria-live="polite" aria-atomic="true"></div>
 
-  <main id="main">
-    <section class="hero about">
-      <div class="container text-center">
-        <h1 class="hero-title">About Fashion Lookbook</h1>
-        <p class="hero-sub">We curate, you shine — simple as that.</p>
+<div id="toastStack" aria-live="polite" aria-atomic="true"></div>
+
+<main id="main">
+  <section class="hero about">
+    <div class="container text-center">
+      <h1 class="hero-title">About Fashion Lookbook</h1>
+      <p class="hero-sub">We curate, you shine — simple as that.</p>
+    </div>
+  </section>
+
+  <section class="container section">
+    <div class="about-intro">
+      <p class="text-end">
+        Fashion Lookbook — a small web project that helps you quickly find style ideas.
+        We aim to inspire you with collections organized by season, style, and weekly looks.
+        Everything is compact, clear, and beautiful.
+      </p>
+
+      <div class="stats">
+        <div class="stat"><b data-count="6">6</b><span>chapter</span></div>
+        <div class="stat"><b data-count="20">20</b><span>look and idea</span></div>
+        <div class="stat"><b data-count="1">1</b><span>project version</span></div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="container section">
-      <div class="about-intro mx-auto" style="max-width:900px;">
-        <p class="text-end">
-          Fashion Lookbook — a small web project that helps you quickly find style ideas.
-          We aim to inspire you with collections organized by season, style, and weekly looks.
-          Everything is compact, clear, and beautiful.
-        </p>
+  <section class="container section">
+    <h2 class="section-title text-center">Our Mission & Values</h2>
+    <div class="card-grid">
+      <article class="card"><div class="card-body">
+        <h3 class="card-title">Make style simple</h3>
+        <p class="card-text">Make it easy to find your personal style: short text, clear images, clear recommendations.</p>
+        <div class="pill-list"><span class="pill">Clarity</span><span class="pill">Focus</span><span class="pill">Speed</span></div>
+      </div></article>
 
-        <div class="stats">
-          <div class="stat"><b data-count="6">6</b><span>chapter</span></div>
-          <div class="stat"><b data-count="20">20</b><span>look and idea</span></div>
-          <div class="stat"><b data-count="1">1</b><span>project version</span></div>
-        </div>
+      <article class="card"><div class="card-body">
+        <h3 class="card-title">Curate, don’t overwhelm</h3>
+        <p class="card-text">No unnecessary information — just what's important. Filters by season/style.</p>
+        <div class="pill-list"><span class="pill">Curation</span><span class="pill">Minimalism</span></div>
+      </div></article>
+
+      <article class="card"><div class="card-body">
+        <h3 class="card-title">Respect your vibe</h3>
+        <p class="card-text">Everyone's style is their own world. We guide, you make the choice.</p>
+        <div class="pill-list"><span class="pill">Inclusivity</span><span class="pill">Ownership</span></div>
+      </div></article>
+    </div>
+  </section>
+
+  <section class="container section">
+    <h2 class="section-title text-center mb-4">Contact Us</h2>
+    <form id="contactForm" class="mx-auto needs-validation" novalidate style="max-width:600px" aria-label="Contact Form">
+      <div class="mb-3">
+        <label for="name" class="form-label">Full Name</label>
+        <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name" required minlength="2">
+        <div class="invalid-feedback">Please enter your name (2+ characters).</div>
       </div>
-    </section>
 
-    <section class="container section">
-      <h2 class="section-title text-center">Our Mission & Values</h2>
-      <div class="card-grid">
-        <article class="card"><div class="card-body">
-          <h3 class="card-title">Make style simple</h3>
-          <p class="card-text">Make it easy to find your personal style: short text, clear images, clear recommendations.</p>
-          <div class="pill-list">
-            <span class="pill">Clarity</span><span class="pill">Focus</span><span class="pill">Speed</span>
-          </div>
-        </div></article>
-
-        <article class="card"><div class="card-body">
-          <h3 class="card-title">Curate, don’t overwhelm</h3>
-          <p class="card-text">No unnecessary information — just what's important. Filters by season/style.</p>
-          <div class="pill-list">
-            <span class="pill">Curation</span><span class="pill">Minimalism</span>
-          </div>
-        </div></article>
-
-        <article class="card"><div class="card-body">
-          <h3 class="card-title">Respect your vibe</h3>
-          <p class="card-text">Everyone's style is their own world. We guide, you make the choice.</p>
-          <div class="pill-list">
-            <span class="pill">Inclusivity</span><span class="pill">Ownership</span>
-          </div>
-        </div></article>
-      </div>
-    </section>
-
-    <section class="container section">
-      <h2 class="section-title text-center mb-4">Contact Us</h2>
-      <form id="contactForm" class="mx-auto needs-validation" novalidate style="max-width:600px" aria-label="Contact Form">
-        <div class="mb-3">
-          <label for="name" class="form-label">Full Name</label>
-          <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name" required minlength="2">
-          <div class="invalid-feedback">Please enter your name (2+ characters).</div>
-        </div>
-
-        <div class="mb-3">
-          <label for="email" class="form-label">Email</label>
-          <div class="input-group">
-            <span class="input-group-text">@</span>
-            <input type="email" id="email" name="email" class="form-control" placeholder="example@gmail.com" required>
-            <div class="invalid-feedback">Please enter a valid email.</div>
-          </div>
-        </div>
-
-        <fieldset class="mb-3">
-          <legend class="form-label d-block">Subscription Type</legend>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="type" id="basic" value="basic" checked>
-            <label class="form-check-label" for="basic">Basic</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="type" id="premium" value="premium">
-            <label class="form-check-label" for="premium">Premium</label>
-          </div>
-        </fieldset>
-
-        <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="agree" required>
-          <label class="form-check-label" for="agree">I agree to the terms and conditions</label>
-          <div class="invalid-feedback">You must agree before submitting.</div>
-        </div>
-
-        <div class="d-flex gap-2">
-          <button type="submit" class="btn btn-dark flex-fill">Submit</button>
-          <button type="button" id="formReset" class="btn btn-outline-secondary flex-fill">Reset</button>
-        </div>
-        <p id="formStatus" class="mt-2 small text-success visually-hidden" role="status" aria-live="polite"></p>
-      </form>
-    </section>
-
-    <section class="container section">
-      <h2 class="section-title text-center mb-3">Rate this page</h2>
-      <div class="rating text-center" id="rating" role="radiogroup" aria-label="Rate this page">
-        <button class="star btn btn-link fs-3" data-value="1" aria-label="1 star" aria-pressed="false">★</button>
-        <button class="star btn btn-link fs-3" data-value="2" aria-label="2 stars" aria-pressed="false">★</button>
-        <button class="star btn btn-link fs-3" data-value="3" aria-label="3 stars" aria-pressed="false">★</button>
-        <button class="star btn btn-link fs-3" data-value="4" aria-label="4 stars" aria-pressed="false">★</button>
-        <button class="star btn btn-link fs-3" data-value="5" aria-label="5 stars" aria-pressed="false">★</button>
-      </div>
-      <p id="ratingMsg" class="mt-2 small text-center"></p>
-    </section>
-
-    <section class="container cta text-center">
-      <a class="btn btn-outline-dark" href="seasons.html">Explore Seasons</a>
-    </section>
-
-    <section class="container section faq" id="faq">
-      <h2 class="section-title text-center mb-4">FAQ</h2>
-
-      <div class="faq-item" data-accordion>
-        <button class="faq-btn" aria-expanded="false">
-          How can I create a capsule wardrobe?
-          <span class="chev">▾</span>
-        </button>
-        <div class="faq-panel">
-          <p>Start with high-quality basics in neutral colors — white shirts, black trousers, beige knits. Mix them with one or two accent pieces.</p>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <div class="input-group">
+          <span class="input-group-text">@</span>
+          <input type="email" id="email" name="email" class="form-control" placeholder="example@gmail.com" required>
+          <div class="invalid-feedback">Please enter a valid email.</div>
         </div>
       </div>
 
-      <div class="faq-item" data-accordion>
-        <button class="faq-btn" aria-expanded="false">
-          What is the main purpose of Fashion Lookbook?
-          <span class="chev">▾</span>
-        </button>
-        <div class="faq-panel">
-          <p>Find clear outfit ideas by categories — seasons, styles, and weekly looks — to simplify your daily dressing routine.</p>
+      <fieldset class="mb-3">
+        <legend class="form-label d-block">Subscription Type</legend>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="type" id="basic" value="basic" checked>
+          <label class="form-check-label" for="basic">Basic</label>
         </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="type" id="premium" value="premium">
+          <label class="form-check-label" for="premium">Premium</label>
+        </div>
+      </fieldset>
+
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="agree" required>
+        <label class="form-check-label" for="agree">I agree to the terms and conditions</label>
+        <div class="invalid-feedback">You must agree before submitting.</div>
       </div>
 
-      <div class="faq-item" data-accordion>
-        <button class="faq-btn" aria-expanded="false">
-          Can I suggest looks or upload my own ideas?
-          <span class="chev">▾</span>
-        </button>
-        <div class="faq-panel">
-          <p>Yes! Use the contact form above to send us your suggestions.</p>
-        </div>
+      <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-dark flex-fill">Submit</button>
+        <button type="button" id="formReset" class="btn btn-outline-secondary flex-fill">Reset</button>
       </div>
+      <p id="formStatus" class="mt-2 small text-success visually-hidden" role="status" aria-live="polite"></p>
+    </form>
+  </section>
 
-    </section>
-  </main>
+  <section class="container section">
+    <h2 class="section-title text-center mb-3">Rate this page</h2>
+    <div class="rating text-center" id="rating" role="radiogroup" aria-label="Rate this page">
+      <button class="star btn btn-link fs-3" data-value="1" aria-label="1 star" aria-pressed="false">★</button>
+      <button class="star btn btn-link fs-3" data-value="2" aria-label="2 stars" aria-pressed="false">★</button>
+      <button class="star btn btn-link fs-3" data-value="3" aria-label="3 stars" aria-pressed="false">★</button>
+      <button class="star btn btn-link fs-3" data-value="4" aria-label="4 stars" aria-pressed="false">★</button>
+      <button class="star btn btn-link fs-3" data-value="5" aria-label="5 stars" aria-pressed="false">★</button>
+    </div>
+    <p id="ratingMsg" class="mt-2 small text-center"></p>
+  </section>
 
-  <footer class="footer text-center py-4">
-    <small>© 2025 Fashion Lookbook · <a href="about.html">About</a> · <a href="closet.html">Closet</a></small>
-  </footer>
+  <section class="container cta text-center">
+    <a class="btn btn-outline-dark" href="seasons_bootstrap.html">Explore Seasons</a>
+  </section>
 
-  <script src="ainur.js" defer></script>
+  <section class="container section faq" id="faq">
+    <h2 class="section-title text-center mb-4">FAQ</h2>
+
+    <div class="faq-item" data-accordion>
+      <button class="faq-btn" aria-expanded="false">How can I create a capsule wardrobe? <span class="chev">▾</span></button>
+      <div class="faq-panel"><p>Start with high-quality basics in neutral colors — white shirts, black trousers, beige knits. Mix them with 1–2 accent pieces.</p></div>
+    </div>
+
+    <div class="faq-item" data-accordion>
+      <button class="faq-btn" aria-expanded="false">What is the main purpose of Fashion Lookbook? <span class="chev">▾</span></button>
+      <div class="faq-panel"><p>Find clear outfit ideas by categories — seasons, styles, and weekly looks — to simplify your daily dressing routine.</p></div>
+    </div>
+
+    <div class="faq-item" data-accordion>
+      <button class="faq-btn" aria-expanded="false">Can I suggest looks or upload my own ideas? <span class="chev">▾</span></button>
+      <div class="faq-panel"><p>Yes! Use the contact form above to send us your suggestions.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer text-center py-4">
+  <small>© 2025 Fashion Lookbook · <a href="about.html">About</a> · <a href="closet.html">Closet</a></small>
+</footer>
+
+<script src="ainur.js" defer></script>
 </body>
 </html>
