@@ -17,24 +17,41 @@
 <body>
 <a href="#main" class="visually-hidden-focusable">Skip to content</a>
 
-<header class="site-nav" aria-label="Main navigation">
-  <div class="nav-inner">
-    <a class="brand" href="index.html" aria-label="Fashion Lookbook homepage">
-      <span class="brand-dot">FL</span>
+<div id="scrollProgress" aria-hidden="true"></div>
+  
+  <nav class="navbar navbar-expand-lg bg-white fixed-top shadow-sm">
+  <div class="container-fluid justify-content-between">
+
+    <a class="navbar-brand d-flex align-items-center" href="index.html" aria-label="Home">
+      <span class="brand-mark">FL</span>
+      <span class="brand-name ms-2">Fashion Lookbook</span>
     </a>
-    <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="weekly.html">Weekly Looks</a>
-      <a href="seasons_bootstrap.html">Seasons</a>
-      <a href="styles.html">Styles</a>
-      <a href="closet.html">Closet</a>
-      <a href="wishlist.html">Wishlist</a>
-      <a href="inspiration.html">Inspiration</a>
-      <a class="pill active" href="about.html">About</a>
-    </nav>
-    <button id="themeToggle" class="btn btn-small ms-lg-2 mt-2 mt-lg-0" aria-pressed="false" aria-label="Toggle dark mode" title="Toggle theme">Mode</button>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+            aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse w-100 justify-content-lg-end" id="mainNav">
+      <ul class="navbar-nav align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="weekly.html">Weekly Looks</a></li>
+        <li class="nav-item"><a class="nav-link" href="seasons.html">Seasons</a></li>
+        <li class="nav-item"><a class="nav-link" href="styles.html">Styles</a></li>
+        <li class="nav-item"><a class="nav-link" href="closet.html">Closet</a></li>
+        <li class="nav-item"><a class="nav-link" href="wishlist.html">Wishlist</a></li>
+        <li class="nav-item"><a class="nav-link" href="inspiration.html">Inspiration</a></li>
+        <li class="nav-item"><a class="nav-link  active" href="about.html">About</a></li>
+
+        <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+          <button id="themeToggle" class="btn btn-small" aria-pressed="false"
+            aria-label="Toggle dark mode" title="Toggle theme">🌙</button>
+        </li>
+      </ul>
+    </div>
+
   </div>
-</header>
+</nav>
 
 <div id="toastStack" aria-live="polite" aria-atomic="true"></div>
 
