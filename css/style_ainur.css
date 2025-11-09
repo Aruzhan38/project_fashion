@@ -14,7 +14,7 @@ body.theme-dark{
   --muted:#b8bdc7;
   --line:#23252b;
   --card:#16171c;
-  --accent:#ff8fab;
+  --accent:#7a0d4f;
 }
 html,body{ 
   background:var(--bg); 
