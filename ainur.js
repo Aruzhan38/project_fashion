@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   UX.init();             
 });
 
-const Theme = (() => {
+/* const Theme = (() => {
   const STORAGE = "fl-theme";        
   const BTN_ID  = "themeToggle";    
 
@@ -41,7 +41,7 @@ const Theme = (() => {
   }
 
   return { init };
-})();
+})(); */
 
 const Accordion = (() => {
   function init(root = document) {

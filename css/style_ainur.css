@@ -317,7 +317,7 @@ scroll{
   position:absolute; 
   left:0; 
   right:0; 
-  op:46px; 
+  top:46px; 
   background:var(--card); 
   border:1px solid var(--line); 
   border-radius:12px; 
@@ -351,7 +351,7 @@ scroll{
   transition:width .08s linear; }
 
 body.theme-dark .site-nav{ 
-  ackground:var(--bg); 
+  background:var(--bg); 
   border-bottom:1px solid rgba(255,255,255,.08); 
 }
 body.theme-dark footer{ 

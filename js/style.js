@@ -1,4 +1,4 @@
-// Theme Toggle 
+
 (function () {
   const STORAGE_KEY = 'fl-theme';
   const btn = document.getElementById('themeToggle');
