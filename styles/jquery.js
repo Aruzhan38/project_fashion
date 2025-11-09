@@ -80,33 +80,4 @@ $(function () {
   check(); 
 });
 
-
-
-/*// Theme toggle + persistence 
-  $(function () {
-    const $root = $('html');
-    const $btn  = $('#themeToggle');
-
-    function apply(theme){
-      const dark = theme === 'dark';
-      $root.toggleClass('theme-dark', dark);
-      $btn.html(dark ? '🌙' : '🌞')
-          .attr('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
-    }
-
-    const saved   = localStorage.getItem('theme');
-    const systemD = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    apply(saved || (systemD ? 'dark' : 'light'));
-
-    $btn.on('click', function () {
-      const next = $root.hasClass('theme-dark') ? 'light' : 'dark';
-      apply(next);
-      localStorage.setItem('theme', next);
-    });
-
-    if(!saved && window.matchMedia){
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-        apply(e.matches ? 'dark' : 'light');
-      });
-    }
-  });*/
+  

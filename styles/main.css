@@ -543,7 +543,7 @@ ol, ul { list-style:none; margin:0; padding:0; }
 img.lazy { filter: blur(8px); transform: scale(1.01); transition: filter .4s ease, transform .4s ease, opacity .4s ease; opacity: .8; }
 img.lazy.loaded { filter: blur(0); transform: scale(1); opacity: 1; }
 
-/* === Dark theme – Wishlist page === */
+/* Dark theme  Wishlist page  */
 body.theme-dark {
   --bg: #0f0f12;
   --text: #f4f4f6;
@@ -698,4 +698,53 @@ body.theme-dark img {
 @keyframes hueflow { 
   0%{ background-position: 0% 50% } 
   100%{ background-position: 100% 50% } 
+}
+
+/*Shine-эффект для карточек New Collections */
+.card.product {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card.product::after {
+  content: "";
+  position: absolute;
+  inset: -20% -60%;
+  background: linear-gradient(
+    110deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 60%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.7s ease;
+  pointer-events: none;
+}
+
+.card.product:hover::after {
+  transform: translateX(120%);
+}
+
+.card.product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.16);
+}
+
+
+.typing{
+  font-family:"Playfair Display", serif;
+  font-weight:700;
+  font-size: clamp(26px, 4vw, 40px);
+  white-space: nowrap;
+  border-right: 2px solid currentColor;
+  width: 0;
+  overflow: hidden;
+  animation: caret .8s step-end infinite;
+}
+@keyframes caret { 50% { border-color: transparent; } }
+@media (prefers-reduced-motion: reduce){
+  .typing{ animation:none; border-right:none; }
 }

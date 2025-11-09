@@ -19,30 +19,49 @@ document.querySelectorAll('.rating').forEach(block => {
   });
 });
 
-/*//night and day mode 
-document.addEventListener('keydown', (event) => {
-  if (event.key.toUpperCase() === 'N') {
-    document.body.style.backgroundColor = '#2b2b2b';
-    document.body.style.color = '#fff';
-  } 
-  else if (event.key.toUpperCase() === 'D') {
-    document.body.style.backgroundColor = '#fff7f8';
-    document.body.style.color = '#0f0f10';
+let lastSpark = 0;
+
+document.addEventListener('mousemove', e => {
+  const now = Date.now();
+  if (now - lastSpark < 80) return; // ⚡ ограничиваем частоту
+  lastSpark = now;
+
+  const spark = document.createElement('span');
+  spark.textContent = '✨';
+  spark.style.cssText = `
+    position: fixed;
+    left: ${e.clientX}px;
+    top: ${e.clientY}px;
+    font-size: ${8 + Math.random() * 14}px;
+    pointer-events: none;
+    opacity: 1;
+    transform: translate(-50%, -50%);
+    animation: sparkleFade .9s ease-out forwards;
+    z-index: 99999;
+  `;
+  document.body.appendChild(spark);
+  setTimeout(() => spark.remove(), 900);
+});
+
+const style = document.createElement('style');
+style.textContent = `
+@keyframes sparkleFade {
+  0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -80%) scale(1.4); }
+}`;
+document.head.appendChild(style);
+
+
+// Typing effect for headings
+(function(){
+  const el = document.querySelector('.typing');
+  if(!el) return;
+  const text = el.getAttribute('data-text') || '';
+  let i = 0;
+  function tick(){
+    el.textContent = text.slice(0, i++);
+    el.style.width = el.textContent.length + 'ch';
+    if(i <= text.length) requestAnimationFrame(tick);
   }
-});*/
-
-
-//звук по клику на кнопку
-  const snd = new Audio('styles/click.mp3'); 
-  let btn = document.querySelector('.btn');
-  if (!btn) {
-    btn = document.createElement('button');
-    btn.className = 'btn';
-    btn.textContent = 'Test Sound';
-    btn.style.display = 'block'; btn.style.margin = '20px auto';
-    document.body.appendChild(btn);
-  }
-  btn.addEventListener('click', () => snd.play());
-
-
-
+  tick();
+})();
