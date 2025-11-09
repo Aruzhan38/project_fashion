@@ -36,7 +36,10 @@
         <li class="nav-item"><a class="nav-link" href="wishlist.html">Wishlist</a></li>
         <li class="nav-item"><a class="nav-link" href="inspiration.html">Inspiration</a></li>
         <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-
+        <li class="nav-item">
+          <a id="profileLink" class="nav-link" href="profile.html">Profile</a>
+        </li>
+        
         <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
           <button id="themeToggle" class="btn btn-small" aria-pressed="false"
             aria-label="Toggle dark mode" title="Toggle theme">🌙</button>
@@ -47,11 +50,9 @@
   </div>
 </nav>
 
-
-
 <section id="home" class="hero">
   <div class="container">
-    <h1>Unleash Your Inner Icon</h1>
+    <h1>Unleash Your Inner Icon<span id="greetName"></span></h1>
     <p>Discover curated collections and find the perfect look for every moment.</p>
   </div>
 </section>
@@ -264,36 +265,62 @@
 </section>
 
 
-<footer class="footer">
-  <button id="openPopup" class="btn">Contact Us</button>
-  <p>© 2025 Fashion Lookbook. Aru's part.</p>
+<footer class="footer center">
+    <small>© 2025 Fashion Lookbook</small>
 </footer>
 
-<div id="popupOverlay" class="overlay" aria-hidden="true" role="dialog" aria-modal="true">
-  <div class="popup" role="document">
-    <button id="closePopup" class="close" aria-label="Close">&times;</button>
-    <h2>Contact Form</h2>
+<!-- Auth Overlay -->
+<div id="authOverlay" class="overlay" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="popup" role="document" style="max-width:520px">
+    <button id="closeAuth" class="close" aria-label="Close">&times;</button>
 
-    <form id="contactForm" class="contact-form" novalidate>
-      <input name="name" type="text" placeholder="Your Name" required>
+    <div class="tabbar" style="display:flex; gap:10px; margin-bottom:14px;">
+      <button class="btn btn-small" id="tabSignIn" aria-selected="true">Sign In</button>
+      <button class="btn btn-small" id="tabSignUp" aria-selected="false" style="opacity:.7">Sign Up</button>
+    </div>
+
+    <!-- Sign In form -->
+    <form id="formSignIn" class="contact-form" novalidate>
+      <input name="email" type="email" placeholder="Email" required>
       <small class="error"></small>
 
-      <input name="email" type="email" placeholder="Your Email" required>
+      <input name="password" type="password" placeholder="Password" required>
       <small class="error"></small>
 
-      <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+      <button type="submit" class="btn">Log In</button>
+      <small class="form-note">No account? <a href="#" id="goSignUp">Create one</a></small>
+    </form>
+
+    <!-- Sign Up form (hidden by default) -->
+    <form id="formSignUp" class="contact-form" novalidate style="display:none">
+      <input name="name" type="text" placeholder="Full name" required>
       <small class="error"></small>
 
-      <button type="submit" class="btn">Send</button>
-      
+      <input name="email" type="email" placeholder="Email" required>
+      <small class="error"></small>
+
+      <input name="phone" type="tel" placeholder="Phone (+7 777 123 45 67)" required>
+      <small class="error"></small>
+
+      <input name="password" type="password" placeholder="Password (min 8, Aa1!…)" required>
+      <small class="error"></small>
+
+      <input name="confirm" type="password" placeholder="Confirm password" required>
+      <small class="error"></small>
+
+      <button type="submit" class="btn">Create Account</button>
+      <small class="form-note">Already have an account? <a href="#" id="goSignIn">Sign in</a></small>
     </form>
   </div>
 </div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="js/app-extras.js"></script>
 <script src="js/homepage.js" defer></script>
 <script src="js/ui-extras.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/auth-ui.js"></script>
 </body>
 </html>

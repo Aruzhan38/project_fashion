@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Profile — Fashion Lookbook</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style_aru.css">
+  <style>
+    .auth-wrap{max-width:520px;margin:20px auto 40px;background:var(--bg,#fff);border:1px solid #eee;border-radius:16px;box-shadow:0 10px 24px rgba(0,0,0,.08);padding:22px}
+    .tabbar{display:flex;gap:10px;margin-bottom:14px}
+    .error{color:#dc2626;font-size:14px;min-height:1em}
+
+    /* ===== Smooth transitions (как на главной) ===== */
+html, body, .navbar, .auth-wrap, .footer,
+input, textarea, .form-control, .form-select, .btn {
+  transition: background-color .25s ease, color .25s ease,
+              border-color .25s ease, box-shadow .25s ease;
+}
+
+/* ===== Dark Theme Overrides — Profile ===== */
+body.theme-dark{
+  --bg: #0f0f12;
+  --text: #f4f4f6;
+  --muted: #b4b7c2;
+  --accent: #7a0d4f;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Navbar */
+body.theme-dark .navbar.bg-white { background-color:#15161a !important; }
+body.theme-dark .navbar .navbar-brand .brand-name { color:#fff; }
+body.theme-dark .navbar .nav-link { color:#e9e9ee; }
+body.theme-dark .navbar .nav-link:hover,
+body.theme-dark .navbar .nav-link.active { color:var(--accent); }
+
+/* Карточка-обёртка профиля / форм */
+body.theme-dark .auth-wrap{
+  background:#16171c;
+  border:1px solid rgba(255,255,255,.06);
+  box-shadow:0 10px 24px rgba(0,0,0,.35);
+}
+
+/* Заголовки/текст внутри карточки */
+body.theme-dark .auth-wrap h1,
+body.theme-dark .auth-wrap h2,
+body.theme-dark .auth-wrap h3 { color:var(--text); }
+body.theme-dark .auth-wrap p,
+body.theme-dark .auth-wrap .form-note { color:var(--muted); }
+
+/* Tabs (Sign In / Sign Up) — лёгкий контур в тёмной теме */
+body.theme-dark .tabbar .btn{
+  background:transparent;
+  border:1px solid rgba(255,255,255,.12);
+  color:var(--text);
+}
+body.theme-dark .tabbar .btn[aria-selected="true"]{
+  background:var(--accent);
+  color:#fff;
+  border-color:transparent;
+}
+
+/* Поля ввода */
+body.theme-dark input,
+body.theme-dark textarea,
+body.theme-dark .form-control,
+body.theme-dark .form-select{
+  background:#121317;
+  color:var(--text);
+  border:1px solid rgba(255,255,255,.12);
+}
+body.theme-dark input::placeholder,
+body.theme-dark textarea::placeholder{ color:rgba(244,244,246,.7); }
+body.theme-dark .form-control:focus,
+body.theme-dark .form-select:focus,
+body.theme-dark textarea:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(122,13,79,.28);
+}
+
+/* Кнопки */
+body.theme-dark .btn,
+body.theme-dark .btn-small{
+  background:var(--accent);
+  color:#fff;
+  border-color:transparent;
+}
+body.theme-dark .btn:hover,
+body.theme-dark .btn-small:hover{
+  filter:brightness(1.05);
+  transform: translateY(-2px);
+}
+
+/* Ошибки валидации */
+body.theme-dark .error{ color:#ff8a8a; }
+
+/* Footer (если на странице появится) */
+body.theme-dark .footer{
+  background:#121317;
+  border-top:1px solid rgba(255,255,255,.06);
+}
+body.theme-dark .footer p{ color:var(--muted); }
+
+/* Подчёркивание активного пункта меню чуть выше, чтобы не прилипало */
+.navbar .nav-link.active::after{ bottom:.25rem; }
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition:none !important; }
+}
+
+.footer{
+  text-align:center;
+  padding:28px 0 36px;
+  background: var(--bg);
+  border-top:1px solid #eee;
+  
+}
+
+.footer{ border-top:1px solid #eee; padding:20px; color:#666; }
+
+/* --- Sticky Footer Layout --- */
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1; 
+}
+
+.footer {
+  margin-top: auto; 
+}
+
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg bg-white fixed-top shadow-sm">
+  <div class="container-fluid justify-content-between">
+
+    <a class="navbar-brand d-flex align-items-center" href="index.html" aria-label="Home">
+      <span class="brand-mark">FL</span>
+      <span class="brand-name ms-2">Fashion Lookbook</span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+            aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse w-100 justify-content-lg-end" id="mainNav">
+      <ul class="navbar-nav align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="weekly.html">Weekly Looks</a></li>
+        <li class="nav-item"><a class="nav-link" href="seasons.html">Seasons</a></li>
+        <li class="nav-item"><a class="nav-link" href="styles.html">Styles</a></li>
+        <li class="nav-item"><a class="nav-link" href="closet.html">Closet</a></li>
+        <li class="nav-item"><a class="nav-link" href="wishlist.html">Wishlist</a></li>
+        <li class="nav-item"><a class="nav-link" href="inspiration.html">Inspiration</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link active" href="profile.html">Profile</a></li>
+        
+        <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+          <button id="themeToggle" class="btn btn-small" aria-pressed="false"
+            aria-label="Toggle dark mode" title="Toggle theme">🌙</button>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<main class="container" style="padding-top:100px">
+
+  <!-- Вид №1: профиль (видно, когда вошли) -->
+  <section id="profileView" class="auth-wrap" style="display:none">
+    <h1 class="h4 mb-3">Your Profile</h1>
+    <p class="mb-1"><strong>Name:</strong> <span id="pName">—</span></p>
+    <p class="mb-3"><strong>Email:</strong> <span id="pEmail">—</span></p>
+    <button id="logoutBtn" class="btn btn-small">Log out</button>
+  </section>
+
+  <!-- Вид №2: формы (видно, когда НЕ вошли) -->
+  <section id="authView" class="auth-wrap" style="display:none">
+    <div class="tabbar">
+      <button class="btn btn-small" id="tabSignIn" aria-selected="true">Sign In</button>
+      <button class="btn btn-small" id="tabSignUp" aria-selected="false" style="opacity:.7">Sign Up</button>
+    </div>
+
+    <!-- Sign In -->
+    <form id="formSignIn" class="contact-form" novalidate>
+      <input name="email" type="email" placeholder="Email" required>
+      <small class="error"></small>
+
+      <input name="password" type="password" placeholder="Password" required>
+      <small class="error"></small>
+
+      <button type="submit" class="btn">Log In</button>
+      <small class="form-note">No account? <a href="#" id="goSignUp">Create one</a></small>
+    </form>
+
+    <!-- Sign Up -->
+    <form id="formSignUp" class="contact-form" novalidate style="display:none">
+      <input name="name" type="text" placeholder="Full name" required>
+      <small class="error"></small>
+
+      <input name="email" type="email" placeholder="Email" required>
+      <small class="error"></small>
+
+      <input name="phone" type="tel" placeholder="Phone (+7 777 123 45 67)" required>
+      <small class="error"></small>
+
+      <input name="password" type="password" placeholder="Password (min 8, Aa1!…)" required>
+      <small class="error"></small>
+
+      <input name="confirm" type="password" placeholder="Confirm password" required>
+      <small class="error"></small>
+
+      <button type="submit" class="btn">Create Account</button>
+      <small class="form-note">Already have an account? <a href="#" id="goSignIn">Sign in</a></small>
+    </form>
+  </section>
+
+</main>
+
+<footer class="footer center">
+    <small>© 2025 Fashion Lookbook</small>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/auth-ui.js"></script>
+<script src="js/style.js"></script>
+</body>
+</html>
