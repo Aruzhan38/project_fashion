@@ -31,7 +31,6 @@ h1, h2, h3 {
   background-color: var(--accent);
   color: #fff;
   font-size: 20px;
-  font-weight: 700;
   padding: 6px 12px;
   border-radius: 50%;
   display: inline-flex;
@@ -41,15 +40,17 @@ h1, h2, h3 {
 .navbar .navbar-brand .brand-name{
   font-family: "Playfair Display", serif;
   font-size: 22px;
-  font-weight: 600;
   color: #000;
+}
+
+.navbar .brand-name {
+  font-weight: 600;
 }
 
 .navbar .nav-link{
   position: relative;
   padding: .75rem 1rem;
   color: #333;
-  font-weight: 600;
 }
 .navbar .nav-link:hover{ color: var(--accent); }
 
@@ -305,22 +306,8 @@ h1, h2, h3 {
   background: var(--bg);
   border-top:1px solid #eee;
 }
-.footer .btn {
-  background-color: var(--accent);
-  color: #fff;
-  text-decoration: none;
-  padding: 14px 32px;
-  border-radius: 30px;
-  font-size: 17px;
-  font-weight: 600;
-  transition: 0.3s;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-.footer .btn:hover {
-  background-color: var(--accent);
-  transform: translateY(-3px);
-}
-.footer p{ color:#000000; margin-top:10px; font-size:15px; }
+
+.footer{ border-top:1px solid #eee; padding:20px; color:#666; }
 /* Popup Styles */
 .overlay{
   display:none; position:fixed; inset:0; z-index:9999;
