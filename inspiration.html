@@ -79,6 +79,7 @@
     </section>
 
   <section class="container"> 
+  <br>
   <h2 class="section-title">Moodboard</h2>
   <div class="section-box moodboard">
     <div class="masonry">
@@ -95,59 +96,6 @@
 </div>
 </section>
 
-  
-
-<!--<section class="container">
-  <div class="section-box palette no-js"
-       style="--c1:#fce0f1; --c2:#f7b2dc; --c3:#7a0d4f; --c4:#563247; --c5:#4d0832; --c6:#d17aa0; --c7:#9a3370; --c8:#31001f; --c9:#ffc0cb; --c10:#b30059; --c11:#c68fa2; --c12:#a67b91; --c13:#8f6b80; --c14:#735d73;
-      --c15:#5a4a5f; --c16:#3f3746;">
-    <h2 class="section-title">Color Palette</h2>
-
-    <form class="swatch-picker">
-      <input type="radio" name="pick" id="c1" checked>
-      <input type="radio" name="pick" id="c2">
-      <input type="radio" name="pick" id="c3">
-      <input type="radio" name="pick" id="c4">
-      <input type="radio" name="pick" id="c5">
-      <input type="radio" name="pick" id="c6">
-      <input type="radio" name="pick" id="c7">
-      <input type="radio" name="pick" id="c8">
-      <input type="radio" name="pick" id="c9">
-      <input type="radio" name="pick" id="c10">
-      <input type="radio" name="pick" id="c11">
-      <input type="radio" name="pick" id="c12">
-      <input type="radio" name="pick" id="c13">
-      <input type="radio" name="pick" id="c14">
-      <input type="radio" name="pick" id="c15">
-      <input type="radio" name="pick" id="c16">
-
-      <div class="swatches">
-        <label for="c1" class="swatch s1" aria-label="#fce0f1"></label>
-        <label for="c2" class="swatch s2" aria-label="#f7b2dc"></label>
-        <label for="c3" class="swatch s3" aria-label="#7a0d4f"></label>
-        <label for="c4" class="swatch s4" aria-label="#563247"></label>
-        <label for="c5" class="swatch s5" aria-label="#4d0832"></label>
-        <label for="c6"  class="swatch s6"  aria-label="#d17aa0"></label>
-        <label for="c7"  class="swatch s7"  aria-label="#9a3370"></label>
-        <label for="c8"  class="swatch s8"  aria-label="#31001f"></label>
-        <label for="c9"  class="swatch s9"  aria-label="#ffc0cb"></label>
-        <label for="c10" class="swatch s10" aria-label="#b30059"></label>
-        <label for="c11" class="swatch s11" aria-label="#ffd9b3"></label>
-        <label for="c12" class="swatch s12" aria-label="#ffba66"></label>
-        <label for="c13" class="swatch s13" aria-label="#ffe680"></label>
-        <label for="c14" class="swatch s14" aria-label="#e5ff99"></label>
-        <label for="c15" class="swatch s15" aria-label="#99e6ff"></label>
-        <label for="c16" class="swatch s16" aria-label="#668cff"></label>
-      </div>
-
-      <div class="preview">
-        <div class="chip">HEX: <span class="hex"></span></div>
-        <div class="sample"></div>
-      </div>
-      <div class="gradient-demo"></div>
-    </form>
-  </div>
-</section> -->
 <section class="container">
   <div class="section-box palette" 
        style="--c1:#ef4444; --c2:#dc2626; --c3:#f59e0b; --c4:#fde047; --c5:#84cc16; --c6:#22c55e; --c7:#14b8a6; --c8:#06b6d4; --c9:#38bdf8; --c10:#3b82f6; --c11:#6366f1; --c12:#8b5cf6; --c13:#a855f7; --c14:#db2777; --c15:#f472b6; --c16:#111827; --c17:#d4d4d8; --c18:#92400e; --c19:#fef3c7; --c20:#065f46;">
@@ -158,7 +106,7 @@
     </div>
 
     <form class="swatch-picker" autocomplete="off">
-      ${[...Array(20)].map((_,i)=>`<input type="radio" name="pick" id="c${i+1}" ${i===0?"checked":""}>`).join("")}
+      <input type="radio" name="pick" id="c${i+1}" ${i===0?"checked":""}>
       <div class="swatches">
         <label for="c1"  class="swatch s1"  aria-label="#ef4444" title="Red"></label>
         <label for="c2"  class="swatch s2"  aria-label="#dc2626" title="Crimson"></label>
@@ -235,7 +183,7 @@
 
 </main>
   <footer class="footer center">
-    <small>© 2025 Fashion Lookbook</small>
+    <small>© 2025 Fashion Lookbook.</small>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

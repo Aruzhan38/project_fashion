@@ -401,3 +401,41 @@ function save(k,v){ localStorage.setItem(k, JSON.stringify(v)); }
 function load(k){ try{ return JSON.parse(localStorage.getItem(k)); }catch{ return null; } }
 function eqHex(a,b){ return a.toLowerCase()===b.toLowerCase(); }
 function escapeHtml(s){ return s?.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))||""; }
+
+
+
+
+(function(){
+  const swatches = document.querySelectorAll('.swatches .swatch');
+  swatches.forEach(s=>{
+    s.addEventListener('click', (e)=>{
+      const hex = getComputedStyle(s).backgroundColor;
+      boom(e.clientX, e.clientY, hex);
+    });
+  });
+})();
+
+function boom(x,y,color){
+  const N = 28;
+  for(let i=0;i<N;i++){
+    const p = document.createElement('div');
+    p.className='confetti';
+    p.style.background = color;
+    document.body.appendChild(p);
+    const ang = (Math.PI*2) * (i/N) + Math.random()*0.6;
+    const dist = 40 + Math.random()*120;
+    const dx = Math.cos(ang)*dist;
+    const dy = Math.sin(ang)*dist - (Math.random()*60);
+    const tx = x + (Math.random()*16-8);
+    const ty = y + (Math.random()*16-8);
+    p.animate([
+      { transform:`translate(${tx}px, ${ty}px) scale(1)`, opacity:1 },
+      { transform:`translate(${tx+dx}px, ${ty+dy}px) rotate(${Math.random()*720-360}deg) scale(.9)`, opacity:0 }
+    ], { duration: 900 + Math.random()*500, easing:'cubic-bezier(.2,.8,0,1)' })
+     .onfinish = ()=> p.remove();
+  }
+}
+
+
+
+
