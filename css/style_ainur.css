@@ -10,8 +10,8 @@
 }
 body.theme-dark{
   --bg:#0f0f12;
-  --text:#f4f4f6;
-  --muted:#b8bdc7;
+  --text:#ffffff;
+  --muted:#ffffff;
   --line:#23252b;
   --card:#16171c;
   --accent:#7a0d4f;
@@ -335,8 +335,6 @@ scroll{
   color:var(--text); }
 .suggestions button:hover{ background:rgba(0,0,0,.04); }
 
-
-
   #scrollProgress{
   position: fixed;
   top: 0; left: 0;
@@ -394,9 +392,9 @@ body.theme-dark .hero::before{
   background: radial-gradient(1200px 420px at 50% 20%, rgba(255,255,255,.06), rgba(255,255,255,0));
 }
 body.theme-dark .hero .hero-title{ 
-  color: var(--text); }
+  color: #ffffff }
 body.theme-dark .hero .hero-sub{ 
-  color: var(--muted); }
+  color: #ffffff }
 
 body.theme-dark .card,
 body.theme-dark .stat{
@@ -444,12 +442,12 @@ body.theme-dark footer{
 body.theme-dark input,
 body.theme-dark textarea{
   background: #14171c;
-  color: var(--text);
+  color: #ffffff;
   border: 1px solid rgba(255,255,255,.14);
 }
 body.theme-dark input:focus,
 body.theme-dark textarea:focus{
-  border-color: var(--accent);
+  border-color: #ffffff;
   box-shadow: 0 0 0 3px rgba(122,13,79,.28);
 }
 
@@ -466,4 +464,42 @@ body.theme-dark .brand-dot{
 body.theme-dark .brand:hover .brand-dot{
   transform: scale(1.08);
   background: #7a0d4f;
+}
+.shimmer {
+  font-size: 48px;
+  font-weight: 700;
+  position: relative;
+  color: #7a0d4f;
+  text-transform: uppercase;
+  overflow: hidden;
+  background: linear-gradient(
+    90deg,
+    #7a0d4f 0%,
+    #ffb6d9 50%,
+    #7a0d4f 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: 0% center;
+  }
+}
+.theme-dark .shimmer {
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #2a2323 50%,
+    #ffffff 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
