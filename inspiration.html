@@ -97,7 +97,7 @@
 
   
 
-<section class="container">
+<!--<section class="container">
   <div class="section-box palette no-js"
        style="--c1:#fce0f1; --c2:#f7b2dc; --c3:#7a0d4f; --c4:#563247; --c5:#4d0832; --c6:#d17aa0; --c7:#9a3370; --c8:#31001f; --c9:#ffc0cb; --c10:#b30059; --c11:#c68fa2; --c12:#a67b91; --c13:#8f6b80; --c14:#735d73;
       --c15:#5a4a5f; --c16:#3f3746;">
@@ -147,7 +147,53 @@
       <div class="gradient-demo"></div>
     </form>
   </div>
+</section> -->
+<section class="container">
+  <div class="section-box palette" 
+       style="--c1:#ef4444; --c2:#dc2626; --c3:#f59e0b; --c4:#fde047; --c5:#84cc16; --c6:#22c55e; --c7:#14b8a6; --c8:#06b6d4; --c9:#38bdf8; --c10:#3b82f6; --c11:#6366f1; --c12:#8b5cf6; --c13:#a855f7; --c14:#db2777; --c15:#f472b6; --c16:#111827; --c17:#d4d4d8; --c18:#92400e; --c19:#fef3c7; --c20:#065f46;">
+    
+    <div class="palette-head">
+      <h2 class="section-title">Color Palette</h2>
+      
+    </div>
+
+    <form class="swatch-picker" autocomplete="off">
+      ${[...Array(20)].map((_,i)=>`<input type="radio" name="pick" id="c${i+1}" ${i===0?"checked":""}>`).join("")}
+      <div class="swatches">
+        <label for="c1"  class="swatch s1"  aria-label="#ef4444" title="Red"></label>
+        <label for="c2"  class="swatch s2"  aria-label="#dc2626" title="Crimson"></label>
+        <label for="c3"  class="swatch s3"  aria-label="#f59e0b" title="Orange"></label>
+        <label for="c4"  class="swatch s4"  aria-label="#fde047" title="Yellow"></label>
+        <label for="c5"  class="swatch s5"  aria-label="#84cc16" title="Lime"></label>
+        <label for="c6"  class="swatch s6"  aria-label="#22c55e" title="Green"></label>
+        <label for="c7"  class="swatch s7"  aria-label="#14b8a6" title="Teal"></label>
+        <label for="c8"  class="swatch s8"  aria-label="#06b6d4" title="Cyan"></label>
+        <label for="c9"  class="swatch s9"  aria-label="#38bdf8" title="Sky"></label>
+        <label for="c10" class="swatch s10" aria-label="#3b82f6" title="Blue"></label>
+        <label for="c11" class="swatch s11" aria-label="#6366f1" title="Indigo"></label>
+        <label for="c12" class="swatch s12" aria-label="#8b5cf6" title="Violet"></label>
+        <label for="c13" class="swatch s13" aria-label="#a855f7" title="Purple"></label>
+        <label for="c14" class="swatch s14" aria-label="#db2777" title="Magenta"></label>
+        <label for="c15" class="swatch s15" aria-label="#f472b6" title="Pink"></label>
+        <label for="c16" class="swatch s16" aria-label="#111827" title="Charcoal"></label>
+        <label for="c17" class="swatch s17" aria-label="#d4d4d8" title="Light Gray"></label>
+        <label for="c18" class="swatch s18" aria-label="#92400e" title="Brown"></label>
+        <label for="c19" class="swatch s19" aria-label="#fef3c7" title="Cream"></label>
+        <label for="c20" class="swatch s20" aria-label="#065f46" title="Forest"></label>
+      </div>
+
+      <div class="preview">
+        <div class="chip">HEX: <span class="hex"></span></div>
+        <div class="sample"></div>
+      </div>
+      <div class="gradient-demo"></div>
+    </form>
+  </div>
+
+  <section id="pins" class="pins-grid"></section>
 </section>
+
+
 
 <section class="container my-5">
   <h2 class="text-center mb-4">Share a Reference</h2>
@@ -183,6 +229,8 @@
   <button id="copyBtn" class="btn btn-outline-primary btn-sm">Copy</button>
   </div>
 </section>
+
+
 
 
 </main>
