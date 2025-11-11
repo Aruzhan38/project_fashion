@@ -9,13 +9,14 @@
   --shadow:0 10px 24px rgba(17,17,17,.08);
 }
 body.theme-dark{
-  --bg:#0f0f12;
-  --text:#ffffff;
-  --muted:#ffffff;
-  --line:#23252b;
-  --card:#16171c;
-  --accent:#7a0d4f;
+  --bg:#0f0f13;
+  --text:#eeeeee;
+  --muted:#a5a7ad;
+  --nav-bg:#16161b;
+  --surface:#1b1a1f;
+  --accent:#7a0d4f; 
 }
+
 html,body{ 
   background:var(--bg); 
   color:var(--text); margin:0; 
@@ -25,6 +26,68 @@ h1,h2{
   font-family:"Playfair Display",serif; 
   font-weight:700; 
 }
+:root{
+  --nav-bg:#ffffff;    
+  --surface:#fbf8fb;    
+}
+.navbar .navbar-brand .brand-name{ color: var(--text); }
+body.theme-dark .navbar{ background-color:#1b1b1f !important; }
+body.theme-dark .navbar .navbar-brand .brand-name{ color:#fff; }
+body.theme-dark .navbar .nav-link{ color:#e9e9ee; }
+body.theme-dark .navbar .nav-link:hover,
+body.theme-dark .navbar .nav-link.active{ color:var(--accent); }
+
+.hero{
+  background:
+    radial-gradient(1200px 420px at 50% 20%,
+      rgba(122,13,79,.08) 0%,
+      rgba(122,13,79,.05) 40%,
+      rgba(122,13,79,0) 70%),
+    linear-gradient(180deg, #f9f4f7 0%, #f6f0f4 40%, #f5f3f5 100%);
+  padding:130px 20px 40px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  transition:background .25s ease;
+}
+.hero h1{
+  margin:0 0 10px;
+  font-size:clamp(34px,5.6vw,56px);
+  line-height:1.06;
+}
+.hero .lead,
+.hero .hero-sub{ 
+  color:var(--muted);
+  margin:0;
+}
+body.theme-dark { background:var(--bg); color:var(--text); }
+body.theme-dark a{ color:#ff7eb6; }
+body.theme-dark #scrollProgress{ box-shadow:0 2px 8px rgba(0,0,0,.35); }
+
+body.theme-dark .hero{
+  background:linear-gradient(180deg,var(--nav-bg) 0%,var(--surface) 60%,#141418 100%);
+  position:relative;
+}
+body.theme-dark .hero::before{
+  content:"";
+  position:absolute; inset:0;
+  background: radial-gradient(1100px 380px at 50% 20%,
+    rgba(122,13,79,.42) 0%,
+    rgba(122,13,79,.22) 40%,
+    rgba(122,13,79,0) 72%);
+  pointer-events:none;
+}
+/* card-look үшін dark селекторын дұрыстаймыз */
+body.theme-dark .card-look{
+  background:var(--nav-bg);
+  box-shadow:0 10px 24px rgba(0,0,0,.35);
+}
+
+/* Біркелкі ауысымдар */
+body, .navbar, .card, .form-card, .faq-item, .faq-btn, .faq-panel, footer{
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
 
 .site-nav{ 
   position:sticky; 
@@ -76,30 +139,6 @@ h1,h2{
   background:#f3e8ee; 
 }
 .pill.active{ background:var(--accent); color:#fff; }
-
-.hero{ 
-  background:linear-gradient(180deg,#ffffff 0%,#fbf8fb 60%,#f6f6f8 100%); 
-  padding:80px 20px 40px; 
-  text-align:center; 
-  position:relative; 
-  overflow:hidden; 
-}
-.hero::before{ 
-  content:""; 
-  position:absolute; 
-  inset:0; 
-  background:radial-gradient(1200px 420px at 50% 20%, rgba(122,13,79,.18), rgba(122,13,79,0)); 
-  pointer-events:none; 
-}
-.hero h1{ 
-  margin:0 0 10px; 
-  font-size:clamp(34px,5.6vw,56px); 
-  line-height:1.06; 
-}
-.hero .lead,.hero .hero-sub{ 
-  color:var(--muted); 
-  margin:0; 
-}
 
 .card, .form-card{ 
   background:var(--card); 
@@ -334,7 +373,6 @@ scroll{
   cursor:pointer; 
   color:var(--text); }
 .suggestions button:hover{ background:rgba(0,0,0,.04); }
-
   #scrollProgress{
   position: fixed;
   top: 0; left: 0;
@@ -384,17 +422,6 @@ body.theme-dark input:focus, body.theme-dark textarea:focus{
 @keyframes spin{ to{ 
   transform:rotate(360deg); } 
 }
-
-body.theme-dark .hero{
-  background: linear-gradient(180deg,#15161a 0%, #121317 60%, #0f1014 100%);
-}
-body.theme-dark .hero::before{
-  background: radial-gradient(1200px 420px at 50% 20%, rgba(255,255,255,.06), rgba(255,255,255,0));
-}
-body.theme-dark .hero .hero-title{ 
-  color: #ffffff }
-body.theme-dark .hero .hero-sub{ 
-  color: #ffffff }
 
 body.theme-dark .card,
 body.theme-dark .stat{
@@ -474,9 +501,9 @@ body.theme-dark .brand:hover .brand-dot{
   overflow: hidden;
   background: linear-gradient(
     90deg,
-    #7a0d4f 0%,
+    #0f0f10 0%,
     #ffb6d9 50%,
-    #7a0d4f 100%
+    #0f0f10 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
@@ -503,3 +530,24 @@ body.theme-dark .brand:hover .brand-dot{
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+body.theme-dark .btn {
+  background-color: var(--accent);
+  color: #fff;
+}
+body.theme-dark .btn:hover {
+  background-color: #8b2060;
+  transform: translateY(-2px);
+}
+
+/* Rating stars */
+body.theme-dark .rating span {
+  color: #ff7eb6;
+}
+body.theme-dark .rating-note {
+  color: var(--muted);
+}
+
+
+.card-title { font-weight: 800; font-size: 18px; margin: 0 0 6px; color: var(--muted); }
+.card-text { margin: 0; color: var(--muted); line-height: 1.5; }
