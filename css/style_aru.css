@@ -51,15 +51,8 @@ h1, h2, h3 {
   position: relative;
   padding: .75rem 1rem;
   color: #333;
+  font-weight: 200 !important;
 }
-.navbar #profileLink {
-  position: relative;
-  padding: .75rem 1rem;
-  color: #333;
-  font-weight: 400 !important;
-
-}
-
 .navbar .nav-link:hover{ color: var(--accent); }
 
 .navbar .nav-link.active{ color: var(--accent);}
@@ -83,14 +76,13 @@ h1, h2, h3 {
   color: #111;
   text-decoration: none;
   margin: 0 14px;
-  font-weight: 500;
 }
 .btn-small {
   background: var(--accent, #7a0d4f);
   color: #fff;
   border: none;
-  border-radius: 20px !important;
-  padding: 6px 14px !important;
+  border-radius: 20px;
+  padding: 6px 14px;
   font-weight: 600;
   font-size: 14px;
   cursor: pointer;
