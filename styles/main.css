@@ -247,6 +247,25 @@ a {
 ;
 }
 
+.hero-title{
+  font-family:"Playfair Display",serif;
+  font-weight:700;
+  font-size:var(--fs-h1);
+  line-height:1.05;
+  margin:0 0 10px;
+}
+.hero-sub{
+  color:var(--muted);
+  margin:0;
+  font-size:var(--fs-p);
+}
+.section-title{
+  font-family:"Playfair Display",serif;
+  font-weight:700;
+  font-size:var(--fs-h2);
+  margin:20px 0 18px;
+}
+
 /* card grid */
 .card-grid{
   display:grid;
