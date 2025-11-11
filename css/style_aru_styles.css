@@ -118,18 +118,18 @@ h1, h2 {
 }
 /* Hero Section */
 
-.hero{
+    .hero{
       background:linear-gradient(180deg,var(--nav-bg) 0%,var(--surface) 60%,#f6f6f8 100%);
-      padding:70px 20px 40px; text-align:center; position:relative; overflow:hidden; transition:background .25s;
+      padding:130px 20px 40px; text-align:center; position:relative; overflow:hidden; transition:background .25s; padding-top: 60px;
     }
-   
+  
     .hero::before{
       content:""; position:absolute; inset:0;
       background:radial-gradient(1200px 420px at 50% 20%, color-mix(in srgb, var(--accent) 30%, transparent), rgba(0,0,0,0));
       pointer-events:none;
     }
     .hero h1{ margin:0 0 10px; font-size:clamp(34px,5.6vw,56px); line-height:1.06; }
-    .hero p { color:var(--muted); font-size:clamp(16px,2.2vw,20px); margin:0; }
+    .hero p{ color:var(--muted); font-size:clamp(16px,2.2vw,20px); margin:0; }
 
 
 .section-title {
@@ -373,19 +373,14 @@ body.theme-dark .navbar .nav-link.active{ color:var(--accent); }
 /* Hero */
 
 /* Hero */
+.hero{ background:linear-gradient(#fff,#fff 55%,#f6f6f6); }
 body.theme-dark .hero{
-  background:linear-gradient(180deg,var(--nav-bg) 0%,var(--surface) 60%,#141418 100%);
-  position:relative;
+  background:linear-gradient(#151515,#151515 55%,#0f0f12);
 }
-body.theme-dark .hero::before{
-  content:""; position:absolute; inset:0;
-  background:radial-gradient(1200px 420px at 50% 20%, color-mix(in srgb, var(--accent) 28%, transparent), transparent);
-  pointer-events:none;
-}
+body.theme-dark .hero .hero-title,
+body.theme-dark .hero .hero-sub,
 body.theme-dark .hero h1,
-body.theme-dark .hero p {
-  color: var(--text);
-}
+body.theme-dark .hero p{ color:var(--text); }
 
 body.theme-dark .marquee{
   background:#121317;
