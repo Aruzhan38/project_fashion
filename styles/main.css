@@ -247,61 +247,6 @@ a {
   transform: translateY(-3px) scale(1.05)
 ;
 }
-/*
-.brand {
-  margin: 0 !important;
-  padding-left: 20px !important;  
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 10px !important;
-  text-decoration: none;
-  color: var(--text);
-}
-
-.brand-dot {
-  display: inline-grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: var(--accent);
-  color: #fff;
-  font-weight: 700;
-  flex-shrink: 0;
-  transition: transform .15s ease;
-}
-.brand-name{
-  font-weight:700;
-  font-size:16px;
-  line-height:1;
-  white-space:nowrap;
-}
-.brand:hover .brand-dot{ transform:scale(1.06); }
-
-.nav-links {
-  margin-left: auto !important;
-  padding-right: 40px !important; 
-  display: flex !important;
-  align-items: center !important;
-  gap: 28px !important;
-  flex-wrap: nowrap !important;
-  justify-content: flex-end !important;
-  white-space: nowrap !important;
-}
-.nav-links a {
-  color: var(--text);
-  text-decoration: none;
-  font-weight: 600;
-}
-.pill{
-  padding:6px 12px;
-  border-radius:999px;
-  background:#f3e8ee;
-}
-.pill.active{
-  background:var(--accent);
-  color:#fff;
-}*/
 
 /* hero section */
 .hero{
@@ -434,18 +379,18 @@ ol, ul { list-style:none; margin:0; padding:0; }
   box-shadow:0 8px 18px rgba(122,13,79,.25);
 }
 
-/* wishlist scroll */
-.wishlist-scroll{
-  display:flex;
-  gap:20px;
-  overflow-x:auto;
-  scroll-snap-type:x mandatory;
-  padding-bottom:10px;
-}
-.wishlist-scroll::-webkit-scrollbar{ height:10px; }
-.wishlist-scroll::-webkit-scrollbar-thumb{ background:var(--accent); border-radius:10px; }
-.wishlist-scroll::-webkit-scrollbar-track{ background:#eee; }
-.wishlist-scroll .card{ flex:0 0 280px; scroll-snap-align:start; } 
+  /* wishlist scroll */
+  .wishlist-scroll{
+    display:flex;
+    gap:20px;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    padding-bottom:10px;
+  }
+  .wishlist-scroll::-webkit-scrollbar{ height:10px; }
+  .wishlist-scroll::-webkit-scrollbar-thumb{ background:var(--accent); border-radius:10px; }
+  .wishlist-scroll::-webkit-scrollbar-track{ background:#eee; }
+  .wishlist-scroll .card{ flex:0 0 320px; scroll-snap-align:start; } 
 
 /* seasons grid */
 .seasons-grid{
@@ -756,3 +701,4 @@ body.theme-dark img {
 @media (prefers-reduced-motion: reduce){
   .typing{ animation:none; border-right:none; }
 }
+
