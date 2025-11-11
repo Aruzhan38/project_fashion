@@ -252,7 +252,7 @@ a {
 .hero{
   position:relative;
   overflow:hidden;
-  padding:72px 0 28px;
+  padding:60px 0 28px;
   background:linear-gradient(180deg,#ffffff 0%,#fbf8fb 60%,#f6f6f8 100%);
 }
 .hero::before{
