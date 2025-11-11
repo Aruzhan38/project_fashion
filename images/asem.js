@@ -214,7 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-/*$(function(){
+$(function(){
   $("#lookSearch").on("keyup", function(){
     let value = $(this).val().toLowerCase();
     $(".week-grid .card").filter(function(){
@@ -224,7 +224,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-$(function () {
+/*$(function () {
   const $scope = $('main'); 
   function clearHighlights(){
     $scope.find('mark.hl').each(function(){
@@ -296,4 +296,18 @@ $(function(){
 
   $(window).on('scroll', countNumbers);
 });
+
+const box = document.querySelector('#weekRating .stars');
+if (box){
+  const stars = [...box.querySelectorAll('.star')];
+  box.addEventListener('click', e=>{
+    const i = stars.indexOf(e.target.closest('.star'));
+    if (i < 0) return;
+    stars.forEach((s,idx)=> s.classList.toggle('is-on', idx <= i));
+    document.getElementById('ratingValue').value = i+1;
+  });
+}
+
+
+
 

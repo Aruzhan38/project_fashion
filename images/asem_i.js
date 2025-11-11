@@ -244,3 +244,198 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+
+
+const UNSPLASH_KEY = "LmjADpyoYIAxdq997ux5YZTZGWfpZdcPHcnk0SMNFwg"; 
+
+const SWATCHES = [
+  {hex:"#ef4444", bucket:"red", keyword:"red"},
+  {hex:"#dc2626", bucket:"red", keyword:"crimson"},
+  {hex:"#f59e0b", bucket:"orange", keyword:"orange"},
+  {hex:"#fde047", bucket:"yellow", keyword:"yellow"},
+  {hex:"#84cc16", bucket:"green", keyword:"lime"},
+  {hex:"#22c55e", bucket:"green", keyword:"green"},
+  {hex:"#14b8a6", bucket:"teal", keyword:"teal"},
+  {hex:"#06b6d4", bucket:"teal", keyword:"cyan"},
+  {hex:"#38bdf8", bucket:"blue", keyword:"sky"},
+  {hex:"#3b82f6", bucket:"blue", keyword:"blue"},
+  {hex:"#6366f1", bucket:"blue", keyword:"indigo"},
+  {hex:"#8b5cf6", bucket:"purple", keyword:"violet"},
+  {hex:"#a855f7", bucket:"purple", keyword:"purple"},
+  {hex:"#db2777", bucket:"magenta", keyword:"magenta"},
+  {hex:"#f472b6", bucket:"pink", keyword:"pink"},
+  {hex:"#111827", bucket:"black", keyword:"charcoal"},
+  {hex:"#d4d4d8", bucket:"gray", keyword:"minimalist"},
+  {hex:"#92400e", bucket:"brown", keyword:"autumn fashion"},
+  {hex:"#fef3c7", bucket:"white", keyword:"cream outfit"},
+  {hex:"#065f46", bucket:"green", keyword:"forest fashion"}
+];
+
+
+const root = document.querySelector(".section-box.palette");
+const form = root.querySelector(".swatch-picker");
+const hexOut = root.querySelector(".hex");
+const sample = root.querySelector(".sample");
+const gradient = root.querySelector(".gradient-demo");
+const pins = document.getElementById("pins");
+
+applySpectrum();
+
+document.getElementById("genPalette")?.addEventListener("click", applySpectrum);
+
+root.querySelectorAll(".swatch").forEach((lbl, i) => {
+  lbl.addEventListener("click", () => selectIndex(i, true));
+});
+
+const savedHex = load("lookbook_hex");
+const startIndex = savedHex ? SWATCHES.findIndex(s => eqHex(s.hex, savedHex)) : 0;
+selectIndex(startIndex >= 0 ? startIndex : 0, false);
+
+
+function applySpectrum(){
+  SWATCHES.forEach((s, i) => {
+    const idx = i+1;
+    root.style.setProperty(`--c${idx}`, s.hex);
+    const lbl = root.querySelector(`.s${idx}`);
+    if (lbl) lbl.setAttribute("aria-label", s.hex);
+  });
+  gradient.style.background = `linear-gradient(90deg, ${SWATCHES[0].hex}, ${SWATCHES[9].hex}, #111827)`;
+}
+
+async function selectIndex(i, persist){
+  const s = SWATCHES[i] || SWATCHES[0];
+  const hex = s.hex;
+  form.querySelectorAll("input[name='pick']")[i]?.click();
+  hexOut.textContent = hex;
+  sample.style.background = hex;
+  if (persist) save("lookbook_hex", hex);
+
+  await loadPinsWithFixed(s);
+}
+
+async function loadPinsWithFixed(swatch){
+  if (!UNSPLASH_KEY || UNSPLASH_KEY.includes("YOUR_")) {
+    pins.innerHTML = warn("Add your Unsplash Access Key in palette.js");
+    return;
+  }
+  skeletons(10);
+
+  const page = pageFromHex(swatch.hex, 10);
+
+  let items = await searchUnsplash({
+    query: `fashion ${swatch.keyword} outfit lookbook`,
+    color: swatch.bucket,
+    page,
+    order: "relevant"
+  });
+
+  if (!items.length) {
+    items = await searchUnsplash({
+      query: `fashion ${swatch.keyword} outfit`, page, order:"relevant"
+    });
+  }
+  if (!items.length) {
+    for (const c of neighborColors(swatch.bucket)) {
+      items = await searchUnsplash({
+        query: `fashion ${swatch.keyword}`, color:c, page, order:"latest"
+      });
+      if (items.length) break;
+    }
+  }
+  renderPins(items);
+}
+
+async function searchUnsplash({ query, color, page=1, order="relevant" }){
+  const url = new URL("https://api.unsplash.com/search/photos");
+  url.searchParams.set("client_id", UNSPLASH_KEY);
+  url.searchParams.set("query", query);
+  url.searchParams.set("per_page", "30");
+  url.searchParams.set("page", String(page));
+  url.searchParams.set("order_by", order);
+  url.searchParams.set("content_filter", "high");
+  if (color) url.searchParams.set("color", color);
+
+  const res = await fetch(url, { headers: { "Accept-Version":"v1" }});
+  if (!res.ok) throw new Error(res.status + " " + res.statusText);
+  const data = await res.json();
+  return data.results || [];
+}
+
+function neighborColors(c){
+  switch(c){
+    case "purple": return ["magenta","blue"];
+    case "magenta":return ["purple","red"];
+    case "red":    return ["orange","magenta"];
+    case "orange": return ["red","yellow"];
+    case "yellow": return ["orange","green"];
+    case "green":  return ["teal","yellow"];
+    case "teal":   return ["green","blue"];
+    case "blue":   return ["teal","purple"];
+    case "white":  return ["black"];
+    case "black":  return ["white"];
+    default:       return ["red","purple","blue"];
+  }
+}
+
+function renderPins(items){
+  if(!items.length){ pins.innerHTML = warn("No images for this shade. Try another color."); return; }
+  pins.innerHTML = "";
+  items.forEach((ph,i)=>{
+    const el = document.createElement("article");
+    el.className = "pin"; el.style.animationDelay = (i*28)+"ms";
+    el.innerHTML = `
+      <img src="${ph.urls.small}" alt="${escapeHtml(ph.alt_description||'fashion')}">
+      <div class="info">
+        <span>${escapeHtml(ph.user.name||'Photographer')}</span>
+        <a href="${ph.links.html}" target="_blank" rel="noreferrer">Unsplash ↗</a>
+      </div>`;
+    pins.appendChild(el);
+  });
+}
+
+function pageFromHex(hex, max=10){ let h=0; for(let i=0;i<hex.length;i++) h=(h*31+hex.charCodeAt(i))>>>0; return (h%max)+1; }
+function warn(msg){ return `<div class="pin warn" style="padding:14px;color:#e5e7eb">${msg}</div>`; }
+function skeletons(n){ pins.innerHTML=""; for(let i=0;i<n;i++){const d=document.createElement("div"); d.className="skel"; pins.appendChild(d);} }
+function save(k,v){ localStorage.setItem(k, JSON.stringify(v)); }
+function load(k){ try{ return JSON.parse(localStorage.getItem(k)); }catch{ return null; } }
+function eqHex(a,b){ return a.toLowerCase()===b.toLowerCase(); }
+function escapeHtml(s){ return s?.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))||""; }
+
+
+
+
+(function(){
+  const swatches = document.querySelectorAll('.swatches .swatch');
+  swatches.forEach(s=>{
+    s.addEventListener('click', (e)=>{
+      const hex = getComputedStyle(s).backgroundColor;
+      boom(e.clientX, e.clientY, hex);
+    });
+  });
+})();
+
+function boom(x,y,color){
+  const N = 28;
+  for(let i=0;i<N;i++){
+    const p = document.createElement('div');
+    p.className='confetti';
+    p.style.background = color;
+    document.body.appendChild(p);
+    const ang = (Math.PI*2) * (i/N) + Math.random()*0.6;
+    const dist = 40 + Math.random()*120;
+    const dx = Math.cos(ang)*dist;
+    const dy = Math.sin(ang)*dist - (Math.random()*60);
+    const tx = x + (Math.random()*16-8);
+    const ty = y + (Math.random()*16-8);
+    p.animate([
+      { transform:`translate(${tx}px, ${ty}px) scale(1)`, opacity:1 },
+      { transform:`translate(${tx+dx}px, ${ty+dy}px) rotate(${Math.random()*720-360}deg) scale(.9)`, opacity:0 }
+    ], { duration: 900 + Math.random()*500, easing:'cubic-bezier(.2,.8,0,1)' })
+     .onfinish = ()=> p.remove();
+  }
+}
+
+
+
+
