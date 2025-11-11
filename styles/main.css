@@ -162,7 +162,6 @@ html,body{
 .linkcard{display:block; color:inherit}
 
 
-
 .tag{
   position:absolute; top:12px; right:12px;
   background:#111; color:#fff; font-size:12px;
@@ -338,47 +337,6 @@ ol, ul { list-style:none; margin:0; padding:0; }
 }
 .btn:hover{ transform:translateY(-3px) scale(1.05); }
 
-/* STYLE FILTERS (PILLS)  */
-.style-filters{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  align-items:center;
-  margin:6px 0 16px;
-}
-.style-filters input[type="radio"]{
-  position:absolute;
-  opacity:0;
-  width:0;
-  height:0;
-  pointer-events:none;
-  -webkit-appearance:none;
-  appearance:none;
-}
-.style-filters label{
-  display:inline-block;
-  padding:10px 16px;
-  border-radius:999px;
-  background:#f2f2f5;
-  color:#111;
-  font-weight:700;
-  cursor:pointer;
-  user-select:none;
-  border:1px solid #ececec;
-  transition:background .15s ease, color .15s ease, box-shadow .15s ease, transform .05s ease;
-}
-.style-filters label:hover{ box-shadow:0 4px 12px rgba(0,0,0,.06); }
-.style-filters input[type="radio"]:focus-visible + label{
-  outline:2px solid rgba(122,13,79,.25);
-  outline-offset:2px;
-}
-.style-filters input[type="radio"]:checked + label{
-  background:linear-gradient(135deg, #7a0d4f, #a83279);
-  color:#fff;
-  border-color:transparent;
-  box-shadow:0 8px 18px rgba(122,13,79,.25);
-}
-
   /* wishlist scroll */
   .wishlist-scroll{
     display:flex;
@@ -415,23 +373,6 @@ ol, ul { list-style:none; margin:0; padding:0; }
 }
 .seasons-grid .card:hover img{ transform:scale(1.04); }
 
-/* лёгкое свечение на hover */
-.seasons-grid .card::after{
-  content:"";
-  position:absolute;
-  inset:-140px;
-  z-index:0;
-  opacity:0;
-  filter:blur(48px);
-  transform:scale(.85);
-  transition:opacity .35s ease, transform .35s ease;
-  pointer-events:none;
-}
-.seasons-grid .card:hover::after{ opacity:.35; transform:scale(1); }
-.seasons-grid .card.spring::after{ background:radial-gradient(60% 60% at 50% 60%, rgba(214,255,196,.60) 0%, rgba(255,230,255,.40) 40%, rgba(255,255,255,0) 75%); }
-.seasons-grid .card.summer::after{ background:radial-gradient(60% 60% at 50% 60%, rgba(137,247,254,.60) 0%, rgba(102,166,255,.40) 40%, rgba(255,255,255,0) 75%); }
-.seasons-grid .card.autumn::after{ background:radial-gradient(60% 60% at 50% 60%, rgba(246,211,101,.60) 0%, rgba(253,160,133,.40) 40%, rgba(255,255,255,0) 75%); }
-.seasons-grid .card.winter::after{ background:radial-gradient(60% 60% at 50% 60%, rgba(193,214,233,.60) 0%, rgba(162,196,253,.40) 40%, rgba(255,255,255,0) 75%); }
 
 /* page layout */
 .page-grid{
