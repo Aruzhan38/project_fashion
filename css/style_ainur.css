@@ -545,6 +545,7 @@ body:not(.theme-dark) .rating .star {
   background: var(--accent);
   color: #fff;
 }
+
 body.theme-dark .rating .star {
   background: #7a0d4f;
   color: #fff;
