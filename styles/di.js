@@ -1,26 +1,3 @@
-// star rating
-document.querySelectorAll('.rating').forEach(block => {
-  const stars = block.querySelectorAll('span[data-value]');
-  const note  = block.querySelector('.rating-note');
-  let current = 0;
-
-  const paint = (n) => {
-    stars.forEach(s => s.classList.toggle('active', Number(s.dataset.value) <= n));
-    note.textContent = `Rate: ${n}/5`;
-  };
-
-  stars.forEach(star => {
-    star.addEventListener('click', () => {
-      current = Number(star.dataset.value);
-      paint(current);
-    });
-    star.addEventListener('mouseenter', () => paint(Number(star.dataset.value)));
-    star.addEventListener('mouseleave', () => paint(current));
-  });
-});
-
-
-
 // Typing effect for headings
 (function(){
   const el = document.querySelector('.typing');
@@ -34,4 +11,3 @@ document.querySelectorAll('.rating').forEach(block => {
   }
   tick();
 })();
-
